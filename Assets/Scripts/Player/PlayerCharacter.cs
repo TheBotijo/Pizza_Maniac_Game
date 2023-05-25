@@ -69,7 +69,7 @@ public class PlayerCharacter : MonoBehaviour
         if (facing != FacingOptions.None) Facing(facing);
 
         //Para implementar la deteccion del suelo
-        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
 
         //Movement zone
         {
