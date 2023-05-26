@@ -29,7 +29,7 @@ public class PlayerMoveJump : MonoBehaviour
     Vector3 moveDirection;
 
     //Animations
-    //public Animator animator;
+    public Animator animator;
 
     //Variables de Detecció Ground
     [Header("Ground Check")]
@@ -63,34 +63,34 @@ public class PlayerMoveJump : MonoBehaviour
         
         SpeedControl();
         PlayMove();
-        
-        
+
+
         //ANIMATIONS
         //walk
-        //if (_playerInput.Juego.Move.IsPressed())
-        //{
-        //    animator.SetBool("Walk", true);
-        //    animator.SetBool("Run", false);
-        //}
-        //else { animator.SetBool("Walk", false); }
-        ////run
-        //if (_playerInput.Juego.Run.IsPressed())
-        //{            
-        //    animator.SetBool("Run", true);
-        //    animator.SetBool("Walk", false);
-            
-        //}
-        //else { animator.SetBool("Run", false); }
-        ////Jump
-        //if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run")==true)
-        //{
-        //    animator.SetBool("RunJump",true);          
-        //}
-        //if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
-        //{
-        //    animator.SetBool("Jump", true);  
-        //}
-           
+        if (_playerInput.Juego.Move.IsPressed())
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Run", false);
+        }
+        else { animator.SetBool("Walk", false); }
+        //run
+        if (_playerInput.Juego.Run.IsPressed())
+        {
+            animator.SetBool("Run", true);
+            animator.SetBool("Walk", false);
+
+        }
+        else { animator.SetBool("Run", false); }
+        //Jump
+        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == true)
+        {
+            animator.SetBool("RunJump", true);
+        }
+        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
+        {
+            animator.SetBool("Jump", true);
+        }
+
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded)
         {
