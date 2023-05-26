@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
@@ -13,19 +14,22 @@ public class PlayerMoveJump : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     private float lateSpeed;
-    public float rotationSpeed;
+    //public float rotationSpeed;
 
     float yRotation;
     public Transform orientation;
     public Transform playerObj;
+    // public Transform playerObj;
     private PlayerInputMap _playerInput;
     public bool aiming;
-    
+
+    public Transform cameraa;
+    public Transform cameraRot;
 
     Vector3 moveDirection;
 
     //Animations
-    public Animator animator;
+    //public Animator animator;
 
     //Variables de Detecció Ground
     [Header("Ground Check")]
@@ -48,8 +52,6 @@ public class PlayerMoveJump : MonoBehaviour
         _playerInput.Juego.Enable();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation= true;
-       
-        
 
         readyToJump = true;
     }
@@ -59,35 +61,35 @@ public class PlayerMoveJump : MonoBehaviour
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
         
-            SpeedControl();
-            PlayMove();
+        SpeedControl();
+        PlayMove();
         
         
-        //Animations
+        //ANIMATIONS
         //walk
-        if (_playerInput.Juego.Move.IsPressed())
-        {
-            animator.SetBool("Walk", true);
-            animator.SetBool("Run", false);
-        }
-        else { animator.SetBool("Walk", false); }
-        //run
-        if (_playerInput.Juego.Run.IsPressed())
-        {            
-            animator.SetBool("Run", true);
-            animator.SetBool("Walk", false);
+        //if (_playerInput.Juego.Move.IsPressed())
+        //{
+        //    animator.SetBool("Walk", true);
+        //    animator.SetBool("Run", false);
+        //}
+        //else { animator.SetBool("Walk", false); }
+        ////run
+        //if (_playerInput.Juego.Run.IsPressed())
+        //{            
+        //    animator.SetBool("Run", true);
+        //    animator.SetBool("Walk", false);
             
-        }
-        else { animator.SetBool("Run", false); }
-        //Jump
-        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run")==true)
-        {
-            animator.SetBool("RunJump",true);          
-        }
-        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
-        {
-            animator.SetBool("Jump", true);  
-        }
+        //}
+        //else { animator.SetBool("Run", false); }
+        ////Jump
+        //if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run")==true)
+        //{
+        //    animator.SetBool("RunJump",true);          
+        //}
+        //if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
+        //{
+        //    animator.SetBool("Jump", true);  
+        //}
            
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded)
@@ -97,8 +99,10 @@ public class PlayerMoveJump : MonoBehaviour
         else
             rb.drag = 0;
     }
+
     private void PlayMove()
     {
+
         //recollir inputs de moviment en els eixos
         float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
@@ -113,12 +117,12 @@ public class PlayerMoveJump : MonoBehaviour
     
     
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
-        
-        orientation.forward = Vector3.Slerp(orientation.forward, moveDirection.normalized, Time.deltaTime * rotationSpeed);
-        transform.forward = Vector3.Slerp(transform.forward, orientation.forward, Time.deltaTime * rotationSpeed);
 
+        
         //apliquem una força al moviment quan esta tocant al terra
         if (aiming)
             moveSpeed = lateSpeed / 2;
@@ -137,15 +141,15 @@ public class PlayerMoveJump : MonoBehaviour
         }
         else if(!grounded && flatVel.magnitude == 0)
         {
-            rb.AddForce(moveDirection.normalized, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized , ForceMode.Force);
         }
-        else if (!grounded && flatVel.magnitude > (moveSpeed * 8)) //a l'aire
+        else if (!grounded && flatVel.magnitude > (moveSpeed)) //a l'aire
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 20f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized *10 * airMultiplier, ForceMode.Force);
         }
         else if (!grounded) //a l'aire
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
 
     }

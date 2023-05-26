@@ -115,13 +115,13 @@ public class PlayerCharacter : MonoBehaviour
         if (!playerCanJump) return;
 
         //if collide a celing while jumping, stop jumping.
-        if(jumping && Physics.CheckSphere(topLimit.position, 0.1f, ~LayerMask.GetMask("WhatIsPlayer"))) //avoid PlayerCharacter layer.
+        if(jumping && Physics.CheckSphere(topLimit.position, 0.1f, ~LayerMask.GetMask("WhatIsPlayer"))) 
         {
             jumping = false;
         }
         //if player lands to the ground, jumping finishes. falling is not jumping in this code, but imagine jump to a ledge and touch the ground of the ledge before falling. we need to connsider this.
         //using this instead of CharacterController.isGrounded because it's sooooo buggy.
-        else if (Physics.CheckSphere(transform.position, 0.1f, ~LayerMask.GetMask("WhatIsPlayer"))) //avoid PlayerCharacter layer.
+        else if (Physics.CheckSphere(transform.position, 0.1f, ~LayerMask.GetMask("WhatIsPlayer")))
         {
             airTime = 0f;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +9,20 @@ using UnityEngine.InputSystem;
 //Flag to relocate camera on the back of character automatically when running.
 public class CameraController : MonoBehaviour
 {
+	[Header("PlayerRotate")]
 	//New Input system
 	public PlayerInputMap _playerInput;
+    public Transform player;
+    public Transform playerObj;
+	public Transform orientation;
+	public Rigidbody rb;
+    public float rotationSpeed;
 
-	public bool invertMouseYaw = false;
+    public bool invertMouseYaw = false;
 	public bool invertGamepadYaw = false;
 	public bool invertMousePitch = false;
 	public bool invertGamepadPitch = false;
-	public Vector2 pitchLimits = new Vector2(-60f, 60f);
+	public Vector2 pitchLimits = new Vector2(-10f, 10f);
 	public Transform cameraTarget;
 	public Vector2 zoomLimits = new Vector2(1, 10);
 	public float yLerp = 1f;
@@ -49,9 +56,25 @@ public class CameraController : MonoBehaviour
     {
 		CameraRootRelocation();
 		CameraRootRotation();
+		PlayerRotation();
 		CameraRelocation();
 		CameraZoom();
     }
+
+	private void PlayerRotation()
+	{
+		Vector3 viewDir = player.position - new Vector3(cameraTarget.transform.position.x, player.position.y, cameraTarget.transform.position.z);
+		orientation.forward = viewDir.normalized;
+
+		float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
+		float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
+
+		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+		if (inputDir != Vector3.zero)
+		{
+			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 2);
+		}
+	}
 
 	private void CameraRootRelocation()
 	{
