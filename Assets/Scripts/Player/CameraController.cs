@@ -73,7 +73,7 @@ public class CameraController : MonoBehaviour
 		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 		if (inputDir != Vector3.zero)
 		{
-			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 2);
+			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 6);
 		}
 	}
 

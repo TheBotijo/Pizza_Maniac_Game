@@ -59,7 +59,7 @@ public class PlayerMoveJump : MonoBehaviour
     public void Update()
     {
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
+        grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
         
         SpeedControl();
         PlayMove();        
@@ -67,27 +67,23 @@ public class PlayerMoveJump : MonoBehaviour
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded && readyToJump == false)
         {
-            Invoke(nameof(notJump), 1);
+            Invoke(nameof(notJump), 0.5f);
 
 
         }
         else if (grounded)
         {
             rb.drag = groundDrag;
+
+            Debug.Log("Grounded");
         }        
         else
             rb.drag = 0;
     }
-    void notJump()
-    {
-        Debug.Log("NotJump");
-        animator.SetBool("Jump", false);
-        animator.SetBool("RunJump", false);
-    }
+    
 
     private void PlayMove() 
     {
-
         //recollir inputs de moviment en els eixos
         float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
@@ -95,20 +91,11 @@ public class PlayerMoveJump : MonoBehaviour
         if (_playerInput.Juego.Jump.WasPressedThisFrame() && readyToJump && grounded )
         {
             readyToJump = false;
-            Jump();
-           
-            
+            Jump();                     
         }
-        //else
-        //{
-        //    animator.SetBool("Jump", false);
-        //    animator.SetBool("RunJump", false);
-        //}
-
 
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        
+                
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
 
@@ -121,7 +108,6 @@ public class PlayerMoveJump : MonoBehaviour
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
-            animator.SetBool("Run", true);
         }
         else if (grounded)
         {
@@ -140,6 +126,7 @@ public class PlayerMoveJump : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
+
         //ANIMATIONS
         //walk
         if (_playerInput.Juego.Move.IsPressed())
@@ -147,7 +134,7 @@ public class PlayerMoveJump : MonoBehaviour
             animator.SetBool("Walk", true);
             animator.SetBool("Run", false);
         }
-        else { animator.SetBool("Walk", false); }
+        else  animator.SetBool("Walk", false); 
         //run
         if (_playerInput.Juego.Run.IsPressed())
         {
@@ -155,7 +142,7 @@ public class PlayerMoveJump : MonoBehaviour
             animator.SetBool("Walk", false);
 
         }
-        else { animator.SetBool("Run", false); }
+        else  animator.SetBool("Run", false); 
     }
 
     private void SpeedControl()
@@ -193,5 +180,11 @@ public class PlayerMoveJump : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    void notJump()
+    {
+        Debug.Log("NotJump");
+        animator.SetBool("Jump", false);
+        animator.SetBool("RunJump", false);
     }
 }
