@@ -62,67 +62,56 @@ public class PlayerMoveJump : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
         
         SpeedControl();
-        PlayMove();
-
-
-        //ANIMATIONS
-        //walk
-        if (_playerInput.Juego.Move.IsPressed())
-        {
-            animator.SetBool("Walk", true);
-            animator.SetBool("Run", false);
-        }
-        else { animator.SetBool("Walk", false); }
-        //run
-        if (_playerInput.Juego.Run.IsPressed())
-        {
-            animator.SetBool("Run", true);
-            animator.SetBool("Walk", false);
-
-        }
-        else { animator.SetBool("Run", false); }
-        //Jump
-        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == true)
-        {
-            animator.SetBool("RunJump", true);
-        }
-        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
-        {
-            animator.SetBool("Jump", true);
-        }
-
+        PlayMove();        
+        
         //comprovem si toca el terra per aplicar un fregament al player
-        if (grounded)
+        if (grounded && readyToJump == false)
+        {
+            Invoke(nameof(notJump), 1);
+
+
+        }
+        else if (grounded)
         {
             rb.drag = groundDrag;
         }        
         else
             rb.drag = 0;
     }
+    void notJump()
+    {
+        Debug.Log("NotJump");
+        animator.SetBool("Jump", false);
+        animator.SetBool("RunJump", false);
+    }
 
-    private void PlayMove()
+    private void PlayMove() 
     {
 
         //recollir inputs de moviment en els eixos
         float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
 
-        if (_playerInput.Juego.Jump.WasPressedThisFrame() && readyToJump && grounded)
+        if (_playerInput.Juego.Jump.WasPressedThisFrame() && readyToJump && grounded )
         {
             readyToJump = false;
             Jump();
-
-            Invoke(nameof(ResetJump), jumpCooldown);
+           
+            
         }
-    
-    
+        //else
+        //{
+        //    animator.SetBool("Jump", false);
+        //    animator.SetBool("RunJump", false);
+        //}
+
+
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
 
-        
         //apliquem una força al moviment quan esta tocant al terra
         if (aiming)
             moveSpeed = lateSpeed / 2;
@@ -131,8 +120,8 @@ public class PlayerMoveJump : MonoBehaviour
 
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
-            
+            rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+            animator.SetBool("Run", true);
         }
         else if (grounded)
         {
@@ -151,7 +140,22 @@ public class PlayerMoveJump : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
+        //ANIMATIONS
+        //walk
+        if (_playerInput.Juego.Move.IsPressed())
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Run", false);
+        }
+        else { animator.SetBool("Walk", false); }
+        //run
+        if (_playerInput.Juego.Run.IsPressed())
+        {
+            animator.SetBool("Run", true);
+            animator.SetBool("Walk", false);
 
+        }
+        else { animator.SetBool("Run", false); }
     }
 
     private void SpeedControl()
@@ -174,6 +178,17 @@ public class PlayerMoveJump : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //apliquem impulse perque es nomes una vegada
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        if (animator.GetBool("Run") == true)
+        {
+            animator.SetBool("RunJump", true);
+        }
+        else
+        {
+            animator.SetBool("Jump", true);
+        }
+
+        Invoke(nameof(ResetJump), jumpCooldown);
     }
     private void ResetJump()
     {

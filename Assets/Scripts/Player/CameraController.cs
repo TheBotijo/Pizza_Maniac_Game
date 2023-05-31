@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     public Transform playerObj;
 	public Transform orientation;
 	public Rigidbody rb;
+	[Range(1f, 5f)]
     public float rotationSpeed;
 
     public bool invertMouseYaw = false;
@@ -89,8 +90,8 @@ public class CameraController : MonoBehaviour
 
 	private void CameraRootRotation()
 	{
-		float yaw = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;	//around Y axis, vertical
-		float pitch = (-1) *  _playerInput.Juego.CameraMove.ReadValue<Vector2>().y; //around X axis, horizontal
+		float yaw = 0.05f * _playerInput.Juego.CameraMove.ReadValue<Vector2>().x * rotationSpeed;	//around Y axis, vertical
+		float pitch = (-0.05f) *  _playerInput.Juego.CameraMove.ReadValue<Vector2>().y * rotationSpeed; //around X axis, horizontal
 
 		pitchAngle += pitch;
 		yawAngle += yaw;
