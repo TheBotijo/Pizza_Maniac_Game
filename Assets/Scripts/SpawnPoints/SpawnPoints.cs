@@ -15,6 +15,7 @@ public class SpawnPoints : MonoBehaviour
 
     private void Start()
     {
+        spawnPoint = Random.Range(1, 3);
         respawn(deliverHere);
         player.transform.position = spawnPointList[spawnPoint].transform.position;
         player.transform.localRotation = spawnPointList[spawnPoint].transform.localRotation;
