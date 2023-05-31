@@ -17,7 +17,7 @@ public class Health_Damage : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
     public PlayerMoveJump player;
-    public Camera thirddCam;
+    public PlayerThirdCam thirddCam;
 
     public void Start()
     {
@@ -50,7 +50,7 @@ public class Health_Damage : MonoBehaviour
     }
     IEnumerator Death()
     {
-        thirddCam.fieldOfView = 20;
+        thirddCam.thirdCam.m_Lens.FieldOfView = 20;
         moving = false;
         animator.SetTrigger("Death");
         Debug.Log("muerte");

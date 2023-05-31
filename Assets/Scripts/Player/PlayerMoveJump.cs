@@ -105,7 +105,7 @@ public class PlayerMoveJump : MonoBehaviour
 
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 35f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
         }
         else if (grounded)
         {

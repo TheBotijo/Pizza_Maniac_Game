@@ -18,13 +18,13 @@ public class PizzaDeliver : MonoBehaviour
 
     private void Start()
     {
-        totalPizzas = 10;
+
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            if(currentPizzas == totalPizzas)
+            if(currentPizzas == 0)
             {
 
                 if (rounds == 0)
@@ -36,12 +36,13 @@ public class PizzaDeliver : MonoBehaviour
                 if (rounds == 3) 
                     totalPizzas = 1;
 
+                currentPizzas = totalPizzas;
                 rounds++;
             }
             else
             {
                 pizzasEntregadas++;
-                currentPizzas++;
+                currentPizzas--;
                 Debug.Log("Pizza entregada");
             }
 
