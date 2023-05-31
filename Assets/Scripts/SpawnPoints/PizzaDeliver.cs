@@ -11,7 +11,7 @@ public class PizzaDeliver : MonoBehaviour
     public int currentPizzas;
     public int totalPizzas;
     public SpawnPoints spawnPoint;
-    public GameObject deliverPoint;
+    public GameObject deliverHere;
     [HideInInspector]
     public int rounds = 0;
     //public TextMeshPro repartirText;
@@ -47,7 +47,7 @@ public class PizzaDeliver : MonoBehaviour
             }
 
             spawnPoint.pizzas = currentPizzas;
-            spawnPoint.respawn(deliverPoint);
+            spawnPoint.respawn(deliverHere);
         }
     }
 }

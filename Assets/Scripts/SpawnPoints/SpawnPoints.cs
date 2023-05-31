@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour
-{
-    public int spawnPoints;
+{    
     [SerializeField] List<GameObject> spawnPointList;
+    public int deliverPoints;
     [SerializeField] List<GameObject> deliverPointList;
     public GameObject player;
-    public GameObject deliverPoint;
+    public GameObject deliverHere;
     public int pizzas = 0;
     private int lastPoint = 0;
     private int spawnPoint;
 
     private void Start()
     {
-        respawn(deliverPoint);
+        respawn(deliverHere);
         player.transform.position = spawnPointList[spawnPoint].transform.position;
         player.transform.localRotation = spawnPointList[spawnPoint].transform.localRotation;
 
@@ -29,10 +29,10 @@ public class SpawnPoints : MonoBehaviour
         }
         else
         {
-            spawnPoint = Random.Range(1, spawnPoints);
+            spawnPoint = Random.Range(1, deliverPoints);
             while (spawnPoint == lastPoint)
             {
-                spawnPoint = Random.Range(1, spawnPoints);
+                spawnPoint = Random.Range(1, deliverPoints);
                 Debug.Log("Ha salido el mismo");
             }
             Debug.Log("Last point avant: " + lastPoint);

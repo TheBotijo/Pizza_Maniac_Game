@@ -74,8 +74,6 @@ public class PlayerMoveJump : MonoBehaviour
         else if (grounded)
         {
             rb.drag = groundDrag;
-
-            Debug.Log("Grounded");
         }        
         else
             rb.drag = 0;
