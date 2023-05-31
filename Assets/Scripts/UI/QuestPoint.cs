@@ -14,7 +14,7 @@ public class QuestPoint : MonoBehaviour
     public TextMeshProUGUI meter2;
     public GameObject deliverHere;
     public Vector3 offset;
-    public PizzaDeliver pizzasCount;
+    public SpawnPoints pizzasCount;
 
     // Update is called once per frame
     public void Update()
@@ -43,14 +43,14 @@ public class QuestPoint : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxX);
 
-        if (pizzasCount.currentPizzas == 0)
+        if (pizzasCount.entregadas == true)
         {
             meter.enabled = false;
             meter2.enabled = true;
             deliverImage.enabled = false;
             pizzaImage.enabled = true;
             pizzaImage.transform.position = pos;
-            meter2.text = (((int)Vector3.Distance(deliverHere.transform.position, transform.position)) - 6).ToString() + "m";
+            meter2.text = (((int)Vector3.Distance(deliverHere.transform.position, transform.position)) - 4).ToString() + "m";
         }
         else
         {
@@ -59,7 +59,7 @@ public class QuestPoint : MonoBehaviour
             deliverImage.enabled = true;
             pizzaImage.enabled = false;
             deliverImage.transform.position = pos;
-            meter.text = (((int)Vector3.Distance(deliverHere.transform.position, transform.position)) - 6).ToString() + "m";
+            meter.text = (((int)Vector3.Distance(deliverHere.transform.position, transform.position)) - 4).ToString() + "m";
 
         }
 
