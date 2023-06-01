@@ -7953,6 +7953,7 @@ MonoBehaviour:
   jumpForce: 5
   jumpCooldown: 0.5
   airMultiplier: 1
+  shootScript: {fileID: 1445957767}
 --- !u!54 &1445957765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8003,10 +8004,11 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   magazineSize: 20
   bulletsPerTap: 1
-  allowButtonHold: 0
+  allowButtonHold: 1
   bulletsLeft: 0
   bulletsShot: 0
   time_Damage: 0.5
+  shot: 0
   fpsCam: {fileID: 963194227}
   attackPoint: {fileID: 0}
   whatIsEnemy:

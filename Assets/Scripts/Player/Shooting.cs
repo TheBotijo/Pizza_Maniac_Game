@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
     public float time_Damage = 0.5f;
 
     //bools 
+    public bool shot; 
     bool shooting, readyToShoot, reloading;
     //Guns
     bool pistol=true, ak;
@@ -63,8 +64,14 @@ public class Shooting : MonoBehaviour
         //Shoot
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
             bulletsShot = bulletsPerTap;
+            shot = true;
             Shoot();
+            Invoke(nameof(stop), 1);
         }
+    }
+    private void stop()
+    {
+        shot = false;
     }
     private void ChangeGun() 
     {
