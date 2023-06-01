@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class PizzaDeliver : MonoBehaviour
 {
-    public int pizzasEntregadas = 0;
-    public int currentPizzas;
+    public int currentPizzas = 0;
     public int totalPizzas;
     public SpawnPoints spawnPoint;
     public GameObject deliverHere;
@@ -18,35 +17,38 @@ public class PizzaDeliver : MonoBehaviour
 
     private void Start()
     {
-
+        totalPizzas = 0;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            if(currentPizzas == 0)
+            if (currentPizzas == totalPizzas - 1)
             {
-
+                spawnPoint.entregadas = true;
+                currentPizzas++;
+            }
+            else if (currentPizzas == totalPizzas)
+            {
+                spawnPoint.entregadas = false;
                 if (rounds == 0)
-                    totalPizzas = 10;
-                if (rounds == 1)
                     totalPizzas = 5;
-                if (rounds == 2)
-                    totalPizzas = 3;
-                if (rounds == 3) 
-                    totalPizzas = 1;
+                else
+                {
+                    if (rounds == 1)
+                        totalPizzas = 3;
+                    if (rounds == 2)
+                        totalPizzas = 2;
+                    if (rounds == 3)
+                        totalPizzas = 1;
 
-                currentPizzas = totalPizzas;
+                }
                 rounds++;
+                currentPizzas = 0;
             }
             else
-            {
-                pizzasEntregadas++;
-                currentPizzas--;
-                Debug.Log("Pizza entregada");
-            }
+                currentPizzas++;
 
-            spawnPoint.pizzas = currentPizzas;
             spawnPoint.respawn(deliverHere);
         }
     }

@@ -45,6 +45,9 @@ public class PlayerMoveJump : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
+    [Header("Others")]
+    public Shooting shootScript;
+
     private void Start()
     {
         lateSpeed = moveSpeed;
@@ -62,7 +65,10 @@ public class PlayerMoveJump : MonoBehaviour
         grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
         
         SpeedControl();
-        PlayMove();        
+        if(shootScript.shot == false)
+        {
+            PlayMove();
+        }            
         
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded && readyToJump == false)
