@@ -4364,7 +4364,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9528302, g: 0.74981415, b: 0.38203096, a: 1}
+  m_Color: {r: 0.8773585, g: 0.6547875, b: 0.25244746, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -19662,8 +19662,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8544783547513549927
-BoxCollider:
+--- !u!64 &8544783547513549927
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19672,9 +19672,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6895706, y: 0.0650611, z: 0.0048967777}
-  m_Center: {x: 0.1769552, y: 0.0000000037252896, z: -0.0000000015133987}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1550514412580984892, guid: 9a561b56f7a93464ea63b13bcba38149, type: 3}
 --- !u!23 &8567716999172584409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19820,8 +19821,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &8707273952334975932
-BoxCollider:
+--- !u!64 &8707273952334975932
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19830,9 +19831,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.028967947, z: 0.019999996}
-  m_Center: {x: 0, y: 0.005688986, z: 0.000000044703484}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: 9a561b56f7a93464ea63b13bcba38149, type: 3}
 --- !u!1 &8757042446590494687
 GameObject:
   m_ObjectHideFlags: 0
