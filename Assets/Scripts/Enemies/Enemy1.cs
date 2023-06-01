@@ -15,11 +15,6 @@ public class Enemy1 : MonoBehaviour
     public int damage = 5;
     public int Health = 50;
 
-    //Patroling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -30,7 +25,6 @@ public class Enemy1 : MonoBehaviour
 
     private void Awake()
     {
-
         player = GameObject.Find("MainCharacter").transform;
         takeDamage = Object.FindObjectOfType<Shooting>();
         //agent = GetComponent<NavMeshAgent>();
@@ -42,41 +36,15 @@ public class Enemy1 : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        //if (!playerInSightRange && !playerInAttackRange) Patroling();
-        //if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        //if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
         if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage(); 
     }
 
-    private void Patroling()
+    private void ChasePlayer()
     {
-        if (!walkPointSet) SearchWalkPoint();
-
-        //if (walkPointSet)
-        //    agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
+        //agent.SetDestination(player.position);
     }
-
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
-    }
-
-    //private void ChasePlayer()
-    //{
-    //    agent.SetDestination(player.position);
-    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -103,24 +71,24 @@ public class Enemy1 : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    //private void AttackPlayer()
-    //{
-    //    //Make sure enemy doesn't move
-    //    agent.SetDestination(transform.position);
+    private void AttackPlayer()
+    {
+        //Make sure enemy doesn't move
+        //agent.SetDestination(transform.position);
 
-    //    transform.LookAt(player);
+        transform.LookAt(player);
 
-    //    if (!alreadyAttacked)
-    //    {
-    //        ////Attack code
-    //        //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-    //        //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-    //        //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+        if (!alreadyAttacked)
+        {
+            ////Attack code
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
-    //        alreadyAttacked = true;
-    //        Invoke(nameof(ResetAttack), timeBetweenAttacks);
-    //    }
-    //}
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
 
     private void ResetAttack()
     {

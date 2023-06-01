@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour
 	private float pitchAngle;
 	private Transform cameraTransform;
 	private bool hitted;
+	bool pause = false;
 
 	private void Awake()
 	{
@@ -55,11 +56,15 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-		CameraRootRelocation();
-		CameraRootRotation();
-		PlayerRotation();
-		CameraRelocation();
-		CameraZoom();
+		if (pause != true)
+		{
+			CameraRootRelocation();
+			CameraRootRotation();
+			PlayerRotation();
+			CameraRelocation();
+			CameraZoom();
+		}
+		
     }
 
 	private void PlayerRotation()
@@ -136,4 +141,10 @@ public class CameraController : MonoBehaviour
 		float z = Mathf.Clamp(cameraTarget.localPosition.z + wheel, -zoomLimits.y, -zoomLimits.x);
 		cameraTarget.localPosition = Vector3.forward * z;
 	}
+
+    public void cameraSwitch(int num)
+    {
+        if (num == 0) pause = true;
+		else pause = false;
+    }
 }
