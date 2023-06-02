@@ -73,7 +73,7 @@ public class Shooting : MonoBehaviour
             Shoot();
             Invoke(nameof(stop), 1);
         }
-        if (readyToShoot && shooting && !reloading && rodillo == true) 
+        else if (readyToShoot && shooting && !reloading && rodillo == true) 
         {
             shot = true;
             Shoot();         
@@ -140,16 +140,17 @@ public class Shooting : MonoBehaviour
             GetComponent<BoxCollider>().enabled = true;
             animator.SetTrigger("melee");
         }
-        if (pistol == true)
+        else  if (pistol == true)
         {
             bulletsLeft--;
             animator.SetTrigger("Pistol");
         }
-        if (ak == true)
+        else if (ak == true)
         {
             bulletsLeft--;
             animator.SetTrigger("Ak");
         }
+
         readyToShoot = false;
 
         //Spread
@@ -177,14 +178,10 @@ public class Shooting : MonoBehaviour
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         
-        
-
-
-
         Invoke("ResetShot", timeBetweenShooting);
 
-        if(bulletsShot > 0 && bulletsLeft > 0)
-        Invoke("Shoot", timeBetweenShots);
+        //if(bulletsShot > 0 && bulletsLeft > 0)
+        //    Invoke("Shoot", timeBetweenShots);
     }
     
     private void ResetShot()

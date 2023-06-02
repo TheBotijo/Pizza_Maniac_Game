@@ -1605,17 +1605,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316160054}
-  m_LocalRotation: {x: -0.00000005960461, y: 0.00000006322018, z: 0.00000069542295, w: 1}
-  m_LocalPosition: {x: 0.029750222, y: -0.0009181475, z: 0.03975878}
-  m_LocalScale: {x: 4.5910826, y: 4.591083, z: 4.5910845}
+  m_LocalRotation: {x: -0.49999988, y: 0.5000001, z: 0.5000003, w: 0.4999997}
+  m_LocalPosition: {x: 22.342, y: 3.4589999, z: 0.35100013}
+  m_LocalScale: {x: 100.00002, y: 100.000015, z: 100.00004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1179783877}
   - {fileID: 543450652559963280}
   - {fileID: 7643966969497516989}
   - {fileID: 2084822046784201719}
-  m_Father: {fileID: 1367521727662836923}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317504291
 GameObject:
@@ -7906,7 +7906,7 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   magazineSize: 20
   bulletsPerTap: 1
-  allowButtonHold: 1
+  allowButtonHold: 0
   bulletsLeft: 0
   bulletsShot: 0
   time_Damage: 0.5
@@ -7914,9 +7914,9 @@ MonoBehaviour:
   rodill: {fileID: 919132148021734954}
   pistola: {fileID: 7016330975160803591}
   Ak: {fileID: 1703792462004877645}
-  rodillo: 1
+  rodillo: 0
   pistol: 0
-  ak: 0
+  ak: 1
   fpsCam: {fileID: 963194227}
   attackPoint: {fileID: 1345375674}
   whatIsEnemy:
@@ -14828,7 +14828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &919132148247633884
 GameObject:
   m_ObjectHideFlags: 0
@@ -15848,8 +15848,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 316160055}
+  m_Children: []
   m_Father: {fileID: 8965285764050451789}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17002,12 +17001,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2084822046784201719}
   m_Layer: 0
-  m_Name: akrexulona
+  m_Name: AK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &1703912658490415426
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18803,21 +18802,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154752378918953311}
   m_Mesh: {fileID: -4848761030350202201, guid: 9c67f021f74277844a624bb505b2f6c9, type: 3}
---- !u!4 &2572431362866351571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2952333982312257385}
-  m_LocalRotation: {x: -0, y: 0.70710665, z: -0, w: 0.707107}
-  m_LocalPosition: {x: 22.322, y: 2.593, z: 0.999}
-  m_LocalScale: {x: 0.2178135, y: 0.2178135, z: 0.2178135}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &2580559627290451377
 Transform:
   m_ObjectHideFlags: 0
@@ -19873,22 +19857,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262012781676022303}
   m_Mesh: {fileID: -7196802604745430461, guid: 7e35a5c1cbc478143b1e06b14f3b22ed, type: 3}
---- !u!1 &2952333982312257385
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2572431362866351571}
-  m_Layer: 0
-  m_Name: pjprincipal_COLOR_brazosepMIXAMO
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &2971542036518831329
 GameObject:
   m_ObjectHideFlags: 0
