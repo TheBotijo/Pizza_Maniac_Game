@@ -1,12 +1,13 @@
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class Enemy1 : MonoBehaviour
 {
-    //public NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public Transform player;
+    private Animator animator;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -19,6 +20,7 @@ public class Enemy1 : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public GameObject cos;
 
     //States
     public float sightRange, attackRange;
@@ -28,8 +30,9 @@ public class Enemy1 : MonoBehaviour
     {
         player = GameObject.Find("MainCharacter").transform;
         takeDamage = FindObjectOfType<Shooting>();
-        original = GetComponent<Renderer>().material.color;
-        //agent = GetComponent<NavMeshAgent>();
+        original = cos.GetComponent<Renderer>().material.color;
+        agent = GetComponent<NavMeshAgent>();
+        animator= GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,14 +41,28 @@ public class Enemy1 : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            animator.SetBool("moving", true);
+        }
+        if (playerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
+            animator.SetBool("attacking", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
+            animator.SetBool("attacking", false);
+
+        }
         //if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage();
     }
 
     private void ChasePlayer()
     {
-        //agent.SetDestination(player.position);
+        agent.SetDestination(player.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,6 +70,7 @@ public class Enemy1 : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<Health_Damage>().loseHealth(damage);
+            Debug.Log("DAÑANDO A PLAYER");
         }
     }
     private void OnTriggerStay(Collider other)
@@ -66,8 +84,9 @@ public class Enemy1 : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log("DañoEnemigo");
-        GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-        Invoke(nameof(colorBack), 0.1f);
+        animator.SetBool("tookDamage", true);
+        cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        Invoke(nameof(colorBack), 0.2f);
         Health -= 10;
         if (Health <= 0)
         {
@@ -76,12 +95,12 @@ public class Enemy1 : MonoBehaviour
     }
     void colorBack()
     {
-        GetComponent<Renderer>().material.color = original;
+        cos.GetComponent<Renderer>().material.color = original;
     }
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
-        //agent.SetDestination(transform.position);
+        agent.SetDestination(transform.position);
 
         transform.LookAt(player);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Health_Damage : MonoBehaviour
@@ -18,6 +19,7 @@ public class Health_Damage : MonoBehaviour
     public Animator animator;
     public PlayerMoveJump player;
     public Camera thirddCam;
+    public GameObject playerObj;
 
     public void Start()
     {
@@ -50,9 +52,13 @@ public class Health_Damage : MonoBehaviour
     }
     IEnumerator Death()
     {
-        thirddCam.fieldOfView = 20;
+        thirddCam.fieldOfView = 50;
         moving = false;
         animator.SetTrigger("Death");
+        playerObj.GetComponent<Animator>().enabled = false;
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+        gameObject.GetComponent<PlayerMoveJump>().enabled = false;
+        gameObject.GetComponent<Shooting>().enabled = false;
         Debug.Log("muerte");
         yield return new WaitForSeconds(time_death);
         Destroy(gameObject);
