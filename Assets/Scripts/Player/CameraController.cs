@@ -48,7 +48,6 @@ public class CameraController : MonoBehaviour
         transform.parent = null;
 		_playerInput = new PlayerInputMap();
 		_playerInput.Juego.Enable();
-
 		//Ocultar el cursor del usuario para una mejor experiencia con el movimiento de camara
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -63,7 +62,7 @@ public class CameraController : MonoBehaviour
 			PlayerRotation();
 			CameraRelocation();
 			CameraZoom();
-		}
+        }
 		
     }
 
@@ -78,7 +77,7 @@ public class CameraController : MonoBehaviour
 		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 		if (inputDir != Vector3.zero)
 		{
-			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 6);
+			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 10);
 		}
 	}
 

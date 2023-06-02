@@ -29,7 +29,6 @@ public class PauseMenu : MonoBehaviour
         if (_playerInput.Juego.Pause.WasPressedThisFrame())
         {
             _playerInput.UI.Enable();
-            Debug.Log("Hola");
             if (OptionsMenuOpen)
             {
                 Cross();

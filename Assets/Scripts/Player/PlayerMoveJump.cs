@@ -22,6 +22,9 @@ public class PlayerMoveJump : MonoBehaviour
     // public Transform playerObj;
     private PlayerInputMap _playerInput;
     public bool aiming;
+    public Camera cam;
+    private int fieldOfView = 60;
+    float maxfield;
 
     public Transform cameraa;
     public Transform cameraRot;
@@ -45,15 +48,17 @@ public class PlayerMoveJump : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [Header("Others")]
-    public Shooting shootScript;
+    private Shooting shootScript;
 
     private void Start()
     {
+        cam.fieldOfView = fieldOfView;
+        maxfield = cam.fieldOfView / 2;
         lateSpeed = moveSpeed;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
         rb = GetComponent<Rigidbody>();
+        shootScript = GetComponent<Shooting>();
         rb.freezeRotation= true;
 
         readyToJump = true;
@@ -83,6 +88,17 @@ public class PlayerMoveJump : MonoBehaviour
         }        
         else
             rb.drag = 0;
+
+        if (_playerInput.Juego.Aim.IsPressed())
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, maxfield, 10f * Time.deltaTime);
+            aiming = true;
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fieldOfView, 10f * Time.deltaTime);
+            aiming = false;
+        }
     }
     
 
@@ -108,15 +124,28 @@ public class PlayerMoveJump : MonoBehaviour
             moveSpeed = lateSpeed / 2;
         else
             moveSpeed = lateSpeed;
-
+        
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+            //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
+            //{
+                animator.SetBool("Run", true);
+                animator.SetBool("Walk", false);
+                rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+           //}
+            //else animator.SetBool("Run", false);
+            
         }
         else if (grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             
+            if (_playerInput.Juego.Move.IsPressed())
+            {
+                animator.SetBool("Walk", true);
+                animator.SetBool("Run", false);
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            }
+            else animator.SetBool("Walk", false);
         }
         else if(!grounded && flatVel.magnitude == 0)
         {
@@ -130,23 +159,16 @@ public class PlayerMoveJump : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
-
-        //ANIMATIONS
-        //walk
-        if (_playerInput.Juego.Move.IsPressed())
+        //if (flatVel.magnitude == 0)
+        //{
+        //    animator.SetBool("Walk", false);
+        //    animator.SetBool("Run", false);
+        //} 
+        if (flatVel.magnitude < 1f)
         {
-            animator.SetBool("Walk", true);
+
             animator.SetBool("Run", false);
         }
-        else  animator.SetBool("Walk", false); 
-        //run
-        if (_playerInput.Juego.Run.IsPressed())
-        {
-            animator.SetBool("Run", true);
-            animator.SetBool("Walk", false);
-
-        }
-        else  animator.SetBool("Run", false); 
     }
 
     private void SpeedControl()
@@ -187,7 +209,6 @@ public class PlayerMoveJump : MonoBehaviour
     }
     void notJump()
     {
-        Debug.Log("NotJump");
         animator.SetBool("Jump", false);
         animator.SetBool("RunJump", false);
     }

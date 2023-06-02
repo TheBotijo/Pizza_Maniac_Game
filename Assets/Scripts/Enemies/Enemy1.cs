@@ -6,7 +6,7 @@ public class Enemy1 : MonoBehaviour
 {
     //public NavMeshAgent agent;
 
-    private Transform player;
+    public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -14,6 +14,7 @@ public class Enemy1 : MonoBehaviour
 
     public int damage = 5;
     public int Health = 50;
+    Color original;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -26,19 +27,20 @@ public class Enemy1 : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("MainCharacter").transform;
-        takeDamage = Object.FindObjectOfType<Shooting>();
+        takeDamage = FindObjectOfType<Shooting>();
+        original = GetComponent<Renderer>().material.color;
         //agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage(); 
+        //if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage();
     }
 
     private void ChasePlayer()
@@ -65,11 +67,16 @@ public class Enemy1 : MonoBehaviour
     {
         Debug.Log("DañoEnemigo");
         GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        Invoke(nameof(colorBack), 0.1f);
         Health -= 10;
         if (Health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+    void colorBack()
+    {
+        GetComponent<Renderer>().material.color = original;
     }
     private void AttackPlayer()
     {
