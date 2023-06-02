@@ -21,6 +21,7 @@ public class Enemy1 : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject cos;
+    public GameObject ColliderMano;
 
     //States
     public float sightRange, attackRange;
@@ -45,16 +46,19 @@ public class Enemy1 : MonoBehaviour
         {
             ChasePlayer();
             animator.SetBool("moving", true);
+
         }
         if (playerInSightRange && playerInAttackRange)
         {
-            AttackPlayer();
             animator.SetBool("attacking", true);
+            AttackPlayer();
+            
         }
         else
         {
             animator.SetBool("moving", false);
             animator.SetBool("attacking", false);
+            
 
         }
         //if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage();
@@ -84,7 +88,7 @@ public class Enemy1 : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log("DañoEnemigo");
-        animator.SetBool("tookDamage", true);
+        animator.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Invoke(nameof(colorBack), 0.2f);
         Health -= 10;
@@ -101,16 +105,16 @@ public class Enemy1 : MonoBehaviour
     {
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
+        //transform.LookAt(player);
 
-        transform.LookAt(player);
-
+        ColliderMano.GetComponent<BoxCollider>().enabled = true;
         if (!alreadyAttacked)
         {
             ////Attack code
             //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
+            ColliderMano.GetComponent<BoxCollider>().enabled = false;
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

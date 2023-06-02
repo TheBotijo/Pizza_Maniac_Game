@@ -2043,8 +2043,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2992250022795821016}
   - component: {fileID: 5179813443026141997}
+  - component: {fileID: 1504979479}
   m_Layer: 8
-  m_Name: Cube_002
+  m_Name: ManosBicho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2058,7 +2059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4026628232448221933}
   m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.30233753, z: -0.004691422}
+  m_LocalPosition: {x: 0, y: 0.30233753, z: 0.129}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2144,6 +2145,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.3608532, y: 0.1326118, z: 0.5957253}
     m_Extent: {x: 0.4763019, y: 0.26944876, z: 0.6921208}
   m_DirtyAABB: 0
+--- !u!65 &1504979479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026628232448221933}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6054928, y: 0.90631866, z: 0.76305777}
+  m_Center: {x: 0.024029762, y: 1.5378132, z: 0.35319218}
 --- !u!1 &4117664015704038865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,7 +2724,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: 5f89fd9601b24eb44a84e7855c9e31c9, type: 3}
+  - {fileID: 2100000, guid: 407fef5e6956a464ca1f94cba0fd5396, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3308,7 +3322,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6197157284171271328}
-  m_LocalRotation: {x: 0.00016154541, y: 0.03793074, z: 0.9992713, w: -0.0042558555}
+  m_LocalRotation: {x: 0.00016154541, y: 0.037930746, z: 0.9992713, w: -0.0042558564}
   m_LocalPosition: {x: -0.21892467, y: -0.045957185, z: 0.014124149}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4436,7 +4450,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52598ad8613183e4895d1231a66fd8bd, type: 2}
+  - {fileID: 2100000, guid: 407fef5e6956a464ca1f94cba0fd5396, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4482,7 +4496,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8161885480311192540}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1.9457073, z: 1}
@@ -4512,8 +4526,9 @@ MonoBehaviour:
   Health: 50
   timeBetweenAttacks: 2
   cos: {fileID: 5074671066302454161}
+  ColliderMano: {fileID: 4026628232448221933}
   sightRange: 20
-  attackRange: 0.6
+  attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!95 &8161885480311192544
@@ -4550,11 +4565,11 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.11
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.00001
+  m_Height: 2
   m_BaseOffset: -1.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

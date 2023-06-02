@@ -18,8 +18,13 @@ public class Shooting : MonoBehaviour
     //bools 
     public bool shot; 
     bool shooting, readyToShoot, reloading;
-    //Guns
-    bool pistol=true, ak;
+    //Weapons
+    public GameObject rodill;
+    public GameObject pistola;
+    public GameObject Ak;
+    public bool rodillo =true;
+    public bool pistol;
+    public bool ak;
 
     //Reference
     public Camera fpsCam;
@@ -56,18 +61,23 @@ public class Shooting : MonoBehaviour
     }
     private void MyInput()
     {
-        Zoom();
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
         if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize && !reloading) Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && rodillo==false){
             bulletsShot = bulletsPerTap;
             shot = true;
             Shoot();
             Invoke(nameof(stop), 1);
+        }
+        if (readyToShoot && shooting && !reloading && rodillo == true) 
+        {
+            Shoot();         
+            Invoke(nameof(stop), 2);            
+            
         }
     }
     private void stop()
@@ -77,46 +87,58 @@ public class Shooting : MonoBehaviour
     private void ChangeGun() 
     {
         if (_playerInput.Juego.ChangeGun.WasPressedThisFrame())
-        {
-            if (pistol == true)
+        {            
+            if (rodillo == true)
             {
-                pistol= false;
-                ak = true;
-                damage = 10;
-                timeBetweenShooting = 3f;
+                GetComponent<BoxCollider>().enabled = false;
+                rodill.gameObject.SetActive(false);
+                pistola.gameObject.SetActive(true);
+                pistol = true;
+                rodillo = false;
+                damage = 5;
+                timeBetweenShooting = 1f;
                 spread = 0f;
                 range = 400f;
-                reloadTime = 4f;
-                timeBetweenShots = 3f;
-            }
-            else
-            {
-                pistol = true;
-                ak = false;
-                ak = true;
-                damage = 5;
-                timeBetweenShooting = 2f;
-                spread = 0f;
-                range = 200f;
                 reloadTime = 2f;
                 timeBetweenShots = 1f;
             }
+            else if (pistol == true)
+            {
+                GetComponent<BoxCollider>().enabled = false;
+                pistola.gameObject.SetActive(false);
+                Ak.gameObject.SetActive(true);
+                pistol = false;
+                ak = true;
+                damage = 10;
+                timeBetweenShooting = 2f;
+                spread = 0f;
+                range = 400f;
+                reloadTime = 4f;
+                timeBetweenShots = 2f;
+            }
+            else if (ak == true) 
+            {
+                Ak.gameObject.SetActive(false);
+                rodill.gameObject.SetActive(true);
+                rodillo = true;
+                ak = false;
+                damage = 0;
+                timeBetweenShooting = 0.5f;
+                spread = 0f;
+                range = 0f;
+                reloadTime = 0.5f;
+                timeBetweenShots = 0.5f;
+            }
         }
     }
-    private void Zoom()
-    {
-        //Animations
-        if (pistol == true && _playerInput.Juego.Aim.IsPressed())
-        {
-            animator.SetBool("SupportPistol",true);
-        }else{ animator.SetBool("SupportPistol", false); }
-        if (ak == true && _playerInput.Juego.Aim.IsPressed())
-        {
-            animator.SetBool("SupportAK", true);
-        }else{ animator.SetBool("SupportAK", false); }
-    }
+    
     private void Shoot()
     {   //Animations
+        if (rodill == true)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+            animator.SetTrigger("melee");
+        }
         if (pistol == true)
         {
             animator.SetTrigger("Pistol");
@@ -151,9 +173,8 @@ public class Shooting : MonoBehaviour
         //Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
-
-        bulletsLeft--;
-        bulletsShot--;
+        
+        
 
         Invoke("ResetShot", timeBetweenShooting);
 
