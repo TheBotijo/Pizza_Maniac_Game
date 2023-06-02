@@ -9,8 +9,8 @@ public class Health_Damage : MonoBehaviour
     public int health;
     public int maxHealth = 100;
     public bool invencible = false;
-    public float time_invencible = 1f;
-    public float time_Stop = 0.5f;
+    public float time_invencible = 3f;
+    public float time_Stop = 1f;
     public float time_death = 5f;
     public bool moving = true;
 

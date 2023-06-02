@@ -104,7 +104,7 @@ public class Enemy1 : MonoBehaviour
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         //transform.LookAt(player);
 
         ColliderMano.GetComponent<BoxCollider>().enabled = true;

@@ -75,8 +75,9 @@ public class Shooting : MonoBehaviour
         }
         if (readyToShoot && shooting && !reloading && rodillo == true) 
         {
+            shot = true;
             Shoot();         
-            Invoke(nameof(stop), 2);            
+            Invoke(nameof(stop), 2);         
             
         }
     }
@@ -134,17 +135,19 @@ public class Shooting : MonoBehaviour
     
     private void Shoot()
     {   //Animations
-        if (rodill == true)
+        if (rodillo == true)
         {
             GetComponent<BoxCollider>().enabled = true;
             animator.SetTrigger("melee");
         }
         if (pistol == true)
         {
+            bulletsLeft--;
             animator.SetTrigger("Pistol");
         }
         if (ak == true)
         {
+            bulletsLeft--;
             animator.SetTrigger("Ak");
         }
         readyToShoot = false;
@@ -175,6 +178,8 @@ public class Shooting : MonoBehaviour
         //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         
         
+
+
 
         Invoke("ResetShot", timeBetweenShooting);
 
