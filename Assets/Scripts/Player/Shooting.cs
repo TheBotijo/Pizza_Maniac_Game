@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 public class Shooting : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class Shooting : MonoBehaviour
     public TextMeshProUGUI text;
 
     private PlayerInputMap _playerInput;
-
+    private Enemy1 enemyDamage;
     //Animations
     public Animator animator;
 
@@ -131,12 +132,19 @@ public class Shooting : MonoBehaviour
         float y = Random.Range(-spread, spread);
 
         //Calculate Direction with Spread
-        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
+        Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
 
         //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
+        if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log("Holiwis");
+            if (rayHit.transform.tag == "Enemy")
+            {
+                //Destroy(rayHit.transform.gameObject);
+                enemyDamage = rayHit.transform.gameObject.GetComponent<Enemy1>();
+                enemyDamage.TakeDamage();
+            }
+
+            Debug.Log(rayHit.transform.tag);
             Debug.Log(rayHit.collider.name);
                                      
         }        
