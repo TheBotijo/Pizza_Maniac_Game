@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,9 +14,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseOpciones;
     //new input system
     public PlayerInputMap _playerInput;
+    private CameraController camScript;
 
     private void Start()
     {
+        camScript = Object.FindObjectOfType<CameraController>();
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
     }
@@ -29,7 +29,6 @@ public class PauseMenu : MonoBehaviour
         if (_playerInput.Juego.Pause.WasPressedThisFrame())
         {
             _playerInput.UI.Enable();
-            Debug.Log("Hola");
             if (OptionsMenuOpen)
             {
                 Cross();
@@ -47,6 +46,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        int num = 1;
+        camScript.cameraSwitch(num);
         pauseMenuUI.SetActive(false);
         UIGeneral.SetActive(true);
         Time.timeScale = 1f;
@@ -58,6 +59,8 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        int num = 0;
+        camScript.cameraSwitch(num);
         pauseMenuUI.SetActive(true);
         UIGeneral.SetActive(false);
         Cursor.lockState = CursorLockMode.None;

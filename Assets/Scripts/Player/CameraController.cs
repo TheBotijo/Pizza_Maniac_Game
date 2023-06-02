@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour
 	private float pitchAngle;
 	private Transform cameraTransform;
 	private bool hitted;
+	bool pause = false;
 
 	private void Awake()
 	{
@@ -47,7 +48,6 @@ public class CameraController : MonoBehaviour
         transform.parent = null;
 		_playerInput = new PlayerInputMap();
 		_playerInput.Juego.Enable();
-
 		//Ocultar el cursor del usuario para una mejor experiencia con el movimiento de camara
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -55,11 +55,15 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-		CameraRootRelocation();
-		CameraRootRotation();
-		PlayerRotation();
-		CameraRelocation();
-		CameraZoom();
+		if (pause != true)
+		{
+			CameraRootRelocation();
+			CameraRootRotation();
+			PlayerRotation();
+			CameraRelocation();
+			CameraZoom();
+        }
+		
     }
 
 	private void PlayerRotation()
@@ -73,7 +77,7 @@ public class CameraController : MonoBehaviour
 		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 		if (inputDir != Vector3.zero)
 		{
-			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 6);
+			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 10);
 		}
 	}
 
@@ -136,4 +140,10 @@ public class CameraController : MonoBehaviour
 		float z = Mathf.Clamp(cameraTarget.localPosition.z + wheel, -zoomLimits.y, -zoomLimits.x);
 		cameraTarget.localPosition = Vector3.forward * z;
 	}
+
+    public void cameraSwitch(int num)
+    {
+        if (num == 0) pause = true;
+		else pause = false;
+    }
 }

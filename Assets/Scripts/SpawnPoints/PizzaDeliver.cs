@@ -11,6 +11,7 @@ public class PizzaDeliver : MonoBehaviour
     public int totalPizzas;
     public SpawnPoints spawnPoint;
     public GameObject deliverHere;
+    public EnemySpawn spawnEnemy;
     [HideInInspector]
     public int rounds = 0;
     //public TextMeshPro repartirText;
@@ -42,8 +43,15 @@ public class PizzaDeliver : MonoBehaviour
                     if (rounds == 3)
                         totalPizzas = 1;
 
+                    spawnEnemy.timeBetweenSpawns -= 2;
+                    spawnEnemy.timeReduceMax = spawnEnemy.timeBetweenSpawns - 2;
+                    spawnEnemy.enemyMax1 += 10;
+                    spawnEnemy.timeReduce -= 0.05f;
                 }
                 rounds++;
+                
+                Debug.Log("Enemy max: " + spawnEnemy.enemyMax1);
+
                 currentPizzas = 0;
             }
             else
