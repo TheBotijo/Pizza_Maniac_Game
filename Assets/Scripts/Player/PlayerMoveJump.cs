@@ -84,6 +84,7 @@ public class PlayerMoveJump : MonoBehaviour
         }
         else if (grounded)
         {
+            Debug.Log("suelo");
             rb.drag = groundDrag;
         }        
         else
