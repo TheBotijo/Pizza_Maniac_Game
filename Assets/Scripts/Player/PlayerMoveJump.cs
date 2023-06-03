@@ -34,6 +34,10 @@ public class PlayerMoveJump : MonoBehaviour
     //Animations
     public Animator animator;
 
+    //Sounds
+    public AudioSource caminar;
+    public AudioSource correr;
+
     //Variables de Detecció Ground
     [Header("Ground Check")]
     public float playerHeight;
@@ -130,8 +134,10 @@ public class PlayerMoveJump : MonoBehaviour
         {
             //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
             //{
-                animator.SetBool("Run", true);
-                animator.SetBool("Walk", false);
+            
+            //correr.Play();
+            animator.SetBool("Walk", false);
+            animator.SetBool("Run", true);                
                 rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
            //}
             //else animator.SetBool("Run", false);
@@ -139,14 +145,16 @@ public class PlayerMoveJump : MonoBehaviour
         }
         else if (grounded)
         {
-            
+            correr.Pause();
             if (_playerInput.Juego.Move.IsPressed())
             {
+                
+                //caminar.Play();
                 animator.SetBool("Walk", true);
                 animator.SetBool("Run", false);
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             }
-            else animator.SetBool("Walk", false);
+            else { animator.SetBool("Walk", false); caminar.Pause(); };
         }
         else if(!grounded && flatVel.magnitude == 0)
         {

@@ -19,9 +19,13 @@ public class Enemy1 : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    bool alreadyAttacked = false;
     public GameObject cos;
     public GameObject ColliderMano;
+
+    //Sounds
+    public AudioSource damag;
+    public AudioSource death;
 
     //States
     public float sightRange, attackRange;
@@ -45,21 +49,15 @@ public class Enemy1 : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
-            animator.SetBool("moving", true);
 
         }
-        if (playerInSightRange && playerInAttackRange)
+        else if (playerInAttackRange && !alreadyAttacked)
         {
-            animator.SetBool("attacking", true);
             AttackPlayer();
-            
         }
-        else
+        else 
         {
-            animator.SetBool("moving", false);
-            animator.SetBool("attacking", false);
-            
-
+            animator.SetBool("moving", false);           
         }
         //if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage();
     }
@@ -67,6 +65,7 @@ public class Enemy1 : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("moving", true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,6 +75,7 @@ public class Enemy1 : MonoBehaviour
             other.GetComponent<Health_Damage>().loseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
         }
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -92,8 +92,10 @@ public class Enemy1 : MonoBehaviour
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Invoke(nameof(colorBack), 0.2f);
         Health -= 10;
-        if (Health <= 0)
+        damag.Play();
+        if (Health <= 0)        
         {
+            death.Play();
             Destroy(gameObject);
         }
     }
@@ -108,15 +110,16 @@ public class Enemy1 : MonoBehaviour
         //transform.LookAt(player);
 
         ColliderMano.GetComponent<BoxCollider>().enabled = true;
+        animator.SetTrigger("attacking");
         if (!alreadyAttacked)
         {
             ////Attack code
             //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ColliderMano.GetComponent<BoxCollider>().enabled = false;
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            ColliderMano.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

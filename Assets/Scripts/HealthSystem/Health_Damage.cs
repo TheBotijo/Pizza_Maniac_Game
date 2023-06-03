@@ -11,7 +11,7 @@ public class Health_Damage : MonoBehaviour
     public bool invencible = false;
     public float time_invencible = 3f;
     public float time_Stop = 1f;
-    public float time_death = 5f;
+    public float time_death = 3f;
     public bool moving = true;
 
     [SerializeField] 
@@ -20,6 +20,8 @@ public class Health_Damage : MonoBehaviour
     public PlayerMoveJump player;
     public Camera thirddCam;
     public GameObject playerObj;
+    public AudioSource damage;
+    public AudioSource death;
 
     public void Start()
     {
@@ -47,18 +49,16 @@ public class Health_Damage : MonoBehaviour
     IEnumerator Invulnerability()
     {
         invencible = true;
+        damage.Play();
         yield return new WaitForSeconds(time_invencible);
         invencible = false;
     }
     IEnumerator Death()
     {
+        death.Play();
         thirddCam.fieldOfView = 50;
         moving = false;
         animator.SetTrigger("Death");
-        playerObj.GetComponent<Animator>().enabled = false;
-        gameObject.GetComponent<PlayerInput>().enabled = false;
-        gameObject.GetComponent<PlayerMoveJump>().enabled = false;
-        gameObject.GetComponent<Shooting>().enabled = false;
         Debug.Log("muerte");
         yield return new WaitForSeconds(time_death);
         Destroy(gameObject);

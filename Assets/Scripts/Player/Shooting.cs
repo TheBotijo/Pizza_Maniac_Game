@@ -18,6 +18,7 @@ public class Shooting : MonoBehaviour
     //bools 
     public bool shot; 
     bool shooting, readyToShoot, reloading;
+    
     //Weapons
     public GameObject rodill;
     public GameObject pistola;
@@ -27,10 +28,16 @@ public class Shooting : MonoBehaviour
     public bool ak;
 
     //Reference
+    public GameObject player;
     public Camera fpsCam;
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+
+    //Sounds
+    public AudioSource melee;
+    public AudioSource pistolshoot;
+    public AudioSource akshoot;
 
     //Graphics
     public GameObject bulletHoleGraphic;
@@ -77,8 +84,9 @@ public class Shooting : MonoBehaviour
         {
             shot = true;
             Shoot();         
-            Invoke(nameof(stop), 2);         
+            Invoke(nameof(stop), 2);
             
+
         }
     }
     private void stop()
@@ -91,7 +99,6 @@ public class Shooting : MonoBehaviour
         {            
             if (rodillo == true)
             {
-                GetComponent<BoxCollider>().enabled = false;
                 rodill.gameObject.SetActive(false);
                 pistola.gameObject.SetActive(true);
                 pistol = true;
@@ -105,7 +112,6 @@ public class Shooting : MonoBehaviour
             }
             else if (pistol == true)
             {
-                GetComponent<BoxCollider>().enabled = false;
                 pistola.gameObject.SetActive(false);
                 Ak.gameObject.SetActive(true);
                 pistol = false;
@@ -124,7 +130,7 @@ public class Shooting : MonoBehaviour
                 rodillo = true;
                 ak = false;
                 damage = 0;
-                timeBetweenShooting = 0.5f;
+                timeBetweenShooting = 2f;
                 spread = 0f;
                 range = 0f;
                 reloadTime = 0.5f;
@@ -137,19 +143,23 @@ public class Shooting : MonoBehaviour
     {   //Animations
         if (rodillo == true)
         {
-            GetComponent<BoxCollider>().enabled = true;
+            melee.Play();
+            player.GetComponent<BoxCollider>().enabled = true;
             animator.SetTrigger("melee");
         }
         else  if (pistol == true)
         {
+            pistolshoot.Play();
             bulletsLeft--;
             animator.SetTrigger("Pistol");
         }
         else if (ak == true)
         {
+            akshoot.Play();
             bulletsLeft--;
             animator.SetTrigger("Ak");
         }
+        
 
         readyToShoot = false;
 
@@ -183,10 +193,20 @@ public class Shooting : MonoBehaviour
         //if(bulletsShot > 0 && bulletsLeft > 0)
         //    Invoke("Shoot", timeBetweenShots);
     }
-    
+    //RodilloDamage
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<Enemy1>().TakeDamage();
+            Debug.Log("DAÑANDO A enemigo con rodillo");
+        }
+
+    }
     private void ResetShot()
     {
         readyToShoot = true;
+        player.GetComponent<BoxCollider>().enabled = false;
     }
     private void Reload()
     {
