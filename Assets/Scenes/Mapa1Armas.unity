@@ -5032,7 +5032,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e9416bfb993c9724b8bed0ffc5f3c3b6, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7386dc0ef0c367d47a073981c9eea7ae, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &899535287
 GameObject:
@@ -23352,6 +23352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1469198581}
     m_Modifications:
+    - target: {fileID: 2642911630894781578, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+      propertyPath: m_WalkableMask
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8161885480311192540, guid: a1c3d66108130614190bf578486afaf7, type: 3}
       propertyPath: m_Name
       value: bixo2-colo-RIGr
@@ -23359,11 +23363,19 @@ PrefabInstance:
     - target: {fileID: 8161885480311192541, guid: a1c3d66108130614190bf578486afaf7, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 543450651745910899}
+      objectReference: {fileID: 1445957759}
+    - target: {fileID: 8161885480311192541, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+      propertyPath: sightRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8161885480311192541, guid: a1c3d66108130614190bf578486afaf7, type: 3}
       propertyPath: takeDamage
       value: 
       objectReference: {fileID: 1445957769}
+    - target: {fileID: 8161885480311192541, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8795256522934165862, guid: a1c3d66108130614190bf578486afaf7, type: 3}
       propertyPath: m_RootOrder
       value: 0
