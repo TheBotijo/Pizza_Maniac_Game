@@ -12,6 +12,7 @@ public class PizzaDeliver : MonoBehaviour
     public SpawnPoints spawnPoint;
     public GameObject deliverHere;
     public EnemySpawn spawnEnemy;
+    public AudioSource deliver;
     [HideInInspector]
     public int rounds = 0;
     //public TextMeshPro repartirText;
@@ -24,8 +25,10 @@ public class PizzaDeliver : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            
             if (currentPizzas == totalPizzas - 1)
             {
+                
                 spawnPoint.entregadas = true;
                 currentPizzas++;
             }
@@ -54,8 +57,8 @@ public class PizzaDeliver : MonoBehaviour
 
                 currentPizzas = 0;
             }
-            else
-                currentPizzas++;
+            else { deliver.Play(); currentPizzas++; }
+                
 
             spawnPoint.respawn(deliverHere);
         }

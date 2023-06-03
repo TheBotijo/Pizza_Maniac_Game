@@ -3953,8 +3953,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.7377861, y: 0.7377861, z: 0.7377861}
-  m_Center: {x: -0.000000011363032, y: 0.00000002708317, z: -0.13110697}
+  m_Size: {x: 0.8494453, y: 0.81272763, z: 0.8840537}
+  m_Center: {x: 0.0037485454, y: 0.037470806, z: -0.057973154}
 --- !u!1 &7352775859237935650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,7 +4789,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.9457073, z: 1}
+  m_Size: {x: 1, y: 2.03, z: 1}
   m_Center: {x: 0, y: 2.1, z: 0}
 --- !u!114 &8161885480311192541
 MonoBehaviour:
@@ -4814,15 +4814,16 @@ MonoBehaviour:
   takeDamage: {fileID: 0}
   damage: 10
   Health: 50
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 3
   cos: {fileID: 5074671066302454161}
   ColliderMano: {fileID: 7231903013768234210}
   damag: {fileID: 3254506347142345380}
   death: {fileID: 6914423202762457410}
-  sightRange: 20
+  sightRange: 30
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
+  huevo: 0
 --- !u!95 &8161885480311192544
 Animator:
   serializedVersion: 5

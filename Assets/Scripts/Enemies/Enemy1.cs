@@ -30,6 +30,7 @@ public class Enemy1 : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool huevo = false;
 
     private void Awake()
     {
@@ -43,15 +44,18 @@ public class Enemy1 : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (playerInSightRange && !playerInAttackRange)
+        if(!huevo) 
+        {
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        }
+        
+        if (playerInSightRange && !playerInAttackRange && !huevo)
         {
             ChasePlayer();
 
         }
-        else if (playerInAttackRange && !alreadyAttacked)
+        else if (playerInAttackRange && !alreadyAttacked && !huevo)
         {
             AttackPlayer();
         }
@@ -119,12 +123,13 @@ public class Enemy1 : MonoBehaviour
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            ColliderMano.GetComponent<BoxCollider>().enabled = false;
+            
         }
     }
 
     private void ResetAttack()
     {
+        ColliderMano.GetComponent<BoxCollider>().enabled = false;
         alreadyAttacked = false;
     }
 }

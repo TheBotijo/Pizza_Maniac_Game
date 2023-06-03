@@ -84,7 +84,7 @@ public class Shooting : MonoBehaviour
         {
             shot = true;
             Shoot();         
-            Invoke(nameof(stop), 2);
+            Invoke(nameof(stop), 1.5f);
             
 
         }
@@ -148,14 +148,14 @@ public class Shooting : MonoBehaviour
             animator.SetTrigger("melee");
         }
         else  if (pistol == true)
-        {
-            pistolshoot.Play();
+        {;
+            akshoot.Play();
             bulletsLeft--;
             animator.SetTrigger("Pistol");
         }
         else if (ak == true)
         {
-            akshoot.Play();
+            pistolshoot.Play();
             bulletsLeft--;
             animator.SetTrigger("Ak");
         }

@@ -33,6 +33,8 @@ public class PlayerMoveJump : MonoBehaviour
 
     //Animations
     public Animator animator;
+    public bool cheese = false;
+    public bool guindilla = false;
 
     //Sounds
     public AudioSource caminar;
@@ -127,10 +129,10 @@ public class PlayerMoveJump : MonoBehaviour
         //apliquem una força al moviment quan esta tocant al terra
         if (aiming)
             moveSpeed = lateSpeed / 2;
-        else
+        else if(!guindilla)
             moveSpeed = lateSpeed;
         
-        if (grounded && _playerInput.Juego.Run.IsPressed())
+        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese)
         {
             //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
             //{
@@ -138,7 +140,7 @@ public class PlayerMoveJump : MonoBehaviour
             //correr.Play();
             animator.SetBool("Walk", false);
             animator.SetBool("Run", true);                
-                rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
            //}
             //else animator.SetBool("Run", false);
             
