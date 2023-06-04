@@ -99,6 +99,7 @@ public class Enemy1 : MonoBehaviour
         damag.Play();
         if (Health <= 0)        
         {
+            GetComponent<DropBag>().InstantiateDrop(transform.position);
             death.Play();
             Destroy(gameObject);
         }

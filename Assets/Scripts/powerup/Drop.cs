@@ -6,12 +6,12 @@ using UnityEngine;
 public class Drop : ScriptableObject
 {
     public GameObject lootGameobject;
-    public string lootName;
-        public int dropChance;
+    public string DropName;
+    public int dropChance;
 
-    public Drop(string lootName, int dropChance)
+    public Drop(string DropName, int dropChance)
     {        
-        this.lootName = lootName;
+        this.DropName = DropName;
         this.dropChance = dropChance;
     }
 }
