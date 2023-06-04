@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     {
         TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
         TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
-        TextoRounds.SetText("Round: " + pizzas.rounds);
+        TextoRounds.SetText("Round: " + pizzas.rounds + " / 4");
 
       
     }

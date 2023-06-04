@@ -40,7 +40,15 @@ public class PizzaDeliver : MonoBehaviour
             {
                 spawnPoint.entregadas = false;
                 if (rounds == 0)
+                {
+                    Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
+                    Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns);
+                    Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
+                    Debug.Log("Vida enemigo: " + enemy1.Health);
                     totalPizzas = 5;
+                }
+                    
                 else
                 {
                     if (rounds == 1)
@@ -64,10 +72,16 @@ public class PizzaDeliver : MonoBehaviour
                     spawnEnemy.timeReduceMax = spawnEnemy.timeBetweenSpawns - 2;
                     spawnEnemy.enemyMax1 += 5;
                     spawnEnemy.timeReduce -= 0.05f;
+                    spawnEnemy.enemyCount1 = 0;
+                    Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
+                    Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns);
+                    Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1); 
+                    Debug.Log("Vida enemigo: " + enemy1.Health);
                 }
                 rounds++;
                 
-                Debug.Log("Enemy max: " + spawnEnemy.enemyMax1);
+                //Debug.Log("Enemy max: " + spawnEnemy.enemyMax1);
 
                 currentPizzas = 0;
             }

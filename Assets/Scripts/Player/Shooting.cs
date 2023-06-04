@@ -180,8 +180,8 @@ public class Shooting : MonoBehaviour
                 enemyDamage.TakeDamage();
             }
 
-            Debug.Log(rayHit.transform.tag);
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.transform.tag);
+            //Debug.Log(rayHit.collider.name);
                                      
         }        
         //Graphics
@@ -199,7 +199,7 @@ public class Shooting : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.GetComponent<Enemy1>().TakeDamage();
-            Debug.Log("DAÑANDO A enemigo con rodillo");
+            //Debug.Log("DAÑANDO A enemigo con rodillo");
         }
 
     }

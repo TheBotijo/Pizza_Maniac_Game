@@ -22,7 +22,7 @@ public class Queso : MonoBehaviour
         if (other.tag == "Player" && !velocity.guindilla)
         {
             other.GetComponent<Health_Damage>().loseHealth(damage);
-            Debug.Log("velocidad lenta");
+            //Debug.Log("velocidad lenta");
             velocity.moveSpeed /= 5;
             velocity.cheese = true;
         }
@@ -32,7 +32,7 @@ public class Queso : MonoBehaviour
         if (other.tag == "Player")
         {
             
-            Debug.Log("velocidad normal");
+            //Debug.Log("velocidad normal");
             velocity.cheese = false;
         }
     }

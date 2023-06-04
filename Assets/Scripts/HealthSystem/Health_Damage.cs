@@ -74,7 +74,7 @@ public class Health_Damage : MonoBehaviour
     }
     IEnumerator StopVelocity()
     {
-        Debug.Log("stop");
+        //Debug.Log("stop");
         moving = false;
         yield return new WaitForSeconds(time_Stop);
         moving = true;

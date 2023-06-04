@@ -75,7 +75,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }
 
@@ -84,7 +84,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
         }
     }
 
