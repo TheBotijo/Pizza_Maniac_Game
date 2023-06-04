@@ -425,6 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225465739870821396}
   - component: {fileID: 1894443366575834799}
+  - component: {fileID: 543450653297370680}
   m_Layer: 6
   m_Name: taxibien
   m_TagString: Untagged
@@ -439,7 +440,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894443366575834798}
-  m_LocalRotation: {x: -0, y: -0.6972001, z: -0, w: 0.71687657}
+  m_LocalRotation: {x: 0, y: -0.6972026, z: 0, w: 0.7168742}
   m_LocalPosition: {x: -24.25, y: 7.977, z: -4.1958}
   m_LocalScale: {x: 0.73771805, y: 0.73771805, z: 0.73771805}
   m_ConstrainProportionsScale: 0
@@ -488,8 +489,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.0119658, y: 2.6024678, z: 2.7193325}
-  m_Center: {x: 0.10159112, y: 1.7453002, z: 0.009774326}
+  m_Size: {x: 1.441834, y: 4.754256, z: 2.290422}
+  m_Center: {x: 0.05973537, y: 2.821195, z: -0.00005970848}
+--- !u!65 &543450653297370680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894443366575834798}
+  m_Material: {fileID: 13400000, guid: 8c37a9b1b4ef2244094546ccc0b216db, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8207197, y: 1.2386198, z: 2.4543736}
+  m_Center: {x: 0.17848541, y: 1.1098363, z: -0.017603584}
 --- !u!1 &2091746558278502811
 GameObject:
   m_ObjectHideFlags: 0

@@ -1422,6 +1422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7598618126676761634}
   - component: {fileID: 7996439725308443636}
+  - component: {fileID: 8270687249860063640}
   m_Layer: 6
   m_Name: cochesbienazul (1)
   m_TagString: Untagged
@@ -1436,7 +1437,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7077519247174911640}
-  m_LocalRotation: {x: -0, y: -0.70547587, z: -0, w: 0.708734}
+  m_LocalRotation: {x: 0, y: -0.70547587, z: 0, w: 0.7087339}
   m_LocalPosition: {x: -14.387, y: 8.2626, z: -43.473}
   m_LocalScale: {x: 0.8225146, y: 0.8225146, z: 0.8225146}
   m_ConstrainProportionsScale: 0
@@ -1478,8 +1479,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.0875225, y: 1.9477769, z: 2.1829348}
-  m_Center: {x: 0.042073965, y: 0.8546817, z: 0.00635004}
+  m_Size: {x: 1.4226254, y: 4.198496, z: 1.7523578}
+  m_Center: {x: 0.054359194, y: 1.9800409, z: 0.021816507}
+--- !u!65 &8270687249860063640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077519247174911640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7475438, y: 0.97718483, z: 1.9457523}
+  m_Center: {x: 0.07708654, y: 0.33309466, z: -0.023741867}
 --- !u!1 &7310868438347860397
 GameObject:
   m_ObjectHideFlags: 0

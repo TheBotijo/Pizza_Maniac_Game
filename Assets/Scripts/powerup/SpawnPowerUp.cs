@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public class SpawnPowerUp : MonoBehaviour
 {
     public PlayerMoveJump velocity;
     public Enemy1 stop;
@@ -43,6 +43,7 @@ public class PowerUp : MonoBehaviour
     }
     void Destroy()
     {
+
         Destroy(gameObject);
     }
     
