@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Health_Damage : MonoBehaviour
 {
-    public int health;
-    public int maxHealth = 100;
+    public float health;
+    public float maxHealth = 100;
     public bool invencible = false;
     public float time_invencible = 3f;
     public float time_Stop = 1f;
@@ -33,7 +33,7 @@ public class Health_Damage : MonoBehaviour
         camScript = GameObject.Find("CameraHold").GetComponent<CameraController>();
     }
 
-    public void loseHealth(int damage)
+    public void loseHealth(float damage)
     {
         if(!invencible && health > 0)
         {

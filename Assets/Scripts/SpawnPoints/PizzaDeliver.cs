@@ -12,6 +12,7 @@ public class PizzaDeliver : MonoBehaviour
     public SpawnPoints spawnPoint;
     public GameObject deliverHere;
     public EnemySpawn spawnEnemy;
+    public Enemy1 enemy1;
     public AudioSource deliver;
     public GameObject winUI;
     public GameObject player;
@@ -57,11 +58,11 @@ public class PizzaDeliver : MonoBehaviour
                         win.Play();
                     }
                         currentPizzas = 0;
-                 
 
+                    enemy1.Health += 7.5f;
                     spawnEnemy.timeBetweenSpawns -= 2;
                     spawnEnemy.timeReduceMax = spawnEnemy.timeBetweenSpawns - 2;
-                    spawnEnemy.enemyMax1 += 10;
+                    spawnEnemy.enemyMax1 += 5;
                     spawnEnemy.timeReduce -= 0.05f;
                 }
                 rounds++;

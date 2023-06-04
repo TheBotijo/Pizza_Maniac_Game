@@ -13,8 +13,8 @@ public class Enemy1 : MonoBehaviour
 
     public Shooting takeDamage;
 
-    public int damage = 5;
-    public int Health = 50;
+    public float damage = 5;
+    public float Health = 20;
     Color original;
 
     //Attacking
@@ -76,7 +76,7 @@ public class Enemy1 : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<Health_Damage>().loseHealth(damage);
-            Debug.Log("DAÑANDO A PLAYER");
+            //Debug.Log("DAÑANDO A PLAYER");
         }
 
     }
@@ -90,7 +90,7 @@ public class Enemy1 : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("DañoEnemigo");
+        //Debug.Log("DañoEnemigo");
         animator.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Invoke(nameof(colorBack), 0.2f);
@@ -99,7 +99,7 @@ public class Enemy1 : MonoBehaviour
         if (Health <= 0)        
         {
             death.Play();
-            GetComponent<DropBag>().InstantiateDrop(transform.position);            
+            //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
         }
     }
