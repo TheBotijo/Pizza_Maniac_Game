@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PizzaDeliver : MonoBehaviour
@@ -68,8 +67,8 @@ public class PizzaDeliver : MonoBehaviour
                         currentPizzas = 0;
 
                     enemy1.Health += 7.5f;
-                    spawnEnemy.timeBetweenSpawns -= 2;
-                    spawnEnemy.timeReduceMax = spawnEnemy.timeBetweenSpawns - 2;
+                    spawnEnemy.timeBetweenSpawns -= 1.5f;
+                    spawnEnemy.timeReduceMax -=1.5f;
                     spawnEnemy.enemyMax1 += 5;
                     spawnEnemy.timeReduce -= 0.05f;
                     spawnEnemy.enemyCount1 = 0;
