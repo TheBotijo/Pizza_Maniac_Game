@@ -63,7 +63,6 @@ public class Enemy1 : MonoBehaviour
         {
             animator.SetBool("moving", false);           
         }
-        //if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage();
     }
 
     private void ChasePlayer()
