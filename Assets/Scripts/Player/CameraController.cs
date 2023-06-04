@@ -61,9 +61,7 @@ public class CameraController : MonoBehaviour
 			CameraRootRotation();
 			PlayerRotation();
 			CameraRelocation();
-			CameraZoom();
         }
-		
     }
 
 	private void PlayerRotation()
@@ -71,14 +69,14 @@ public class CameraController : MonoBehaviour
 		Vector3 viewDir = player.position - new Vector3(cameraTarget.transform.position.x, player.position.y, cameraTarget.transform.position.z);
 		orientation.forward = viewDir.normalized;
 
-		float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
-		float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
+		float horizontalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;
+		float verticalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().y;
 
 		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-		if (inputDir != Vector3.zero)
-		{
-			playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 10);
-		}
+
+        //playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime);
+        //playerObj.forward = Vector3.Slerp(playerObj.forward, orientation.forward, Time.deltaTime);
+        
 	}
 
 	private void CameraRootRelocation()
@@ -121,24 +119,6 @@ public class CameraController : MonoBehaviour
 		{
 			cameraTransform.position = cameraTarget.position;
 		}
-	}
-
-	private void CameraZoom()
-	{
-		float wheel = Input.GetAxis("Mouse ScrollWheel");
-
-		if (hitted)
-		{
-			//trying to zoom out with a collider behind
-			if(wheel < 0)
-				return;
-			//if zoom in with collider behind, start in camera position
-			else if(wheel > 0)
-				cameraTarget.position = cameraTransform.position;
-		}
-
-		float z = Mathf.Clamp(cameraTarget.localPosition.z + wheel, -zoomLimits.y, -zoomLimits.x);
-		cameraTarget.localPosition = Vector3.forward * z;
 	}
 
     public void cameraSwitch(int num)
