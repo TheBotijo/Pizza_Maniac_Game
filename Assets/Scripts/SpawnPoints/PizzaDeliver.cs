@@ -13,6 +13,9 @@ public class PizzaDeliver : MonoBehaviour
     public GameObject deliverHere;
     public EnemySpawn spawnEnemy;
     public AudioSource deliver;
+    public GameObject winUI;
+    public GameObject player;
+    public AudioSource win;
     [HideInInspector]
     public int rounds = 0;
     //public TextMeshPro repartirText;
@@ -45,6 +48,16 @@ public class PizzaDeliver : MonoBehaviour
                         totalPizzas = 2;
                     if (rounds == 3)
                         totalPizzas = 1;
+                    if (rounds == 4)
+                    {
+                        player.GetComponent<PlayerMoveJump>().enabled = false;
+                        winUI.SetActive(true);
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                        win.Play();
+                    }
+                        currentPizzas = 0;
+                 
 
                     spawnEnemy.timeBetweenSpawns -= 2;
                     spawnEnemy.timeReduceMax = spawnEnemy.timeBetweenSpawns - 2;

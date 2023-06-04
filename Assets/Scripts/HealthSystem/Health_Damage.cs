@@ -21,12 +21,16 @@ public class Health_Damage : MonoBehaviour
     public Camera thirddCam;
     public GameObject playerObj;
     public AudioSource damage;
+    public AudioSource lose;
     public AudioSource death;
+    public CameraController camScript;
+    public GameObject deathUI;
 
     public void Start()
     {
         health = maxHealth;
         healthBar.InitiateHealthBar(health);
+        camScript = GameObject.Find("CameraHold").GetComponent<CameraController>();
     }
 
     public void loseHealth(int damage)
@@ -59,9 +63,14 @@ public class Health_Damage : MonoBehaviour
         thirddCam.fieldOfView = 50;
         moving = false;
         animator.SetTrigger("Death");
-        Debug.Log("muerte");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        deathUI.SetActive(true);
+        lose.Play();
         yield return new WaitForSeconds(time_death);
+        camScript.enabled = false;
         Destroy(gameObject);
+
     }
     IEnumerator StopVelocity()
     {

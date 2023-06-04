@@ -66,7 +66,6 @@ public class PlayerMoveJump : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         shootScript = GetComponent<Shooting>();
         rb.freezeRotation= true;
-
         readyToJump = true;
     }
 
@@ -76,10 +75,7 @@ public class PlayerMoveJump : MonoBehaviour
         grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
         
         SpeedControl();
-        if(shootScript.shot == false)
-        {
             PlayMove();
-        }            
         
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded && readyToJump == false)
@@ -90,7 +86,6 @@ public class PlayerMoveJump : MonoBehaviour
         }
         else if (grounded)
         {
-            Debug.Log("suelo");
             rb.drag = groundDrag;
         }        
         else
@@ -170,11 +165,7 @@ public class PlayerMoveJump : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
-        //if (flatVel.magnitude == 0)
-        //{
-        //    animator.SetBool("Walk", false);
-        //    animator.SetBool("Run", false);
-        //} 
+
         if (flatVel.magnitude < 1f)
         {
 

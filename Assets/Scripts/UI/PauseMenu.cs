@@ -91,7 +91,7 @@ public class PauseMenu : MonoBehaviour
     public void BackToMenu()
     {
         click.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         Time.timeScale = 1f;
     }
 }
