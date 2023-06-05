@@ -7,7 +7,8 @@ public class PowerUp : MonoBehaviour
     public PlayerMoveJump velocity;
     public Enemy1 stop;
     public Shooting munition;
-    public AudioSource powerup;
+    public AudioSource guindillaSound;
+    public AudioSource huevoSound;
     public Animator guindilla;
     public Animator huevo;
     public Animator municion;
@@ -23,7 +24,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            powerup.Play();
+            
             if (gameObject.tag== ("guindilla"))
             {
                 Debug.Log("guindilla");                
@@ -48,6 +49,7 @@ public class PowerUp : MonoBehaviour
     
     IEnumerator Guindilla()
     {
+        guindillaSound.Play();
         guindilla.SetTrigger("Touch");         
         velocity.guindilla = true;        
         velocity.moveSpeed *= 1.5f;
@@ -57,6 +59,7 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Huevo()
     {
+        huevoSound.Play();
         huevo.SetTrigger("Touch");        
         stop.huevo = true;
         yield return new WaitForSeconds(time_huevo);
@@ -66,6 +69,7 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Municion()
     {
+        guindillaSound.Play();
         municion.SetTrigger("Touch");        
         munition.bulletsLeft = munition.magazineSize;
         yield return new WaitForSeconds(time_municion);

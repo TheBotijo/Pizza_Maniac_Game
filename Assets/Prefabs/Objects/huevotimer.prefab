@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 6643518185658047748}
   - component: {fileID: 6643518185658047865}
   - component: {fileID: 6643518185658047866}
-  - component: {fileID: 6643518185658047867}
+  - component: {fileID: 9105242830452737363}
   m_Layer: 0
   m_Name: huevotimer
   m_TagString: huevo
@@ -345,7 +345,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &6643518185658047867
+--- !u!114 &9105242830452737363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,7 +360,8 @@ MonoBehaviour:
   velocity: {fileID: 0}
   stop: {fileID: 0}
   munition: {fileID: 0}
-  powerup: {fileID: 0}
+  guindillaSound: {fileID: 0}
+  huevoSound: {fileID: 0}
   guindilla: {fileID: 0}
   huevo: {fileID: 6643518185658047866}
   municion: {fileID: 0}

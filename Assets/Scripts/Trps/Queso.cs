@@ -5,6 +5,7 @@ using UnityEngine;
 public class Queso : MonoBehaviour
 {
     public PlayerMoveJump velocity;
+    public AudioSource cheese;
     int damage = 2;
     public PowerUp guindilla;
 
@@ -12,6 +13,7 @@ public class Queso : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            cheese.Play();
             other.GetComponent<Health_Damage>().loseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
         }
@@ -21,6 +23,7 @@ public class Queso : MonoBehaviour
     {
         if (other.tag == "Player" && !velocity.guindilla)
         {
+            
             other.GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("velocidad lenta");
             velocity.moveSpeed /= 5;
@@ -31,7 +34,7 @@ public class Queso : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
+            cheese.Pause();
             //Debug.Log("velocidad normal");
             velocity.cheese = false;
         }
