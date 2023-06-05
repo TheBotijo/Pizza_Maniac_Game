@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
 	public bool invertGamepadYaw = false;
 	public bool invertMousePitch = false;
 	public bool invertGamepadPitch = false;
-	public Vector2 pitchLimits = new Vector2(-10f, 10f);
+	public Vector2 pitchLimits = new Vector2(-10f, 20f);
 	public Transform cameraTarget;
 	public Vector2 zoomLimits = new Vector2(1, 10);
 	public float yLerp = 1f;
@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
 
 	private void PlayerRotation()
 	{
-		Vector3 viewDir = player.position - new Vector3(cameraTarget.transform.position.x, player.position.y, cameraTarget.transform.position.z);
+		Vector3 viewDir = player.position - new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y - 2f, cameraTarget.transform.position.z);
 		orientation.forward = viewDir.normalized;
 
 		float horizontalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;
@@ -74,8 +74,8 @@ public class CameraController : MonoBehaviour
 
 		Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        //playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime);
-        //playerObj.forward = Vector3.Slerp(playerObj.forward, orientation.forward, Time.deltaTime);
+        playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime);
+        playerObj.forward = Vector3.Slerp(playerObj.forward, orientation.forward, Time.deltaTime);
         
 	}
 

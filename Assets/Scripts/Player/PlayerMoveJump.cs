@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveJump : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerMoveJump : MonoBehaviour
 
     public Transform cameraa;
     public Transform cameraRot;
+    public Transform combatLook;
+
 
     Vector3 moveDirection;
 
@@ -119,7 +122,7 @@ public class PlayerMoveJump : MonoBehaviour
                 
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
-
+        //transform.LookAt(combatLook);
         //apliquem una força al moviment quan esta tocant al terra
         if (aiming)
             moveSpeed = lateSpeed / 2;
