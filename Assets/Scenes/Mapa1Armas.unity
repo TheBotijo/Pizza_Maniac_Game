@@ -106,15 +106,26 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
+<<<<<<< Updated upstream
     agentRadius: 1.6
     agentHeight: 2.12
     agentSlope: 26.6
     agentClimb: 1.57
+=======
+    agentRadius: 1.65
+    agentHeight: 2.13
+    agentSlope: 7.4
+    agentClimb: 1.46
+>>>>>>> Stashed changes
     ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    maxJumpAcrossDistance: -0
     minRegionArea: 2
     manualCellSize: 0
+<<<<<<< Updated upstream
     cellSize: 0.53333336
+=======
+    cellSize: 0.55
+>>>>>>> Stashed changes
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
