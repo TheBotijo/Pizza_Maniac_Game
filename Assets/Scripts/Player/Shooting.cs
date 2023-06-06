@@ -101,6 +101,7 @@ public class Shooting : MonoBehaviour
             Shoot();
             Invoke(nameof(stop), 1);
         }
+
         else if (readyToShoot && shooting && !reloading && rodillo == true) 
         {
             shot = true;
