@@ -25,6 +25,7 @@ public class Enemy1 : MonoBehaviour
     //Sounds
     public AudioSource damag;
     public AudioSource death;
+    public AudioSource punch;
 
     //States
     public float sightRange, attackRange;
@@ -74,6 +75,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            punch.Play();
             GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }

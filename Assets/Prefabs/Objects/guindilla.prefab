@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4194510604234955930}
   - component: {fileID: 3566346810315818533}
   - component: {fileID: 3566346810315818530}
-  - component: {fileID: 3566346810315818531}
+  - component: {fileID: 8490006171559618602}
   m_Layer: 0
   m_Name: guindilla
   m_TagString: guindilla
@@ -70,7 +70,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &3566346810315818531
+--- !u!114 &8490006171559618602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,8 @@ MonoBehaviour:
   velocity: {fileID: 0}
   stop: {fileID: 0}
   munition: {fileID: 0}
-  powerup: {fileID: 0}
+  guindillaSound: {fileID: 0}
+  huevoSound: {fileID: 0}
   guindilla: {fileID: 3566346810315818530}
   huevo: {fileID: 0}
   municion: {fileID: 0}
