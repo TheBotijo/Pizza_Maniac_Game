@@ -16,8 +16,8 @@ public class Shooting : MonoBehaviour
     public float time_Damage = 0.5f;
 
     //bools 
-    public bool shot; 
-    bool shooting, readyToShoot, reloading;
+    public bool shot, readyToShoot; 
+    bool shooting,  reloading;
     
     //Weapons
     public GameObject rodill;
@@ -27,12 +27,19 @@ public class Shooting : MonoBehaviour
     public bool pistol;
     public bool ak;
 
+    // Camera
+    public bool aiming;
+    public Camera fpsCam;
+    private int fieldOfView = 60;
+    float maxfield;
+
     //Reference
     public GameObject player;
-    public Camera fpsCam;
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    [SerializeField]
+    private Transform debugTransform;
 
     //Sounds
     public AudioSource melee;
@@ -52,6 +59,8 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        fpsCam.fieldOfView = fieldOfView;
+        maxfield = fpsCam.fieldOfView / 2;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
     }
@@ -65,7 +74,19 @@ public class Shooting : MonoBehaviour
     {
         MyInput();
         ChangeGun();
+        LookAtShoot();
     }
+
+    private void LookAtShoot()
+    {
+        Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(centerScreen);
+        if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
+        {
+            debugTransform.position = rayHit.point;
+        }
+    }
+
     private void MyInput()
     {
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
@@ -80,13 +101,26 @@ public class Shooting : MonoBehaviour
             Shoot();
             Invoke(nameof(stop), 1);
         }
+
         else if (readyToShoot && shooting && !reloading && rodillo == true) 
         {
             shot = true;
             Shoot();         
             Invoke(nameof(stop), 1.5f);
-            
+        }
 
+        
+
+        if (_playerInput.Juego.Aim.IsPressed())
+        {
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, maxfield, 10f * Time.deltaTime);
+            aiming = true;
+
+        }
+        else
+        {
+            fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, fieldOfView, 10f * Time.deltaTime);
+            aiming = false;
         }
     }
     private void stop()
@@ -168,10 +202,12 @@ public class Shooting : MonoBehaviour
         float y = Random.Range(-spread, spread);
 
         //Calculate Direction with Spread
-        Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
+        //Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
 
         //RayCast
-        if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, range, whatIsEnemy))
+        Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(centerScreen);
+        if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
             if (rayHit.transform.tag == "Enemy")
             {
