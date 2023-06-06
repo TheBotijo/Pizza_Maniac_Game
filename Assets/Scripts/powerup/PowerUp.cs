@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
 
     public void Start()
     {
-        Invoke(nameof(Destroy), 10);
+        //Invoke(nameof(Destroy), 10);
     }
     private void OnTriggerEnter(Collider other)
     {
