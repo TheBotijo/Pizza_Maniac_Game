@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 2151527959289087178}
   - component: {fileID: 334357685360141501}
   - component: {fileID: 988087483382400557}
+  - component: {fileID: 3349753099295453481}
   m_Layer: 6
   m_Name: Cube.051
   m_TagString: Untagged
@@ -747,6 +748,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3349753099295453481
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966518063095591493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1515144191993293674, guid: 6910eb2e795b0e541be0e1995d70361f, type: 3}
 --- !u!1 &1067566879374650856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,7 +1850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422667361593233636}
-  - component: {fileID: 1798489591137618527}
+  - component: {fileID: 7158176340206254441}
   m_Layer: 6
   m_Name: casaremaster
   m_TagString: Untagged
@@ -1961,7 +1976,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &1798489591137618527
+--- !u!65 &7158176340206254441
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1972,8 +1987,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.150996, y: 7.596371, z: 6.502628}
-  m_Center: {x: 0.034757137, y: 4.2333674, z: -0.010436058}
+  m_Size: {x: 7.893777, y: 7.7912498, z: 6.3198543}
+  m_Center: {x: 0.01573944, y: 4.352041, z: -0.015738487}
 --- !u!1 &1989742604158351139
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,6 +5901,7 @@ GameObject:
   - component: {fileID: 9217496805872075660}
   - component: {fileID: 2192326603983602423}
   - component: {fileID: 8426166069748555085}
+  - component: {fileID: 666063397046577842}
   m_Layer: 6
   m_Name: Cylinder.020
   m_TagString: Untagged
@@ -5958,6 +5974,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &666063397046577842
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595938412388473454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5894421597310714776, guid: 6910eb2e795b0e541be0e1995d70361f, type: 3}
 --- !u!1 &6688314006492721943
 GameObject:
   m_ObjectHideFlags: 0
