@@ -93,7 +93,7 @@ public class Enemy1 : MonoBehaviour
         animator.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Invoke(nameof(colorBack), 0.2f);
-        Health -= 10;
+        Health -= takeDamage.damage;
         damag.Play();
         if (Health <= 0)        
         {
