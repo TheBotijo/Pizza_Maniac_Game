@@ -7,54 +7,54 @@ using UnityEngine.InputSystem.HID;
 
 public class Shooting : MonoBehaviour
 {
-    //Gun stats
-    public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
-    public int bulletsLeft, bulletsShot;
-    public float time_Damage = 0.5f;
+    [Header("Gun Stats")]
+    [HideInInspector] public float  reloadTime;
+    [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
+    private bool allowButtonHold;
+    private int bulletsPerTap;
+    private float timeBetweenShooting, spread, range, timeBetweenShots;
 
-    //bools 
-    public bool shot, readyToShoot; 
+    [Header("Bools")]
+    [HideInInspector] public bool shot, readyToShoot;
     bool shooting,  reloading;
-    
-    //Weapons
+
+    [Header("Weapons")]
     public GameObject rodill;
     public GameObject pistola;
     public GameObject Ak;
-    public bool rodillo =true;
+    private bool rodillo =true;
     public bool pistol;
     public bool ak;
 
-    // Camera
+    [Header("Camera")]
     public bool aiming;
     public Camera fpsCam;
     private int fieldOfView = 60;
     float maxfield;
+    Vector2 centerScreen;
+    Ray ray;
 
-    //Reference
+    [Header("References")]
     public GameObject player;
-    public Transform attackPoint;
+    // public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
     [SerializeField]
     private Transform debugTransform;
+    private PlayerInputMap _playerInput;
+    private Enemy1 enemyDamage;
 
-    //Sounds
+    [Header("Sounds")]
     public AudioSource melee;
-    public AudioSource pistolshoot;
-    public AudioSource akshoot;
+    public AudioSource pistolshoot, akshoot;
 
-    //Graphics
+    [Header("Graphics")]
     public GameObject bulletHoleGraphic;
     //public GameObject muzzleFlash;
     public float camShakeMagnitude, camShakeDuration;
     public TextMeshProUGUI text;
 
-    private PlayerInputMap _playerInput;
-    private Enemy1 enemyDamage;
-    //Animations
+    [Header("Animations")]
     public Animator animator;
 
     private void Start()
@@ -79,8 +79,8 @@ public class Shooting : MonoBehaviour
 
     private void LookAtShoot()
     {
-        Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(centerScreen);
+        centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        ray = Camera.main.ScreenPointToRay(centerScreen);
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
             debugTransform.position = rayHit.point;
@@ -109,8 +109,6 @@ public class Shooting : MonoBehaviour
             Invoke(nameof(stop), 1.5f);
         }
 
-        
-
         if (_playerInput.Juego.Aim.IsPressed())
         {
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, maxfield, 10f * Time.deltaTime);
@@ -137,7 +135,7 @@ public class Shooting : MonoBehaviour
                 pistola.gameObject.SetActive(true);
                 pistol = true;
                 rodillo = false;
-                damage = 5;
+                damage = 10;
                 timeBetweenShooting = 1f;
                 spread = 0f;
                 range = 400f;
@@ -163,7 +161,7 @@ public class Shooting : MonoBehaviour
                 rodill.gameObject.SetActive(true);
                 rodillo = true;
                 ak = false;
-                damage = 0;
+                damage = 5;
                 timeBetweenShooting = 2f;
                 spread = 0f;
                 range = 0f;
@@ -182,7 +180,7 @@ public class Shooting : MonoBehaviour
             animator.SetTrigger("melee");
         }
         else  if (pistol == true)
-        {;
+        {
             akshoot.Play();
             bulletsLeft--;
             animator.SetTrigger("Pistol");
@@ -197,36 +195,34 @@ public class Shooting : MonoBehaviour
 
         readyToShoot = false;
 
-        //Spread
+        // Spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
-        //Calculate Direction with Spread
-        //Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
+        // Calculate Direction with Spread
+        // Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
 
-        //RayCast
-        Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(centerScreen);
+        // RayCast
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
             if (rayHit.transform.tag == "Enemy")
             {
-                //Destroy(rayHit.transform.gameObject);
+                // Destroy(rayHit.transform.gameObject);
                 enemyDamage = rayHit.transform.gameObject.GetComponent<Enemy1>();
                 enemyDamage.TakeDamage();
-            }
+            }    
 
-            //Debug.Log(rayHit.transform.tag);
-            //Debug.Log(rayHit.collider.name);
+            // Debug.Log(rayHit.transform.tag);
+            // Debug.Log(rayHit.collider.name);
                                      
         }        
-        //Graphics
+        // Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         
         Invoke("ResetShot", timeBetweenShooting);
 
-        //if(bulletsShot > 0 && bulletsLeft > 0)
+        // if(bulletsShot > 0 && bulletsLeft > 0)
         //    Invoke("Shoot", timeBetweenShots);
     }
     //RodilloDamage

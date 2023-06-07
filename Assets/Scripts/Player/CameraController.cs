@@ -85,14 +85,14 @@ public class CameraController : MonoBehaviour
 
     private void AimShootLookAt(Vector3 inputDir)
     {
-        if (!shootScript.aiming && shootScript.readyToShoot)
-            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 20f);
+        if (!shootScript.aiming && !shootScript.shot)
+            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 15f);
         else
         {
             Vector3 WorldAimTarget = shootScript.rayHit.point;
             WorldAimTarget.y = transform.position.y;
             Vector3 AimDirection = (WorldAimTarget - transform.position).normalized;
-            playerObj.forward = Vector3.Lerp(playerObj.forward, AimDirection, Time.deltaTime * 20);
+            playerObj.forward = Vector3.Lerp(playerObj.forward, AimDirection, Time.deltaTime * 15f);
         }
     }
 
