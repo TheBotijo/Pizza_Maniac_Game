@@ -16588,6 +16588,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1180339112739685940}
     m_Modifications:
+    - target: {fileID: 3542791213542460189, guid: 3baed0443e129ae49abec57ff755a39c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c892698ecbb3fa469ab4726ae4f8d29, type: 2}
     - target: {fileID: 3542791215063850340, guid: 3baed0443e129ae49abec57ff755a39c, type: 3}
       propertyPath: m_Name
       value: hotel
