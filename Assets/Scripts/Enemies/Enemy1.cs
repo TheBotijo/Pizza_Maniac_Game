@@ -11,6 +11,7 @@ public class Enemy1 : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Shooting takeDamage;
+    public Drop drops;
 
     public float damage = 5;
     public float Health = 20;
@@ -98,6 +99,7 @@ public class Enemy1 : MonoBehaviour
         if (Health <= 0)        
         {
             death.Play();
+            drops.guindilla.position = gameObject.transform.position;
             //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
         }
