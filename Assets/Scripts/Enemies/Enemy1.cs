@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,7 @@ public class Enemy1 : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Shooting takeDamage;
+    public Drops drops;
 
     public float damage = 5;
     public float Health = 20;
@@ -21,6 +23,7 @@ public class Enemy1 : MonoBehaviour
     bool alreadyAttacked = false;
     public GameObject cos;
     public GameObject ColliderMano;
+    public GameObject drop;
 
     //Sounds
     public AudioSource damag;
@@ -35,6 +38,7 @@ public class Enemy1 : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("MainCharacter").transform;
+        drops = GameObject.FindGameObjectWithTag("Drops").GetComponent<Drops>();
         takeDamage = FindObjectOfType<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
         agent = GetComponent<NavMeshAgent>();
@@ -99,6 +103,10 @@ public class Enemy1 : MonoBehaviour
         damag.Play();
         if (Health <= 0)        
         {
+            Vector3 pose = gameObject.transform.position;
+            //drop = GameObject.FindGameObjectWithTag("guindilla");
+            drops.dropSystem(pose);
+            //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
             //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
