@@ -4790,6 +4790,7 @@ GameObject:
   - component: {fileID: 8161885480311192546}
   - component: {fileID: 81327829949609470}
   - component: {fileID: 8161885480311192541}
+  - component: {fileID: 7002165135653305139}
   - component: {fileID: 8161885480311192544}
   - component: {fileID: 2642911630894781578}
   m_Layer: 8
@@ -4941,11 +4942,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   takeDamage: {fileID: 0}
+  drops: {fileID: 0}
   damage: 10
   Health: 20
   timeBetweenAttacks: 3
   cos: {fileID: 5074671066302454161}
   ColliderMano: {fileID: 7231903013768234210}
+  drop: {fileID: 0}
   damag: {fileID: 3254506347142345380}
   death: {fileID: 6914423202762457410}
   punch: {fileID: 1373971209938625171}
@@ -4954,6 +4957,26 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   huevo: 0
+--- !u!114 &7002165135653305139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161885480311192540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4802dffae34c0394d86e48312040ed8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProbabilidadDrop: 70
+  XcentGuind: 40
+  XcentHuevo: 10
+  XcentMuni: 10
+  XcentCora: 40
+  DropsTotalNum: 4
+  xCents: 
+  xDrops: 
 --- !u!95 &8161885480311192544
 Animator:
   serializedVersion: 5

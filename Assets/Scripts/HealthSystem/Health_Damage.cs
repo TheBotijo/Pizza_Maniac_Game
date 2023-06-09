@@ -13,14 +13,14 @@ public class Health_Damage : MonoBehaviour
     private float time_invencible = 3f, time_Stop = 1f, time_death = 3f;
 
     [Header("Scripts")]
-    [SerializeField] private HealthBar healthBar;
-    [SerializeField] private CameraController camScript;
-    [SerializeField] private PlayerMoveJump player;
+    private HealthBar healthBar;
+    private CameraController camScript;
 
     [Header("References")]
+    public GameReferences references;
     [SerializeField] private Animator animator;
-    [SerializeField] private Camera thirddCam;
-    [SerializeField] private GameObject playerObj, deathUI;
+    private Camera thirddCam;
+    [SerializeField] private GameObject deathUI;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource damage;
@@ -29,8 +29,12 @@ public class Health_Damage : MonoBehaviour
     public void Start()
     {
         //health = maxHealth;
+        //Assignamos las referencias
+        references = GetComponent<PlayerMoveJump>().references;
+        camScript = references.mainCam.GetComponent<CameraController>();
+        healthBar = references.healthBarScr;
+        thirddCam = references.mainCam.GetComponent<Camera>();
         healthBar.InitiateHealthBar(health);
-        camScript = GameObject.Find("CameraHold").GetComponent<CameraController>();
     }
 
     public void loseHealth(float damage)

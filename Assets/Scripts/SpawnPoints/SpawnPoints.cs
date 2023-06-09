@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour
 {
+    private GameReferences referencess;
     [SerializeField] List<GameObject> spawnPointList;
     public int deliverPoints;
     [SerializeField] List<GameObject> deliverPointList;
-    public GameObject player;
-    public GameObject deliverHere;
+    private GameObject player;
+    private GameObject deliverHere;
     public bool entregadas = true;
     private int lastPoint = 0;
     private int spawnPoint;
 
     private void Start()
     {
+        referencess = GetComponentInParent<GameReferences>();
+        player = referencess.playerr;
+        deliverHere= referencess.deliverHere;
         entregadas = true;
         respawn(deliverHere);
         spawnPoint = Random.Range(0, 2);
         player.transform.position = spawnPointList[spawnPoint].transform.position;
         player.transform.localRotation = spawnPointList[spawnPoint].transform.localRotation;
-
     }
     public void respawn(GameObject deliverPoint)
     {
@@ -39,7 +42,5 @@ public class SpawnPoints : MonoBehaviour
             lastPoint = spawnPoint;
             deliverPoint.transform.position = deliverPointList[spawnPoint].transform.position;
         }
-        
     }
-    
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Queso : MonoBehaviour
 {
-    public PlayerMoveJump velocity;
-    public AudioSource cheese;    
-    public PowerUp guindilla;
+    private GameReferences referencess;
+    private PlayerMoveJump velocity;
+    public AudioSource cheese;
 
     [SerializeField]
     int damage = 2;
@@ -15,8 +15,10 @@ public class Queso : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
+            velocity = other.GetComponent<PlayerMoveJump>();
+            referencess = other.GetComponent<PlayerMoveJump>().references;
             cheese.Play();
             other.GetComponent<Health_Damage>().loseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
@@ -25,18 +27,17 @@ public class Queso : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && !velocity.guindilla)
+        if (other.CompareTag("Player") && !velocity.guindilla)
         {
-            
             other.GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("velocidad lenta");
-            velocity.moveSpeed /= VelocityFactor;
+            referencess.moveSpeedr /= VelocityFactor;
             velocity.cheese = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             cheese.Pause();
             //Debug.Log("velocidad normal");

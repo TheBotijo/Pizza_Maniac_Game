@@ -4,41 +4,43 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public PlayerMoveJump velocity;
+    private GameReferences referencess;
+    private PlayerMoveJump velocityScr;
+    private Shooting munitionScr;
     public Enemy1 stop;
-    public Shooting munition;
-    public AudioSource guindillaSound;
-    public AudioSource huevoSound;
-    public Animator guindilla;
-    public Animator huevo;
-    public Animator municion;
-    public float time_guindilla = 8f;
-    public float time_huevo = 8f;
-    public float time_municion = 1f;
 
-    public void Start()
-    {
-        velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoveJump>();
-        munition = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>();
-        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy1>();
-        //Invoke(nameof(Destroy), 10);
-    }
+    [Header("Sounds")]
+    [SerializeField] private AudioSource guindillaSound;
+    [SerializeField] private AudioSource huevoSound;
+
+    [Header("Animations")]
+    [SerializeField] private Animator guindilla;
+    [SerializeField] private Animator huevo, municion;
+
+    [Header("Timings")]
+    [SerializeField] private float time_guindilla = 8f;
+    [SerializeField] private float time_huevo = 8f;
+    [SerializeField] private float time_municion = 1f;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            
-            if (gameObject.tag== ("guindilla"))
+            velocityScr = other.GetComponent<PlayerMoveJump>();
+            referencess = other.GetComponent<PlayerMoveJump>().references;
+            munitionScr = other.GetComponent<Shooting>();
+
+            if (gameObject.CompareTag("guindilla"))
             {
                 Debug.Log("guindilla");                
                 StartCoroutine(Guindilla());                 
             }
-            if (gameObject.tag == ("huevo"))
+            if (gameObject.CompareTag("huevo"))
             {
                 Debug.Log("huevo");
                 StartCoroutine(Huevo());              
             }
-            if (gameObject.tag == ("municion"))
+            if (gameObject.CompareTag("municion"))
             {
                 Debug.Log("municion");
                 StartCoroutine(Municion());                
@@ -54,14 +56,15 @@ public class PowerUp : MonoBehaviour
     {
         guindillaSound.Play();
         guindilla.SetTrigger("Touch");         
-        velocity.guindilla = true;        
-        velocity.moveSpeed *= 1.5f;
+        velocityScr.guindilla = true;        
+        referencess.moveSpeedr *= 1.5f;
         yield return new WaitForSeconds(time_guindilla);        
-        velocity.guindilla = false;
+        velocityScr.guindilla = false;
         Invoke(nameof(Destroy), 1);        
     }
     IEnumerator Huevo()
     {
+        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy1>();
         huevoSound.Play();
         huevo.SetTrigger("Touch");        
         stop.huevo = true;
@@ -74,7 +77,7 @@ public class PowerUp : MonoBehaviour
     {
         guindillaSound.Play();
         municion.SetTrigger("Touch");        
-        munition.bulletsLeft = munition.magazineSize;
+        munitionScr.bulletsLeft = munitionScr.magazineSize;
         yield return new WaitForSeconds(time_municion);
         Invoke(nameof(Destroy), 1);
 

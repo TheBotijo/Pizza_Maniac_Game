@@ -6,13 +6,14 @@ public class Enemy1 : MonoBehaviour
 {
     public NavMeshAgent agent;
 
-    public Transform player;
+    private GameObject playerr;
+    private Transform player;
     private Animator animator;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public Shooting takeDamage;
-    public Drops drops;
+    private Shooting takeDamage;
+    private Drops drops;
 
     public float damage = 5;
     public float Health = 20;
@@ -37,12 +38,13 @@ public class Enemy1 : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("MainCharacter").transform;
-        drops = GameObject.FindGameObjectWithTag("Drops").GetComponent<Drops>();
-        takeDamage = FindObjectOfType<Shooting>();
+        playerr = GameObject.FindGameObjectWithTag("Player");
+        player = playerr.transform;
+        drops = GetComponent<Drops>();
+        takeDamage = playerr.GetComponent<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
         agent = GetComponent<NavMeshAgent>();
-        animator= GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -77,7 +79,7 @@ public class Enemy1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             punch.Play();
             GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
@@ -87,7 +89,7 @@ public class Enemy1 : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
         }
@@ -98,21 +100,21 @@ public class Enemy1 : MonoBehaviour
         //Debug.Log("DañoEnemigo");
         animator.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-        Invoke(nameof(colorBack), 0.2f);
+        Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
-        if (Health <= 0)        
+        if (Health <= 0)     
         {
             Vector3 pose = gameObject.transform.position;
             //drop = GameObject.FindGameObjectWithTag("guindilla");
-            drops.dropSystem(pose);
+            drops.DropSystem(pose);
             //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
             //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
         }
     }
-    void colorBack()
+    void ColorBack()
     {
         cos.GetComponent<Renderer>().material.color = original;
     }

@@ -51,7 +51,7 @@ public class SpawnPowerUp : MonoBehaviour
     {
         guindilla.SetTrigger("Touch");         
         velocity.guindilla = true;        
-        velocity.moveSpeed *= 1.5f;
+        //velocity.moveSpeed *= 1.5f;
         yield return new WaitForSeconds(time_guindilla);        
         velocity.guindilla = false;
         Invoke(nameof(Destroy), 1);        

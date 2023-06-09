@@ -9,12 +9,13 @@ using UnityEngine.InputSystem;
 //Flag to relocate camera on the back of character automatically when running.
 public class CameraController : MonoBehaviour
 {
-	[Header("PlayerRotate")]
+    public GameReferences references;
+    [Header("PlayerRotate")]
 	//New Input system
 	public PlayerInputMap _playerInput;
-    public Transform player;
-    public Transform playerObj;
-	public Transform orientation;
+    private Transform player;
+    private Transform playerObj;
+    private Transform orientation;
 	public Transform combatLook;
 	public Rigidbody rb;
 	[Range(1f, 5f)]
@@ -43,6 +44,10 @@ public class CameraController : MonoBehaviour
 		yawAngle = transform.localRotation.eulerAngles.y;
 		target = transform.parent;
 		cameraTransform = GetComponentInChildren<Camera>().transform;
+		//Assignamos las referencias
+		orientation = references.playerrOrient.transform;
+		playerObj = references.playerrObj.transform;
+		player = references.playerr.transform;
 	}
 
 	void Start()
@@ -68,10 +73,9 @@ public class CameraController : MonoBehaviour
 
 	private void PlayerRotation()
     {
-        Vector3 CombatDir = player.position - new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y - 3, cameraTarget.transform.position.z);
+
         Vector3 viewDir = player.position - new Vector3(cameraTarget.transform.position.x, player.position.y, cameraTarget.transform.position.z);
         orientation.forward = viewDir.normalized;
-        combatLook.forward = CombatDir.normalized;
 
         float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
