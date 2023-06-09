@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,16 +6,17 @@ public class Enemy1 : MonoBehaviour
 {
     public NavMeshAgent agent;
 
-    public Transform player;
+    private GameObject playerr;
+    private Transform player;
     private Animator animator;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public Shooting takeDamage;
-    public Drop drops;
+    private Shooting takeDamage;
+    private Drops drops;
 
-    public float damage = 5;
-    public float Health = 20;
+    public float damage = 10;
+    public float Health = 14;
     Color original;
 
     //Attacking
@@ -22,10 +24,12 @@ public class Enemy1 : MonoBehaviour
     bool alreadyAttacked = false;
     public GameObject cos;
     public GameObject ColliderMano;
+    public GameObject drop;
 
     //Sounds
     public AudioSource damag;
     public AudioSource death;
+    public AudioSource punch;
 
     //States
     public float sightRange, attackRange;
@@ -34,11 +38,13 @@ public class Enemy1 : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("MainCharacter").transform;
-        takeDamage = FindObjectOfType<Shooting>();
+        playerr = GameObject.FindGameObjectWithTag("Player");
+        player = playerr.transform;
+        drops = GetComponent<Drops>();
+        takeDamage = playerr.GetComponent<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
         agent = GetComponent<NavMeshAgent>();
-        animator= GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -73,18 +79,19 @@ public class Enemy1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
+            punch.Play();
+            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
+            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
         }
     }
 
@@ -93,18 +100,21 @@ public class Enemy1 : MonoBehaviour
         //Debug.Log("DañoEnemigo");
         animator.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-        Invoke(nameof(colorBack), 0.2f);
+        Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
-        if (Health <= 0)        
+        if (Health <= 0)     
         {
+            Vector3 pose = gameObject.transform.position;
+            //drop = GameObject.FindGameObjectWithTag("guindilla");
+            drops.DropSystem(pose);
+            //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
-            drops.guindilla.position = gameObject.transform.position;
             //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
         }
     }
-    void colorBack()
+    void ColorBack()
     {
         cos.GetComponent<Renderer>().material.color = original;
     }

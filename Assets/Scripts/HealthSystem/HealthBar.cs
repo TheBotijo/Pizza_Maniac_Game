@@ -26,7 +26,7 @@ public class HealthBar : MonoBehaviour
     public void InitiateHealthBar(float Health)
     {
         ChangeMaxHealth(Health);
-        ChangeActualHealth(Health);
+        //ChangeActualHealth(Health);
     }
 }
 

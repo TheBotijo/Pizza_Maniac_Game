@@ -4,36 +4,55 @@ using UnityEngine;
 
 public class Queso : MonoBehaviour
 {
-    public PlayerMoveJump velocity;
-    int damage = 2;
-    public PowerUp guindilla;
+    private GameReferences referencess;
+    private PlayerMoveJump velocity;
+    public AudioSource cheese;
 
+    [SerializeField]
+    int damage = 2;
+    [SerializeField]
+    float VelocityFactor = 10;
+
+    private void Start()
+    {
+        cheese = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            References(other);
+            cheese.Play();
+            other.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
         }
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && !velocity.guindilla)
+        if (other.CompareTag("Player") && !velocity.guindilla)
         {
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            References(other);
+            other.GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("velocidad lenta");
-            velocity.moveSpeed /= 5;
+            referencess.moveSpeedr /= VelocityFactor;
             velocity.cheese = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            
+            References(other);
+            cheese.Pause();
             //Debug.Log("velocidad normal");
             velocity.cheese = false;
         }
+    }
+
+    private void References(Collider other)
+    {
+        velocity = other.GetComponent<PlayerMoveJump>();
+        referencess = other.GetComponent<PlayerMoveJump>().references;
     }
 }

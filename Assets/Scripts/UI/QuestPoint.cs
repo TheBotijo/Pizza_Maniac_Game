@@ -8,14 +8,25 @@ using Unity.VisualScripting;
 
 public class QuestPoint : MonoBehaviour
 {
-    public Image deliverImage;
-    public Image pizzaImage;
+    private GameReferences referencess;
+    private Image deliverImage;
+    private Image pizzaImage;
     public TextMeshProUGUI meter;
     public TextMeshProUGUI meter2;
-    public GameObject deliverHere;
+    private GameObject deliverHere;
     public Vector3 offset;
-    public SpawnPoints pizzasCount;
+    private SpawnPoints pizzasCount;
 
+
+    private void Start()
+    {
+        //Assignamos las referencias
+        referencess = GetComponentInParent<GameReferences>();
+        deliverHere = referencess.deliverHere;
+        deliverImage = referencess.deliverImage;
+        pizzaImage = referencess.pizzaImage;
+        pizzasCount = referencess.SpawnSystem.GetComponent<SpawnPoints>();
+    }
     // Update is called once per frame
     public void Update()
     {
@@ -27,7 +38,7 @@ public class QuestPoint : MonoBehaviour
 
         Vector2 pos = Camera.main.WorldToScreenPoint(deliverHere.transform.position + offset);
 
-        if (Vector3.Dot((deliverHere.transform.position - transform.position), transform.forward) < 0)
+        if (Vector3.Dot((deliverHere.transform.position - transform.position), Camera.main.transform.forward) < 0)
         {
             //Target is behind the player
             if (pos.x < Screen.width / 2)
@@ -41,7 +52,7 @@ public class QuestPoint : MonoBehaviour
         }
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = Mathf.Clamp(pos.y, minY, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         if (pizzasCount.entregadas == true)
         {

@@ -12,7 +12,7 @@ public class EnemySpawn : MonoBehaviour
     public int enemyCount1;
     private int lastPoint = -1;
     public float timeBetweenSpawns = 10;
-    int enemyCount2;
+    //int enemyCount2;
     public float timeReduce = 0.97f;
     public float timeReduceMax;
     //timer
@@ -30,12 +30,12 @@ public class EnemySpawn : MonoBehaviour
         if (timer > timeBetweenSpawns)
         {
             timer = 0;
-            enemySpawn();            
+            EnemySpawns();            
         } 
         else
             timer += Time.deltaTime;
     }
-    void enemySpawn()
+    void EnemySpawns()
     {
         if (enemyCount1 < enemyMax1)
         {

@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class PizzaDeliver : MonoBehaviour
 {
-    public int currentPizzas = 0;
-    public int totalPizzas;
-    public SpawnPoints spawnPoint;
-    public GameObject deliverHere;
-    public EnemySpawn spawnEnemy;
+    [SerializeField] private GameReferences references;
+    [HideInInspector] public int currentPizzas = 0;
+    [HideInInspector] public int totalPizzas;
+    private GameObject player;
+    private SpawnPoints spawnPoint;
+    private EnemySpawn spawnEnemy;
+    private GameObject deliverHere;
     public Enemy1 enemy1;
     public AudioSource deliver;
-    public GameObject winUI;
-    public GameObject player;
+    private GameObject winUI;
     public AudioSource win;
     [HideInInspector]
     public int rounds = 0;
@@ -22,16 +23,20 @@ public class PizzaDeliver : MonoBehaviour
 
     private void Start()
     {
+        //Assignamos las referencias
+        player = references.playerr;
+        deliverHere = references.deliverHere;
+        winUI = references.winUI;
+        spawnPoint = references.SpawnSystem.GetComponent<SpawnPoints>();
+        spawnEnemy = references.GetComponent<EnemySpawn>();
         totalPizzas = 0;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            
             if (currentPizzas == totalPizzas - 1)
             {
-                
                 spawnPoint.entregadas = true;
                 currentPizzas++;
             }
@@ -47,7 +52,6 @@ public class PizzaDeliver : MonoBehaviour
                     Debug.Log("Vida enemigo: " + enemy1.Health);
                     totalPizzas = 5;
                 }
-                    
                 else
                 {
                     if (rounds == 1)
@@ -64,7 +68,7 @@ public class PizzaDeliver : MonoBehaviour
                         Cursor.visible = true;
                         win.Play();
                     }
-                        currentPizzas = 0;
+                    currentPizzas = 0;
 
                     enemy1.Health += 7.5f;
                     spawnEnemy.timeBetweenSpawns -= 1.5f;
@@ -86,8 +90,7 @@ public class PizzaDeliver : MonoBehaviour
             }
             else { deliver.Play(); currentPizzas++; }
                 
-
-            spawnPoint.respawn(deliverHere);
+            spawnPoint.Respawn(deliverHere);
         }
     }
 }
