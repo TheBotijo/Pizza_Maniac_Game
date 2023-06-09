@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 85765885153289764}
   - component: {fileID: 3935978997819091329}
   - component: {fileID: 1259775629054139723}
-  - component: {fileID: 484711881555398246}
+  - component: {fileID: 2024704055302440631}
   m_Layer: 6
   m_Name: bocaIncendios
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755306431679888542}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 14.95, y: 1.58, z: 1.69}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &3935978997819091329
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &484711881555398246
+--- !u!65 &2024704055302440631
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,5 +95,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0036342132, y: 0.0036246215, z: 0.009315741}
-  m_Center: {x: 0.000004953742, y: 0.00001825802, z: 0.004659355}
+  m_Size: {x: 0.003155899, y: 0.0033321774, z: 0.009315741}
+  m_Center: {x: -0.00003612518, y: -0.000009303242, z: 0.004659404}
