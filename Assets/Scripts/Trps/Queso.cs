@@ -5,14 +5,16 @@ using UnityEngine;
 public class Queso : MonoBehaviour
 {
     public PlayerMoveJump velocity;
-    public AudioSource cheese;    
+    public AudioSource cheese;
+    int damage = 2;
     public PowerUp guindilla;
 
-    [SerializeField]
-    int damage = 2;
-    [SerializeField]
-    float VelocityFactor = 10;
-
+    private void Start()
+    {
+        velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoveJump>();
+        //guindilla = GameObject.FindGameObjectWithTag("guindilla").GetComponent<PowerUp>();
+        cheese = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -30,7 +32,7 @@ public class Queso : MonoBehaviour
             
             other.GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("velocidad lenta");
-            velocity.moveSpeed /= VelocityFactor;
+            velocity.moveSpeed /= 5;
             velocity.cheese = true;
         }
     }

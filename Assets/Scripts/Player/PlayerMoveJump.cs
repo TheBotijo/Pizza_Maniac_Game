@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveJump : MonoBehaviour
 {
@@ -20,13 +21,11 @@ public class PlayerMoveJump : MonoBehaviour
     public Transform playerObj;
     // public Transform playerObj;
     private PlayerInputMap _playerInput;
-    public bool aiming;
-    public Camera cam;
-    private int fieldOfView = 60;
-    float maxfield;
 
     public Transform cameraa;
     public Transform cameraRot;
+    public Transform combatLook;
+
 
     Vector3 moveDirection;
 
@@ -57,8 +56,6 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void Start()
     {
-        cam.fieldOfView = fieldOfView;
-        maxfield = cam.fieldOfView / 2;
         lateSpeed = moveSpeed;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
@@ -74,7 +71,7 @@ public class PlayerMoveJump : MonoBehaviour
         grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
         
         SpeedControl();
-            PlayMove();
+        PlayMove();
         
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded && readyToJump == false)
@@ -90,18 +87,8 @@ public class PlayerMoveJump : MonoBehaviour
         else
             rb.drag = 0;
 
-        if (_playerInput.Juego.Aim.IsPressed())
-        {
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, maxfield, 10f * Time.deltaTime);
-            aiming = true;
-        }
-        else
-        {
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fieldOfView, 10f * Time.deltaTime);
-            aiming = false;
-        }
     }
-    
+
 
     private void PlayMove() 
     {
@@ -119,14 +106,14 @@ public class PlayerMoveJump : MonoBehaviour
                 
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
-
+        //transform.LookAt(combatLook);
         //apliquem una força al moviment quan esta tocant al terra
-        if (aiming)
+        if (shootScript.aiming)
             moveSpeed = lateSpeed / 2;
         else if(!guindilla)
             moveSpeed = lateSpeed;
         
-        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese)
+        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 2f)
         {
             //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
             //{
@@ -150,7 +137,12 @@ public class PlayerMoveJump : MonoBehaviour
                 animator.SetBool("Run", false);
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             }
-            else { animator.SetBool("Walk", false); caminar.Pause(); };
+            else
+            { 
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", false);
+                caminar.Pause(); 
+            }
         }
         else if(!grounded && flatVel.magnitude == 0)
         {
@@ -165,7 +157,7 @@ public class PlayerMoveJump : MonoBehaviour
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
         }
 
-        if (flatVel.magnitude < 1f)
+        if (flatVel.magnitude > 10f)
         {
 
             animator.SetBool("Run", false);
@@ -175,7 +167,7 @@ public class PlayerMoveJump : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
+        //Debug.Log(flatVel.magnitude);
         // limitar la velocitat si aquesta es mes gran del que volem aconseguir
         if (flatVel.magnitude > moveSpeed)
         {

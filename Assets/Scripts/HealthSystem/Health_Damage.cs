@@ -6,29 +6,29 @@ using UnityEngine.UI;
 
 public class Health_Damage : MonoBehaviour
 {
-    public float health;
-    public float maxHealth = 100;
-    public bool invencible = false;
-    public float time_invencible = 3f;
-    public float time_Stop = 1f;
-    public float time_death = 3f;
-    public bool moving = true;
+    [Header("Health values")]
+    [Range(0,100)]public float health;
+    //private float maxHealth = 100;
+    public bool invencible = false, moving = true;
+    private float time_invencible = 3f, time_Stop = 1f, time_death = 3f;
 
-    [SerializeField] 
-    public HealthBar healthBar;
-    public Animator animator;
-    public PlayerMoveJump player;
-    public Camera thirddCam;
-    public GameObject playerObj;
-    public AudioSource damage;
-    public AudioSource lose;
-    public AudioSource death;
-    public CameraController camScript;
-    public GameObject deathUI;
+    [Header("Scripts")]
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private CameraController camScript;
+    [SerializeField] private PlayerMoveJump player;
+
+    [Header("References")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private Camera thirddCam;
+    [SerializeField] private GameObject playerObj, deathUI;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource damage;
+    [SerializeField] private AudioSource lose, death;
 
     public void Start()
     {
-        health = maxHealth;
+        //health = maxHealth;
         healthBar.InitiateHealthBar(health);
         camScript = GameObject.Find("CameraHold").GetComponent<CameraController>();
     }
