@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        camScript = Object.FindObjectOfType<CameraController>();
+        camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
 

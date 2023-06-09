@@ -4934,17 +4934,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2642911630894781578}
-  player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  takeDamage: {fileID: 0}
-  drops: {fileID: 0}
   damage: 10
-  Health: 20
+  Health: 14
   timeBetweenAttacks: 3
   cos: {fileID: 5074671066302454161}
   ColliderMano: {fileID: 7231903013768234210}
@@ -4952,7 +4949,7 @@ MonoBehaviour:
   damag: {fileID: 3254506347142345380}
   death: {fileID: 6914423202762457410}
   punch: {fileID: 1373971209938625171}
-  sightRange: 30
+  sightRange: 40
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0

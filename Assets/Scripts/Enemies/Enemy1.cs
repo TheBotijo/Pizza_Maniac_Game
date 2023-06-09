@@ -15,8 +15,8 @@ public class Enemy1 : MonoBehaviour
     private Shooting takeDamage;
     private Drops drops;
 
-    public float damage = 5;
-    public float Health = 20;
+    public float damage = 10;
+    public float Health = 14;
     Color original;
 
     //Attacking

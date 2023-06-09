@@ -79,8 +79,6 @@ public class PlayerMoveJump : MonoBehaviour
         if (grounded && readyToJump == false)
         {
             Invoke(nameof(NotJump), 0.5f);
-
-
         }
         else if (grounded)
         {
@@ -88,7 +86,6 @@ public class PlayerMoveJump : MonoBehaviour
         }        
         else
             rb.drag = 0;
-
     }
 
     private void PlayMove() 
@@ -107,7 +104,7 @@ public class PlayerMoveJump : MonoBehaviour
                 
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
-        //transform.LookAt(combatLook);
+        
         //apliquem una força al moviment quan esta tocant al terra
         if (shootScript.aiming)
             moveSpeed = lateSpeed / 2;
