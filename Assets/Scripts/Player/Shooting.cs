@@ -7,38 +7,41 @@ using UnityEngine.InputSystem.HID;
 
 public class Shooting : MonoBehaviour
 {
+    private GameReferences referencess;
+
     [Header("Gun Stats")]
     [HideInInspector] public float  reloadTime;
     [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
     private bool allowButtonHold;
-    private int bulletsPerTap;
-    private float timeBetweenShooting, spread, range, timeBetweenShots;
+    [SerializeField] private int bulletsPerTap;
+    private float timeBetweenShooting, range, timeBetweenShots;
+    //private float spread;
 
     [Header("Bools")]
     [HideInInspector] public bool shot, readyToShoot;
     bool shooting,  reloading;
 
     [Header("Weapons")]
-    public GameObject rodill;
-    public GameObject pistola;
-    public GameObject Ak;
-    private bool rodillo =true;
-    public bool pistol;
-    public bool ak;
+    private GameObject rodill;
+    private GameObject pistola;
+    private GameObject Ak;
+    [HideInInspector] public bool rodillo =true;
+    [HideInInspector] public bool pistol;
+    [HideInInspector] public bool ak;
 
     [Header("Camera")]
-    public bool aiming;
-    public Camera fpsCam;
-    private int fieldOfView = 60;
-    float maxfield;
+    [HideInInspector] public bool aiming;
+    private Camera fpsCam;
+    private float fieldOfView;
+    private float maxfield;
     Vector2 centerScreen;
     Ray ray;
 
     [Header("References")]
-    public GameObject player;
+    private GameObject player;
     // public Transform attackPoint;
     public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
+    private LayerMask whatIsEnemy;
     [SerializeField]
     private Transform debugTransform;
     private PlayerInputMap _playerInput;
@@ -49,17 +52,25 @@ public class Shooting : MonoBehaviour
     public AudioSource pistolshoot, akshoot;
 
     [Header("Graphics")]
-    public GameObject bulletHoleGraphic;
+    private GameObject bulletHoleGraphic;
     //public GameObject muzzleFlash;
     public float camShakeMagnitude, camShakeDuration;
-    public TextMeshProUGUI text;
 
     [Header("Animations")]
     public Animator animator;
 
     private void Start()
     {
-        fpsCam.fieldOfView = fieldOfView;
+        referencess = GetComponentInParent<GameReferences>();
+        player = referencess.playerrObj;
+        rodill = referencess.rodillo;
+        pistola = referencess.pistol;
+        Ak = referencess.Ak47;
+        whatIsEnemy = referencess.whatIsShootable;
+        fpsCam = referencess.mainCam.GetComponent<Camera>();
+        bulletHoleGraphic = referencess.bulletHoleGraphicr;
+
+        fieldOfView = Camera.main.fieldOfView;
         maxfield = fpsCam.fieldOfView / 2;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
@@ -99,14 +110,14 @@ public class Shooting : MonoBehaviour
             bulletsShot = bulletsPerTap;
             shot = true;
             Shoot();
-            Invoke(nameof(stop), 1);
+            Invoke(nameof(Stop), 1);
         }
 
         else if (readyToShoot && shooting && !reloading && rodillo == true) 
         {
             shot = true;
             Shoot();         
-            Invoke(nameof(stop), 1.5f);
+            Invoke(nameof(Stop), 1.5f);
         }
 
         if (_playerInput.Juego.Aim.IsPressed())
@@ -121,7 +132,7 @@ public class Shooting : MonoBehaviour
             aiming = false;
         }
     }
-    private void stop()
+    private void Stop()
     {
         shot = false;
     }
@@ -135,10 +146,10 @@ public class Shooting : MonoBehaviour
                 pistola.gameObject.SetActive(true);
                 pistol = true;
                 rodillo = false;
-                damage = 10;
+                damage = 7;
                 timeBetweenShooting = 1f;
-                spread = 0f;
-                range = 400f;
+                //spread = 0f;
+                range = 300f;
                 reloadTime = 2f;
                 timeBetweenShots = 1f;
             }
@@ -148,10 +159,11 @@ public class Shooting : MonoBehaviour
                 Ak.gameObject.SetActive(true);
                 pistol = false;
                 ak = true;
-                damage = 10;
-                timeBetweenShooting = 2f;
-                spread = 0f;
-                range = 400f;
+                allowButtonHold = true;
+                damage = 3;
+                timeBetweenShooting = 0.5f;
+                //spread = 0f;
+                range = 600f;
                 reloadTime = 4f;
                 timeBetweenShots = 2f;
             }
@@ -161,9 +173,10 @@ public class Shooting : MonoBehaviour
                 rodill.gameObject.SetActive(true);
                 rodillo = true;
                 ak = false;
+                allowButtonHold = false;
                 damage = 5;
                 timeBetweenShooting = 2f;
-                spread = 0f;
+                //spread = 0f;
                 range = 0f;
                 reloadTime = 0.5f;
                 timeBetweenShots = 0.5f;
@@ -196,8 +209,8 @@ public class Shooting : MonoBehaviour
         readyToShoot = false;
 
         // Spread
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
+        //float x = Random.Range(-spread, spread);
+        //float y = Random.Range(-spread, spread);
 
         // Calculate Direction with Spread
         // Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
@@ -205,7 +218,7 @@ public class Shooting : MonoBehaviour
         // RayCast
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
-            if (rayHit.transform.tag == "Enemy")
+            if (rayHit.transform.CompareTag("Enemy"))
             {
                 // Destroy(rayHit.transform.gameObject);
                 enemyDamage = rayHit.transform.gameObject.GetComponent<Enemy1>();
@@ -220,7 +233,7 @@ public class Shooting : MonoBehaviour
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         
-        Invoke("ResetShot", timeBetweenShooting);
+        Invoke(nameof(ResetShot), timeBetweenShooting);
 
         // if(bulletsShot > 0 && bulletsLeft > 0)
         //    Invoke("Shoot", timeBetweenShots);
@@ -228,7 +241,7 @@ public class Shooting : MonoBehaviour
     //RodilloDamage
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.CompareTag("Enemy"))
         {
             other.GetComponent<Enemy1>().TakeDamage();
             //Debug.Log("DAÑANDO A enemigo con rodillo");
@@ -243,7 +256,7 @@ public class Shooting : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished", reloadTime);
+        Invoke(nameof(ReloadFinished), reloadTime);
     }
     private void ReloadFinished()
     {

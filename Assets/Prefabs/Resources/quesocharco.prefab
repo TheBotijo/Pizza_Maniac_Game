@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8992186259532624187}
   - component: {fileID: 8992186259532624186}
   - component: {fileID: 8992186259532624133}
-  - component: {fileID: 1959116928295478277}
+  - component: {fileID: 7933773710920347725}
   m_Layer: 0
   m_Name: quesocharco
   m_TagString: cheese
@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7873f3e85fc9f6c4592fcbeee5d3cea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {fileID: 0}
-  cheese: {fileID: 1959116928295478277}
-  guindilla: {fileID: 0}
---- !u!82 &1959116928295478277
+  cheese: {fileID: 7933773710920347725}
+  damage: 2
+  VelocityFactor: 10
+--- !u!82 &7933773710920347725
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 98c66f4bfa2639f48a1f349af31f6b14, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

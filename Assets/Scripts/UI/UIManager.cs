@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
+    private GameReferences referencess;
+
+    [Header("INGAME INFO")]
     //Texts
     [SerializeField]
     private TMP_Text TextoPizzas;
@@ -15,9 +18,15 @@ public class UIManager : MonoBehaviour
     private TMP_Text TextoRounds;
 
     //Scripts
-    public PizzaDeliver pizzas;
-    public Shooting balas;
+    private PizzaDeliver pizzas;
+    private Shooting balas;
 
+    private void Start()
+    {
+        referencess = GetComponent<GameReferences>();
+        pizzas = referencess.deliverHere.GetComponent<PizzaDeliver>();
+        balas = referencess.playerr.GetComponent<Shooting>();
+    }
     // Update is called once per frame
     void Update()
     {

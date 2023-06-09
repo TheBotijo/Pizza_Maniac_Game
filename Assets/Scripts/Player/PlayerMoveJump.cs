@@ -3,36 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveJump : MonoBehaviour
 {
     //Rigidbody del player = rb
     Rigidbody rb;
-
+    public GameReferences references;
     //Definim variables de Moviment
     [Header("Movement")]
-    public float moveSpeed;
-    private float lateSpeed;
+    private float moveSpeed;
+    private float lateSpeed, timeguind;
     //public float rotationSpeed;
 
     float yRotation;
-    public Transform orientation;
-    public Transform playerObj;
+    private Transform orientation;
+    private Transform playerObj;
     // public Transform playerObj;
     private PlayerInputMap _playerInput;
 
-    public Transform cameraa;
+    private Transform cameraa;
     public Transform cameraRot;
-    public Transform combatLook;
 
 
     Vector3 moveDirection;
 
     //Animations
     public Animator animator;
-    public bool cheese = false;
-    public bool guindilla = false;
+    [HideInInspector] public bool cheese = false;
+    [HideInInspector] public bool guindilla = false;
 
     //Sounds
     public AudioSource caminar;
@@ -56,6 +54,10 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void Start()
     {
+        references = GetComponentInParent<GameReferences>();
+        moveSpeed = references.moveSpeedr;
+        orientation = references.playerrOrient.transform;
+        cameraa = references.mainCam.transform;
         lateSpeed = moveSpeed;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
@@ -76,9 +78,7 @@ public class PlayerMoveJump : MonoBehaviour
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded && readyToJump == false)
         {
-            Invoke(nameof(notJump), 0.5f);
-
-
+            Invoke(nameof(NotJump), 0.5f);
         }
         else if (grounded)
         {
@@ -86,9 +86,7 @@ public class PlayerMoveJump : MonoBehaviour
         }        
         else
             rb.drag = 0;
-
     }
-
 
     private void PlayMove() 
     {
@@ -102,80 +100,80 @@ public class PlayerMoveJump : MonoBehaviour
             Jump();                     
         }
 
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
                 
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
-        //transform.LookAt(combatLook);
+        
         //apliquem una força al moviment quan esta tocant al terra
         if (shootScript.aiming)
             moveSpeed = lateSpeed / 2;
         else if(!guindilla)
             moveSpeed = lateSpeed;
-        
-        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 2f)
+
+        if (grounded)
         {
-            //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
-            //{
-            
-            //correr.Play();
-            animator.SetBool("Walk", false);
-            animator.SetBool("Run", true);                
-            rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
-           //}
-            //else animator.SetBool("Run", false);
-            
-        }
-        else if (grounded)
-        {
-            correr.Pause();
-            if (_playerInput.Juego.Move.IsPressed())
+            if (_playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 1f)
             {
-                
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", true);
+                rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+            }
+            else if (_playerInput.Juego.Move.IsPressed())
+            {
+                correr.Pause();
                 //caminar.Play();
                 animator.SetBool("Walk", true);
                 animator.SetBool("Run", false);
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             }
             else
-            { 
+            {
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", false);
-                caminar.Pause(); 
+                caminar.Pause();
             }
         }
-        else if(!grounded && flatVel.magnitude == 0)
-        {
-            rb.AddForce(moveDirection.normalized , ForceMode.Force);
-        }
+
         else if (!grounded && flatVel.magnitude > (moveSpeed)) //a l'aire
         {
-            rb.AddForce(moveDirection.normalized *10 * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * 10 * airMultiplier, ForceMode.Force);
         }
-        else if (!grounded) //a l'aire
+        else //a l'aire
         {
             rb.AddForce(moveDirection.normalized * airMultiplier, ForceMode.Force);
-        }
-
-        if (flatVel.magnitude > 10f)
-        {
-
-            animator.SetBool("Run", false);
         }
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        int x = 1;
+        if (guindilla == true)
+        {
+            x= 2;
+            StartCoroutine(Resetx());
+        }
+        else x = 1;
+
+        Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
         //Debug.Log(flatVel.magnitude);
         // limitar la velocitat si aquesta es mes gran del que volem aconseguir
-        if (flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed * x)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             //tornem a aplicar aquesta nova velocitat al player
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            rb.velocity = new (limitedVel.x, rb.velocity.y, limitedVel.z);
         }
         
+    }
+    public void TimeGuind(float time)
+    {
+        timeguind = time;
+    }
+    IEnumerator Resetx()
+    {
+        yield return new WaitForSeconds(timeguind);
+        guindilla = false; 
     }
 
     private void Jump()
@@ -200,7 +198,7 @@ public class PlayerMoveJump : MonoBehaviour
     {
         readyToJump = true;
     }
-    void notJump()
+    void NotJump()
     {
         animator.SetBool("Jump", false);
         animator.SetBool("RunJump", false);

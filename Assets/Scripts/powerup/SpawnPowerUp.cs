@@ -15,26 +15,22 @@ public class SpawnPowerUp : MonoBehaviour
     public float time_huevo = 8f;
     public float time_municion = 1f;
 
-    public void Start()
-    {
-       // Invoke(nameof(Destroy), 10);
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             powerup.Play();
-            if (gameObject.tag== ("guindilla"))
+            if (gameObject.CompareTag("guindilla"))
             {
                 Debug.Log("guindilla");                
                 StartCoroutine(Guindilla());                 
             }
-            if (gameObject.tag == ("huevo"))
+            if (gameObject.CompareTag("huevo"))
             {
                 Debug.Log("huevo");
                 StartCoroutine(Huevo());              
             }
-            if (gameObject.tag == ("municion"))
+            if (gameObject.CompareTag("municion"))
             {
                 Debug.Log("municion");
                 StartCoroutine(Municion());                
@@ -50,8 +46,9 @@ public class SpawnPowerUp : MonoBehaviour
     IEnumerator Guindilla()
     {
         guindilla.SetTrigger("Touch");         
-        velocity.guindilla = true;        
-        velocity.moveSpeed *= 1.5f;
+        velocity.guindilla = true;
+        velocity.TimeGuind(time_guindilla);
+        //velocity.moveSpeed *= 1.5f;
         yield return new WaitForSeconds(time_guindilla);        
         velocity.guindilla = false;
         Invoke(nameof(Destroy), 1);        

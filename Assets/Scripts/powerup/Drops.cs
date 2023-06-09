@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    [SerializeField] private GameObject guindilla;
-    [SerializeField] private GameObject huevo;
-    [SerializeField] private GameObject municion;
     [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora;
     [SerializeField] private int DropsTotalNum;
     int whichdrop;
@@ -14,7 +11,7 @@ public class Drops : MonoBehaviour
     public int[] xCents;
     public int[] xDrops;
 
-    public void dropSystem(Vector3 pos)
+    public void DropSystem(Vector3 pos)
     {
         Vector3 pos2 = pos;
         int total = XcentCora + XcentMuni + XcentGuind + XcentHuevo;
@@ -28,13 +25,11 @@ public class Drops : MonoBehaviour
             xDrops = new int[100];
             xCents = new int[DropsTotalNum];
             Debug.LogWarning("DROP TIME");
-            Debug.LogWarning("1. " + xDrops[1]);
 
             dropxcent = Random.Range(0, 100);
             if (dropxcent < ProbabilidadDrop)
             {
-                int i, a, x;
-                x = 0;
+                int i, a, x=0;
 
                 for (i = 0; i < DropsTotalNum - 1; i++)
                 {
@@ -70,8 +65,7 @@ public class Drops : MonoBehaviour
                         }
                     }
                 }
-
-                reshuffle();
+                Reshuffle();
 
                 whichdrop = Random.Range(0, 99);
 
@@ -87,7 +81,7 @@ public class Drops : MonoBehaviour
             }
         }
     }
-    void reshuffle()
+    void Reshuffle()
     {
         // Knuth shuffle algorithm :: courtesy of Wikipedia :)
         for (int t = 0; t < xCents.Length; t++)
