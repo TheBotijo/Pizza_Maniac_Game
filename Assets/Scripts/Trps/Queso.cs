@@ -12,7 +12,7 @@ public class Queso : MonoBehaviour
     private void Start()
     {
         velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoveJump>();
-        guindilla = GameObject.FindGameObjectWithTag("guindilla").GetComponent<PowerUp>();
+        //guindilla = GameObject.FindGameObjectWithTag("guindilla").GetComponent<PowerUp>();
         cheese = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
