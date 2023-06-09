@@ -9,6 +9,12 @@ public class Queso : MonoBehaviour
     int damage = 2;
     public PowerUp guindilla;
 
+    private void Start()
+    {
+        velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoveJump>();
+        //guindilla = GameObject.FindGameObjectWithTag("guindilla").GetComponent<PowerUp>();
+        cheese = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

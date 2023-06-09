@@ -18,6 +18,9 @@ public class PowerUp : MonoBehaviour
 
     public void Start()
     {
+        velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoveJump>();
+        munition = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>();
+        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy1>();
         //Invoke(nameof(Destroy), 10);
     }
     private void OnTriggerEnter(Collider other)

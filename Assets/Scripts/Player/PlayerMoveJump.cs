@@ -113,7 +113,7 @@ public class PlayerMoveJump : MonoBehaviour
         else if(!guindilla)
             moveSpeed = lateSpeed;
         
-        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese)
+        if (grounded && _playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 2f)
         {
             //if (_playerInput.Juego.Run.IsPressed() && flatVel.magnitude != 0)
             //{
@@ -137,7 +137,12 @@ public class PlayerMoveJump : MonoBehaviour
                 animator.SetBool("Run", false);
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             }
-            else { animator.SetBool("Walk", false); caminar.Pause(); };
+            else
+            { 
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", false);
+                caminar.Pause(); 
+            }
         }
         else if(!grounded && flatVel.magnitude == 0)
         {
