@@ -12,6 +12,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject UIGeneral;
     public GameObject pauseBotones;
     public GameObject pauseOpciones;
+    public Button ResumeBtn;
+    public Button OptionsBtn;
+    public Button MenuBtn;
+    public Button CrossBtn;
     //new input system
     public PlayerInputMap _playerInput;
     private CameraController camScript;
@@ -22,6 +26,11 @@ public class PauseMenu : MonoBehaviour
         camScript = Object.FindObjectOfType<CameraController>();
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
+
+        ResumeBtn.onClick.AddListener(Resume);
+        OptionsBtn.onClick.AddListener(Opciones);
+        MenuBtn.onClick.AddListener(BackToMenu);
+        CrossBtn.onClick.AddListener(Cross);
     }
 
     void Update()

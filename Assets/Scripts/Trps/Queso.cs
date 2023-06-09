@@ -13,12 +13,15 @@ public class Queso : MonoBehaviour
     [SerializeField]
     float VelocityFactor = 10;
 
+    private void Start()
+    {
+        cheese = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            velocity = other.GetComponent<PlayerMoveJump>();
-            referencess = other.GetComponent<PlayerMoveJump>().references;
+            references(other);
             cheese.Play();
             other.GetComponent<Health_Damage>().loseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
@@ -29,6 +32,7 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player") && !velocity.guindilla)
         {
+            references(other);
             other.GetComponent<Health_Damage>().loseHealth(damage);
             //Debug.Log("velocidad lenta");
             referencess.moveSpeedr /= VelocityFactor;
@@ -39,9 +43,16 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            references(other);
             cheese.Pause();
             //Debug.Log("velocidad normal");
             velocity.cheese = false;
         }
+    }
+
+    private void references(Collider other)
+    {
+        velocity = other.GetComponent<PlayerMoveJump>();
+        referencess = other.GetComponent<PlayerMoveJump>().references;
     }
 }

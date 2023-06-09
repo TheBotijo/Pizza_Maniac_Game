@@ -146,10 +146,10 @@ public class Shooting : MonoBehaviour
                 pistola.gameObject.SetActive(true);
                 pistol = true;
                 rodillo = false;
-                damage = 10;
+                damage = 7;
                 timeBetweenShooting = 1f;
                 //spread = 0f;
-                range = 400f;
+                range = 300f;
                 reloadTime = 2f;
                 timeBetweenShots = 1f;
             }
@@ -160,10 +160,10 @@ public class Shooting : MonoBehaviour
                 pistol = false;
                 ak = true;
                 allowButtonHold = true;
-                damage = 10;
-                timeBetweenShooting = 2f;
+                damage = 3;
+                timeBetweenShooting = 0.5f;
                 //spread = 0f;
-                range = 400f;
+                range = 600f;
                 reloadTime = 4f;
                 timeBetweenShots = 2f;
             }

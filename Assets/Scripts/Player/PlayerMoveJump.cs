@@ -116,7 +116,7 @@ public class PlayerMoveJump : MonoBehaviour
 
         if (grounded)
         {
-            if (_playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 2f)
+            if (_playerInput.Juego.Run.IsPressed() && !cheese && flatVel.magnitude > 1f)
             {
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
