@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6891516222377583925}
   - component: {fileID: 1494163104341909275}
   - component: {fileID: 936788038624509594}
-  - component: {fileID: 6974621386527147426}
+  - component: {fileID: 501545746}
   m_Layer: 0
   m_Name: arbol3
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8607987929790481860}
   m_LocalRotation: {x: -0.6217691, y: -0.36085477, z: -0.348918, w: 0.6012015}
   m_LocalPosition: {x: 39.58, y: -0, z: -38.98}
-  m_LocalScale: {x: 90.39, y: 83.80411, z: 121.3155}
+  m_LocalScale: {x: 90.39004, y: 83.80412, z: 121.31551}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6974621386527147426
+--- !u!64 &501545746
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1583978947134697980}
   - component: {fileID: 2473804270410284633}
   - component: {fileID: 409898662424398483}
-  - component: {fileID: 1535304333355486439}
   m_Layer: 0
   m_Name: alcantarillaTapa (5)
   m_TagString: Untagged
@@ -85,17 +84,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1535304333355486439
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2211475058593459014}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2647018515877803705, guid: 4ac9b7e007773054ba5f575ccdaa78c6, type: 3}
