@@ -61,7 +61,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        referencess = GetComponent<PlayerMoveJump>().references;
+        referencess = GetComponentInParent<GameReferences>();
         player = referencess.playerrObj;
         rodill = referencess.rodillo;
         pistola = referencess.pistol;

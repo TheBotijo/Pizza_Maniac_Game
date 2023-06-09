@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     public Button CrossBtn;
     //new input system
     public PlayerInputMap _playerInput;
-    private CameraController camScript;
+    public CameraController camScript;
     public AudioSource click;
 
     private void Start()

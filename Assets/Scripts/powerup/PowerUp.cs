@@ -47,10 +47,6 @@ public class PowerUp : MonoBehaviour
             }
         }
     }
-    void Destroy()
-    {
-        Destroy(gameObject);
-    }
     
     IEnumerator Guindilla()
     {
@@ -81,5 +77,9 @@ public class PowerUp : MonoBehaviour
         yield return new WaitForSeconds(time_municion);
         Invoke(nameof(Destroy), 1);
 
+    }
+    void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

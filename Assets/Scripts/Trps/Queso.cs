@@ -21,9 +21,9 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            references(other);
+            References(other);
             cheese.Play();
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            other.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
         }
 
@@ -32,8 +32,8 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player") && !velocity.guindilla)
         {
-            references(other);
-            other.GetComponent<Health_Damage>().loseHealth(damage);
+            References(other);
+            other.GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("velocidad lenta");
             referencess.moveSpeedr /= VelocityFactor;
             velocity.cheese = true;
@@ -43,14 +43,14 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            references(other);
+            References(other);
             cheese.Pause();
             //Debug.Log("velocidad normal");
             velocity.cheese = false;
         }
     }
 
-    private void references(Collider other)
+    private void References(Collider other)
     {
         velocity = other.GetComponent<PlayerMoveJump>();
         referencess = other.GetComponent<PlayerMoveJump>().references;

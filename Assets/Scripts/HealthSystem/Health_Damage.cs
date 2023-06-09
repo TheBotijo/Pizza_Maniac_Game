@@ -17,7 +17,7 @@ public class Health_Damage : MonoBehaviour
     private CameraController camScript;
 
     [Header("References")]
-    public GameReferences references;
+    public GameReferences referencess;
     [SerializeField] private Animator animator;
     private Camera thirddCam;
     [SerializeField] private GameObject deathUI;
@@ -30,14 +30,14 @@ public class Health_Damage : MonoBehaviour
     {
         //health = maxHealth;
         //Assignamos las referencias
-        references = GetComponent<PlayerMoveJump>().references;
-        camScript = references.mainCam.GetComponent<CameraController>();
-        healthBar = references.healthBarScr;
-        thirddCam = references.mainCam.GetComponent<Camera>();
+        referencess = GetComponentInParent<GameReferences>();
+        healthBar = referencess.healthBarScr;
+        thirddCam = referencess.mainCam.GetComponent<Camera>();
+        camScript = thirddCam.GetComponent<CameraController>();
         healthBar.InitiateHealthBar(health);
     }
 
-    public void loseHealth(float damage)
+    public void LoseHealth(float damage)
     {
         if(!invencible && health > 0)
         {
@@ -51,7 +51,6 @@ public class Health_Damage : MonoBehaviour
                 StartCoroutine(Death());
             }
         }
-        
     }
 
     IEnumerator Invulnerability()

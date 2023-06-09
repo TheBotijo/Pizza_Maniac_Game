@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 1
-    agentHeight: 2.12
-    agentSlope: 26.6
-    agentClimb: 0.49
+    agentRadius: 3.04
+    agentHeight: 6.36
+    agentSlope: 0
+    agentClimb: 4.2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.33333334
+    cellSize: 1.0133333
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180339113296678217, guid: 9da28ea2dd9d994478997f7bf8ce04a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9da28ea2dd9d994478997f7bf8ce04a5, type: 3}
 --- !u!1001 &3330781309235256309
@@ -367,11 +371,11 @@ PrefabInstance:
     - target: {fileID: 4758903547187909008, guid: eee5be9bb3a341941af2edc48f5db0d8, type: 3}
       propertyPath: winUI
       value: 
-      objectReference: {fileID: 9166225899980687239}
+      objectReference: {fileID: 0}
     - target: {fileID: 4758903547187909008, guid: eee5be9bb3a341941af2edc48f5db0d8, type: 3}
       propertyPath: loseUI
       value: 
-      objectReference: {fileID: 9166225899392771826}
+      objectReference: {fileID: 0}
     - target: {fileID: 4758903547187909011, guid: eee5be9bb3a341941af2edc48f5db0d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -423,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 5198061446150948307, guid: eee5be9bb3a341941af2edc48f5db0d8, type: 3}
       propertyPath: deathUI
       value: 
-      objectReference: {fileID: 9166225899392771826}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee5be9bb3a341941af2edc48f5db0d8, type: 3}
 --- !u!1001 &6713971693162586581
@@ -483,13 +487,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f214c95d980a04b47a0f4ed1a1d1f894, type: 3}
---- !u!1 &9166225899392771826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5840524471893556487, guid: 6517af25e6a964e47afcd63cd0e3f125, type: 3}
-  m_PrefabInstance: {fileID: 3330781309235256309}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9166225899980687239 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5840524472447130738, guid: 6517af25e6a964e47afcd63cd0e3f125, type: 3}
-  m_PrefabInstance: {fileID: 3330781309235256309}
-  m_PrefabAsset: {fileID: 0}

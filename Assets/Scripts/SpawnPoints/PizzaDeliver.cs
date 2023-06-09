@@ -90,7 +90,7 @@ public class PizzaDeliver : MonoBehaviour
             }
             else { deliver.Play(); currentPizzas++; }
                 
-            spawnPoint.respawn(deliverHere);
+            spawnPoint.Respawn(deliverHere);
         }
     }
 }

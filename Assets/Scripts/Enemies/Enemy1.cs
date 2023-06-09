@@ -82,7 +82,7 @@ public class Enemy1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             punch.Play();
-            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
+            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }
 
@@ -91,7 +91,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.Find("Player").GetComponent<Health_Damage>().loseHealth(damage);
+            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
         }
     }
 

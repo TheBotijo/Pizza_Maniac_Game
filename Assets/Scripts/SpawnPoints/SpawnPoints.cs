@@ -20,12 +20,12 @@ public class SpawnPoints : MonoBehaviour
         player = referencess.playerr;
         deliverHere= referencess.deliverHere;
         entregadas = true;
-        respawn(deliverHere);
+        Respawn(deliverHere);
         spawnPoint = Random.Range(0, 2);
         player.transform.position = spawnPointList[spawnPoint].transform.position;
         player.transform.localRotation = spawnPointList[spawnPoint].transform.localRotation;
     }
-    public void respawn(GameObject deliverPoint)
+    public void Respawn(GameObject deliverPoint)
     {
         if (entregadas == true)
         {

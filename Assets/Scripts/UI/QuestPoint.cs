@@ -17,10 +17,11 @@ public class QuestPoint : MonoBehaviour
     public Vector3 offset;
     private SpawnPoints pizzasCount;
 
+
     private void Start()
     {
         //Assignamos las referencias
-        referencess = GetComponentInParent<PlayerMoveJump>().references;
+        referencess = GetComponentInParent<GameReferences>();
         deliverHere = referencess.deliverHere;
         deliverImage = referencess.deliverImage;
         pizzaImage = referencess.pizzaImage;
@@ -51,7 +52,7 @@ public class QuestPoint : MonoBehaviour
         }
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = Mathf.Clamp(pos.y, minY, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         if (pizzasCount.entregadas == true)
         {

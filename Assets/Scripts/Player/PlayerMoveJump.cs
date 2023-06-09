@@ -12,7 +12,7 @@ public class PlayerMoveJump : MonoBehaviour
     //Definim variables de Moviment
     [Header("Movement")]
     private float moveSpeed;
-    private float lateSpeed;
+    private float lateSpeed, timeguind;
     //public float rotationSpeed;
 
     float yRotation;
@@ -147,16 +147,33 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void SpeedControl()
     {
+        int x = 1;
+        if (guindilla == true)
+        {
+            x= 2;
+            StartCoroutine(Resetx());
+        }
+        else x = 1;
+
         Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
         //Debug.Log(flatVel.magnitude);
         // limitar la velocitat si aquesta es mes gran del que volem aconseguir
-        if (flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed * x)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             //tornem a aplicar aquesta nova velocitat al player
             rb.velocity = new (limitedVel.x, rb.velocity.y, limitedVel.z);
         }
         
+    }
+    public void TimeGuind(float time)
+    {
+        timeguind = time;
+    }
+    IEnumerator Resetx()
+    {
+        yield return new WaitForSeconds(timeguind);
+        guindilla = false; 
     }
 
     private void Jump()
