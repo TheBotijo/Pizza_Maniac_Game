@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8143475952476811182}
   - component: {fileID: 5092634046192672779}
   - component: {fileID: 7009954968086975681}
-  - component: {fileID: 7301557578184532164}
+  - component: {fileID: 6688395149123010342}
   m_Layer: 0
   m_Name: farolabienfbx
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8811469241399162132}
   m_LocalRotation: {x: -0.65985096, y: -0.25415894, z: -0.25415894, w: 0.65985096}
   m_LocalPosition: {x: -13.120197, y: 1.5400009, z: 16.206215}
-  m_LocalScale: {x: 16.146822, y: 16.146822, z: 16.146822}
+  m_LocalScale: {x: 16.146824, y: 16.146822, z: 16.146822}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7301557578184532164
-BoxCollider:
+--- !u!64 &6688395149123010342
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,6 +95,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02675277, y: 0.027101919, z: 0.37093252}
-  m_Center: {x: -0.00021983492, y: 0.002780244, z: 0.18564297}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8620586328724138636, guid: b307c42ee73bbfe43af9cae0921316b1, type: 3}
