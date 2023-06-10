@@ -1,20 +1,24 @@
-using UnityEditor.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.AI;
+using System;
 
-public class Enemy1 : MonoBehaviour
+public class AIEnemy1 : MonoBehaviour
 {
-    public NavMeshAgent agent;
-
-    private GameObject playerr;
-    private Transform player;
-    private Animator animator;
-
-    public LayerMask whatIsGround, whatIsPlayer;
-
+    //Scripts
     private Shooting takeDamage;
     private Drops drops;
 
+    //Player Follow
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
+
+    //Enemy Stats
+    Rigidbody rb;
+    private Animator animator;
+    public float speed;
     public float damage = 10;
     public float Health = 14;
     Color original;
@@ -37,25 +41,26 @@ public class Enemy1 : MonoBehaviour
     public bool huevo = false;
     public int bajas;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Awake()
     {
-        playerr = GameObject.FindGameObjectWithTag("Player");
-        player = playerr.transform;
+        rb= GetComponent<Rigidbody>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponent<Drops>();
-        takeDamage = playerr.GetComponent<Shooting>();
+        takeDamage = player.GetComponent<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
-        agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
-        if(!huevo) 
+        if (!huevo)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         }
+
         if (playerInSightRange && !playerInAttackRange && !huevo)
         {
             ChasePlayer();
@@ -65,15 +70,17 @@ public class Enemy1 : MonoBehaviour
         {
             AttackPlayer();
         }
-        else 
+        else
         {
-            animator.SetBool("moving", false);           
+            animator.SetBool("moving", false);
         }
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0, player.position.z), speed * Time.deltaTime);
+        rb.MovePosition(pos);
+        transform.LookAt(pos);
         animator.SetBool("moving", true);
     }
 
@@ -85,15 +92,14 @@ public class Enemy1 : MonoBehaviour
             GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }
-
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
-        }
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
+    //    }
+    //}
 
     public void TakeDamage()
     {
@@ -103,14 +109,11 @@ public class Enemy1 : MonoBehaviour
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
-        if (Health <= 0)     
+        if (Health <= 0)
         {
             Vector3 pose = gameObject.transform.position;
-            //drop = GameObject.FindGameObjectWithTag("guindilla");
             drops.DropSystem(pose);
-            //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
-            //GetComponent<DropBag>().InstantiateDrop(transform.position); 
             takeDamage.Bajas();
             Destroy(gameObject);
         }
@@ -121,18 +124,10 @@ public class Enemy1 : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        //Make sure enemy doesn't move
-        //agent.SetDestination(transform.position);
-        //transform.LookAt(player);
-
         ColliderMano.GetComponent<BoxCollider>().enabled = true;
         animator.SetTrigger("attacking");
         if (!alreadyAttacked)
-        {
-            ////Attack code
-            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);            
+        {     
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

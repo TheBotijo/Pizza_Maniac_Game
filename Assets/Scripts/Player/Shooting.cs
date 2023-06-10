@@ -45,7 +45,8 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private Transform debugTransform;
     private PlayerInputMap _playerInput;
-    private Enemy1 enemyDamage;
+    private AIEnemy1 enemyDamage;
+    private AIEnemy2 enemyDamage2;
     public int bajass;
 
     [Header("Sounds")]
@@ -228,9 +229,19 @@ public class Shooting : MonoBehaviour
         {
             if (rayHit.transform.CompareTag("Enemy"))
             {
-                // Destroy(rayHit.transform.gameObject);
-                enemyDamage = rayHit.transform.gameObject.GetComponent<Enemy1>();
-                enemyDamage.TakeDamage();
+                if (rayHit.collider.name == "enemy1")
+                {
+                    Debug.Log(rayHit.collider.name);
+                    enemyDamage = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
+                    enemyDamage.TakeDamage();
+                }
+                else if (rayHit.collider.name == "enemy2")
+                {
+                    // Destroy(rayHit.transform.gameObject);
+                    Debug.Log(rayHit.collider.name);
+                    enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
+                    enemyDamage2.TakeDamage();
+                }
             }    
 
             // Debug.Log(rayHit.transform.tag);
