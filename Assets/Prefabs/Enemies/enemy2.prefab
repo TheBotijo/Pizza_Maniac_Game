@@ -4789,12 +4789,11 @@ GameObject:
   - component: {fileID: 890186406667680716}
   - component: {fileID: 8161885480311192546}
   - component: {fileID: 81327829949609470}
-  - component: {fileID: 8161885480311192541}
+  - component: {fileID: 6707143619054270728}
   - component: {fileID: 7002165135653305139}
   - component: {fileID: 8161885480311192544}
-  - component: {fileID: 2642911630894781578}
   m_Layer: 8
-  m_Name: bixo2-colo-RIGr
+  m_Name: enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4921,7 +4920,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.03, z: 1}
   m_Center: {x: 0, y: 2.1, z: 0}
---- !u!114 &8161885480311192541
+--- !u!114 &6707143619054270728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4930,19 +4929,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8161885480311192540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e1437365bf5901459872fb5977d1fb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 48dad9b91948cf144a632057f0268f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 2642911630894781578}
+  player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  speed: 3
   damage: 10
   Health: 14
-  timeBetweenAttacks: 3
+  timeBetweenAttacks: 2
   cos: {fileID: 5074671066302454161}
   ColliderMano: {fileID: 7231903013768234210}
   drop: {fileID: 0}
@@ -4950,10 +4950,11 @@ MonoBehaviour:
   death: {fileID: 6914423202762457410}
   punch: {fileID: 1373971209938625171}
   sightRange: 40
-  attackRange: 2
+  attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
   huevo: 0
+  bajas: 0
 --- !u!114 &7002165135653305139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4994,28 +4995,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!195 &2642911630894781578
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8161885480311192540}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3
-  m_Acceleration: 2
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: -1.2
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &8199166554755847033
 GameObject:
   m_ObjectHideFlags: 0

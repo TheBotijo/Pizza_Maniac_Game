@@ -5,7 +5,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.AI;
 using System;
 
-public class AIEnemy : MonoBehaviour
+public class AIEnemy1 : MonoBehaviour
 {
     //Scripts
     private Shooting takeDamage;
