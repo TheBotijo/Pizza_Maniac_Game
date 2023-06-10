@@ -241,7 +241,7 @@ public class Shooting : MonoBehaviour
                     enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
                     enemyDamage2.TakeDamage();
                 }
-                else if (rayHit.collider.name == "BichoTomate (Clone)")
+                else if (rayHit.collider.name == "BichoTomate(Clone)")
                 {
                     enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
                     enemyDamage3.TakeDamage();
