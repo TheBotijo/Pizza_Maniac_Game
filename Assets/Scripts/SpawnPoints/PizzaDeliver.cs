@@ -16,7 +16,9 @@ public class PizzaDeliver : MonoBehaviour
     private Health_Damage healthScr;
     private UIManager uiManager;
     private GameObject deliverHere;
-    public Enemy1 enemy1;
+    public AIEnemy1 enemy1;
+    public AIEnemy2 enemy2;
+    public AIEnemy3 enemy3;
     public int rounds = 0, totalDelivers;
     public AudioSource deliver;
     [Header("UIs")]
@@ -42,6 +44,9 @@ public class PizzaDeliver : MonoBehaviour
         spawnPoint = referencess.SpawnSystem.GetComponent<SpawnPoints>();
         spawnEnemy = referencess.GetComponent<EnemySpawn>();
         uiManager = referencess.GetComponent<UIManager>();
+        enemy1 = spawnEnemy.enemy1.GetComponent<AIEnemy1>();
+        enemy2 = spawnEnemy.enemy2.GetComponent<AIEnemy2>();
+        enemy3 = spawnEnemy.enemy3.GetComponent<AIEnemy3>();
         finalUI = uiManager.FinalUI;
         winUI = uiManager.Win;
         loseUI = uiManager.Loose;
@@ -118,7 +123,9 @@ public class PizzaDeliver : MonoBehaviour
                     }
                     currentPizzas = 0;
 
-                    enemy1.Health += 7.5f;
+                    enemy1.Health += 7f;
+                    enemy2.Health += 5f;
+                    enemy3.Health += 6f;
                     spawnEnemy.timeBetweenSpawns1 -= spawnEnemy.timeReduceMax;
                     spawnEnemy.timeBetweenSpawns2 -= spawnEnemy.timeReduceMax;
                     spawnEnemy.timeBetweenSpawns3 -= spawnEnemy.timeReduceMax;

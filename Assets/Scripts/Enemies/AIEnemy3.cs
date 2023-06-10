@@ -14,7 +14,7 @@ public class AIEnemy3 : MonoBehaviour
 
     //Enemy Stats
     Rigidbody rb;
-    public Animator animator2;
+    public Animator animator3;
     public float speed;
     public float damage = 10;
     public float Health = 14;
@@ -45,7 +45,7 @@ public class AIEnemy3 : MonoBehaviour
         drops = GetComponent<Drops>();
         takeDamage = player.GetComponent<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
-        animator2 = GetComponent<Animator>();
+        animator3 = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,7 +68,7 @@ public class AIEnemy3 : MonoBehaviour
         }
         else
         {
-            animator2.SetBool("moving", false);
+            animator3.SetBool("moving", false);
         }
     }
 
@@ -77,7 +77,7 @@ public class AIEnemy3 : MonoBehaviour
         Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0, player.position.z), speed * Time.deltaTime);
         rb.MovePosition(pos);
         transform.LookAt(pos);
-        animator2.SetBool("moving", true);
+        animator3.SetBool("moving", true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,18 +89,11 @@ public class AIEnemy3 : MonoBehaviour
             //Debug.Log("DAÑANDO A PLAYER");
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
-    //    }
-    //}
 
     public void TakeDamage()
     {
         //Debug.Log("DañoEnemigo");
-        animator2.SetTrigger("tookDamage");
+        animator3.SetTrigger("tookDamage");
         cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
@@ -120,7 +113,7 @@ public class AIEnemy3 : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        animator2.SetTrigger("attacking");
+        animator3.SetTrigger("attacking");
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;

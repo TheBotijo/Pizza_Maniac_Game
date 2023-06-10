@@ -4568,9 +4568,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &5099529826262434918
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4582,8 +4582,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.03, z: 1}
-  m_Center: {x: 0, y: 2.1, z: 0}
+  m_Size: {x: 2.6582434, y: 5.10536, z: 2.0362968}
+  m_Center: {x: -0.15353887, y: 2.5319345, z: -0.18998986}
 --- !u!114 &5867424283834649558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4603,10 +4603,10 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  animator2: {fileID: 0}
+  animator3: {fileID: 0}
   speed: 4
   damage: 10
-  Health: 14
+  Health: 7
   timeBetweenAttacks: 5
   cos: {fileID: 5544937758224197910}
   drop: {fileID: 0}

@@ -236,12 +236,12 @@ public class Shooting : MonoBehaviour
                     enemyDamage1 = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
                     enemyDamage1.TakeDamage();
                 } 
-                else if (rayHit.collider.name == "BichoSeta")
+                else if (rayHit.collider.name == "BichoSeta(Clone)")
                 {
                     enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
                     enemyDamage2.TakeDamage();
                 }
-                else if (rayHit.collider.name == "BichoTomate")
+                else if (rayHit.collider.name == "BichoTomate (Clone)")
                 {
                     enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
                     enemyDamage3.TakeDamage();
