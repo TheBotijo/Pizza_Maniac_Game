@@ -56,6 +56,7 @@ public class Enemy1 : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         }
+        
         if (playerInSightRange && !playerInAttackRange && !huevo)
         {
             ChasePlayer();
@@ -135,6 +136,7 @@ public class Enemy1 : MonoBehaviour
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
     }
 
