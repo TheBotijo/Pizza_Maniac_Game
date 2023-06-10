@@ -26,6 +26,7 @@ public class PlayerMoveJump : MonoBehaviour
 
 
     Vector3 moveDirection;
+    public Vector3 flatVel;
 
     //Animations
     public Animator animator;
@@ -100,7 +101,7 @@ public class PlayerMoveJump : MonoBehaviour
             Jump();                     
         }
 
-        Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
+        flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
                 
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         Vector3 moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput) * Time.deltaTime;
@@ -155,7 +156,7 @@ public class PlayerMoveJump : MonoBehaviour
         }
         else x = 1;
 
-        Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
+        flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
         //Debug.Log(flatVel.magnitude);
         // limitar la velocitat si aquesta es mes gran del que volem aconseguir
         if (flatVel.magnitude > moveSpeed * x)
