@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PizzaDeliver : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class PizzaDeliver : MonoBehaviour
     private TextMeshProUGUI textoBajass, textoTiempos, textoEntregass;
     private float timerr;
     private TextMeshProUGUI timerTextr;
+    public PlayerInputMap playerInput;
     //public TextMeshPro repartirText;
 
     private void Start()
@@ -48,8 +50,30 @@ public class PizzaDeliver : MonoBehaviour
         timerTextr = uiManager.timerText;
         timerr = uiManager.timer;
         totalPizzas = 0;
-    }
 
+        playerInput = new PlayerInputMap();
+        playerInput.Juego.Enable();
+    }
+    //private void Update()
+    //{
+    //    if (playerInput.Juego.Jump.WasPressedThisFrame())
+    //    {
+    //        FormatTimer();
+    //        Finish = true;
+    //        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
+    //        textoTiempos.SetText("Tiempo: " + timerTextr.text);
+    //        textoEntregass.SetText("Entregas: " + totalDelivers);
+    //        Debug.Log(deadEnemy.bajass);
+    //        Debug.Log(timerTextr.text);
+    //        Debug.Log(totalDelivers);
+    //        healthScr.invencible = true;
+    //        finalUI.SetActive(true);
+    //        winUI.SetActive(true);
+    //        Cursor.lockState = CursorLockMode.None;
+    //        Cursor.visible = true;
+    //        win.Play();
+    //    }
+    //}
     void FormatTimer()
     {
         int hours = (int)(timerr / 3600) % 24;
@@ -65,12 +89,12 @@ public class PizzaDeliver : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (currentPizzas == totalPizzas - 1)
+            if (currentPizzas == totalPizzas - 1) //Perque reapareixi el punt al camió
             {
                 spawnPoint.entregadas = true;
                 currentPizzas++;
             }
-            else if (currentPizzas == totalPizzas)
+            else if (currentPizzas == totalPizzas) //Per recollir les pizzes del camió i tornar a repartir
             {
                 spawnPoint.entregadas = false;
                 if (rounds == 0)
@@ -86,11 +110,11 @@ public class PizzaDeliver : MonoBehaviour
                 {
                     if (rounds == 1)
                         totalPizzas = 3;
-                    //if (rounds == 2)
-                    //    totalPizzas = 2;
-                    //if (rounds == 3)
-                    //    totalPizzas = 1;
                     if (rounds == 2)
+                        totalPizzas = 2;
+                    if (rounds == 3)
+                        totalPizzas = 1;
+                    if (rounds == 4)
                     {
                         FormatTimer();
                         Finish = true;
@@ -107,8 +131,6 @@ public class PizzaDeliver : MonoBehaviour
                         Cursor.visible = true;
                         win.Play();
                     }
-
-                    totalDelivers += currentPizzas;
                     currentPizzas = 0;
 
                     enemy1.Health += 7.5f;
@@ -129,7 +151,12 @@ public class PizzaDeliver : MonoBehaviour
 
                 currentPizzas = 0;
             }
-            else { deliver.Play(); currentPizzas++; }
+            else  //Repartint pizzes normals
+            { 
+                deliver.Play(); 
+                currentPizzas++;
+                totalDelivers++;
+            }
                 
             spawnPoint.Respawn(deliverHere);
         }
