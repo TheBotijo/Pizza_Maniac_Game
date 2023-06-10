@@ -6,31 +6,60 @@ using UnityEngine;
 
 public class PizzaDeliver : MonoBehaviour
 {
-    [SerializeField] private GameReferences references;
+    [SerializeField] private GameReferences referencess;
     [HideInInspector] public int currentPizzas = 0;
     [HideInInspector] public int totalPizzas;
-    private GameObject player;
     private SpawnPoints spawnPoint;
     private EnemySpawn spawnEnemy;
+    private Shooting deadEnemy;
+    private Health_Damage healthScr;
+    private UIManager uiManager;
     private GameObject deliverHere;
     public Enemy1 enemy1;
+    public int rounds = 0, totalDelivers;
     public AudioSource deliver;
-    private GameObject winUI;
+    [Header("UIs")]
+    public GameObject finalUI;
+    public GameObject winUI;
+    public GameObject loseUI;
     public AudioSource win;
-    [HideInInspector]
-    public int rounds = 0;
+    [HideInInspector] public bool Finish; 
+    private TextMeshProUGUI textoBajass, textoTiempos, textoEntregass;
+    private float timerr;
+    private TextMeshProUGUI timerTextr;
     //public TextMeshPro repartirText;
 
     private void Start()
     {
         //Assignamos las referencias
-        player = references.playerr;
-        deliverHere = references.deliverHere;
-        winUI = references.winUI;
-        spawnPoint = references.SpawnSystem.GetComponent<SpawnPoints>();
-        spawnEnemy = references.GetComponent<EnemySpawn>();
+        referencess = GetComponentInParent<GameReferences>();
+        deliverHere = referencess.deliverHere;
+        deadEnemy = referencess.playerr.GetComponent<Shooting>();
+        healthScr = referencess.playerr.GetComponent<Health_Damage>();
+        spawnPoint = referencess.SpawnSystem.GetComponent<SpawnPoints>();
+        spawnEnemy = referencess.GetComponent<EnemySpawn>();
+        uiManager = referencess.GetComponent<UIManager>();
+        finalUI = uiManager.FinalUI;
+        winUI = uiManager.Win;
+        loseUI = uiManager.Loose;
+        textoBajass = uiManager.textoBajas;
+        textoTiempos = uiManager.textoTiempo;
+        textoEntregass = uiManager.textoEntregas;
+        timerTextr = uiManager.timerText;
+        timerr = uiManager.timer;
         totalPizzas = 0;
     }
+    void FormatTimer()
+    {
+        int hours = (int)(timerr / 3600) % 24;
+        int minutes = (int)(timerr / 60) % 60;
+        int seconds = (int)(timerr % 60);
+
+        if (hours > 0) { timerTextr.text += hours + "h"; }
+        if (minutes > 0) { timerTextr.text += minutes + "min"; }
+        if (seconds > 0) { timerTextr.text += seconds + "s"; }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -56,18 +85,29 @@ public class PizzaDeliver : MonoBehaviour
                 {
                     if (rounds == 1)
                         totalPizzas = 3;
+                    //if (rounds == 2)
+                    //    totalPizzas = 2;
+                    //if (rounds == 3)
+                    //    totalPizzas = 1;
                     if (rounds == 2)
-                        totalPizzas = 2;
-                    if (rounds == 3)
-                        totalPizzas = 1;
-                    if (rounds == 4)
                     {
-                        player.GetComponent<PlayerMoveJump>().enabled = false;
+                        FormatTimer();
+                        Finish = true;
+                        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
+                        textoTiempos.SetText("Tiempo: " + timerTextr.text);
+                        textoEntregass.SetText("Entrtegas: " + totalDelivers);
+                            Debug.Log(deadEnemy.bajass);
+                            Debug.Log(timerTextr.text);
+                            Debug.Log(totalDelivers);
+                        healthScr.invencible = true;
+                        finalUI.SetActive(true);
                         winUI.SetActive(true);
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = true;
                         win.Play();
                     }
+
+                    totalDelivers += currentPizzas;
                     currentPizzas = 0;
 
                     enemy1.Health += 7.5f;

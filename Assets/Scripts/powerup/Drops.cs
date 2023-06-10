@@ -73,7 +73,6 @@ public class Drops : MonoBehaviour
                 else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
                 else if (xDrops[whichdrop] == 2) Debug.Log("DROP CORAZON");
                 else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
-
             }
             else
             {

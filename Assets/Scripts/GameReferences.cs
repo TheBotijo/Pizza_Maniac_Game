@@ -31,4 +31,7 @@ public class GameReferences : MonoBehaviour
     public LayerMask whatIsShootable;
     public GameObject bulletHoleGraphicr;
 
+    [Header("CINEMATIC CAM")]
+    public GameObject cineCam;
+
 }
