@@ -35,6 +35,7 @@ public class Enemy1 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
+    public int bajas;
 
     private void Awake()
     {
@@ -112,6 +113,7 @@ public class Enemy1 : MonoBehaviour
             death.Play();
             //GetComponent<DropBag>().InstantiateDrop(transform.position);            
             Destroy(gameObject);
+            takeDamage.Bajas();
         }
     }
     void ColorBack()

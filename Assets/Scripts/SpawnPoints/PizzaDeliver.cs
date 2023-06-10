@@ -6,31 +6,57 @@ using UnityEngine;
 
 public class PizzaDeliver : MonoBehaviour
 {
-    [SerializeField] private GameReferences references;
+    [SerializeField] private GameReferences referencess;
     [HideInInspector] public int currentPizzas = 0;
     [HideInInspector] public int totalPizzas;
-    private GameObject player;
     private SpawnPoints spawnPoint;
     private EnemySpawn spawnEnemy;
+    private Shooting deadEnemy;
+    private Health_Damage healthScr;
     private GameObject deliverHere;
     public Enemy1 enemy1;
-    public AudioSource deliver;
-    private GameObject winUI;
-    public AudioSource win;
-    [HideInInspector]
     public int rounds = 0;
+    public AudioSource deliver;
+    [Header("UIs")]
+    public GameObject finalUI;
+    public GameObject winUI;
+    public GameObject loseUI;
+    public AudioSource win;
+    [HideInInspector] public bool Finish; 
+    private TextMeshProUGUI textoBajass;
+    private TextMeshProUGUI textoTiempos;
+    private float timerr;
+    private TextMeshProUGUI timerTextr;
     //public TextMeshPro repartirText;
 
     private void Start()
     {
         //Assignamos las referencias
-        player = references.playerr;
-        deliverHere = references.deliverHere;
-        winUI = references.winUI;
-        spawnPoint = references.SpawnSystem.GetComponent<SpawnPoints>();
-        spawnEnemy = references.GetComponent<EnemySpawn>();
+        referencess = GetComponentInParent<GameReferences>();
+        deliverHere = referencess.deliverHere;
+        finalUI = referencess.GetComponent<UIManager>().FinalUI;
+        deadEnemy = finalUI.GetComponent<Shooting>();
+        textoBajass = referencess.GetComponent<UIManager>().textoBajas;
+        textoTiempos = referencess.GetComponent<UIManager>().textoTiempo;
+        timerTextr = referencess.GetComponent<UIManager>().timerText;
+        timerr = referencess.GetComponent<UIManager>().timer;
+        healthScr = referencess.playerr.GetComponent<Health_Damage>();
+        winUI = referencess.GetComponent<UIManager>().Win;
+        spawnPoint = referencess.SpawnSystem.GetComponent<SpawnPoints>();
+        spawnEnemy = referencess.GetComponent<EnemySpawn>();
         totalPizzas = 0;
     }
+    void FormatTimer()
+    {
+        int hours = (int)(timerr / 3600) % 24;
+        int minutes = (int)(timerr / 60) % 60;
+        int seconds = (int)(timerr % 60);
+
+        if (hours > 0) { timerTextr.text += hours + "h"; }
+        if (minutes > 0) { timerTextr.text += minutes + "min"; }
+        if (seconds > 0) { timerTextr.text += seconds + "s"; }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -62,11 +88,16 @@ public class PizzaDeliver : MonoBehaviour
                         totalPizzas = 1;
                     if (rounds == 4)
                     {
-                        player.GetComponent<PlayerMoveJump>().enabled = false;
+                        FormatTimer();
+                        Finish = true;
+                        healthScr.invencible = true;
+                        finalUI.SetActive(true);
                         winUI.SetActive(true);
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = true;
                         win.Play();
+                        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
+                        textoTiempos.SetText("Tiempo: " +  timerTextr.text);
                     }
                     currentPizzas = 0;
 
