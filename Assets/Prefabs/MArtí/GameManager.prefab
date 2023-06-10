@@ -5514,7 +5514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23b01f9be3634645928f4dba68d2232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedr: 12
+  moveSpeedr: 4
   playerr: {fileID: 5198061446150948133}
   playerrOrient: {fileID: 5198061446704545037}
   playerrObj: {fileID: 4963618290881646482}
@@ -11538,15 +11538,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8795256522934165862, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.13
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8795256522934165862, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.25
+      value: -8.58
       objectReference: {fileID: 0}
     - target: {fileID: 8795256522934165862, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.37
+      value: -24.33
       objectReference: {fileID: 0}
     - target: {fileID: 8795256522934165862, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
       propertyPath: m_LocalRotation.w

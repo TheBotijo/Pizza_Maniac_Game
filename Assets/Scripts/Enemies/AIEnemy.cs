@@ -92,13 +92,13 @@ public class AIEnemy : MonoBehaviour
             //Debug.Log("DAÑANDO A PLAYER");
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
-        }
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
+    //    }
+    //}
 
     public void TakeDamage()
     {

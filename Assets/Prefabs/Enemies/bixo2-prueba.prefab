@@ -4939,10 +4939,10 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  speed: 0
+  speed: 3
   damage: 10
   Health: 14
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 2
   cos: {fileID: 5074671066302454161}
   ColliderMano: {fileID: 7231903013768234210}
   drop: {fileID: 0}
@@ -4950,7 +4950,7 @@ MonoBehaviour:
   death: {fileID: 6914423202762457410}
   punch: {fileID: 1373971209938625171}
   sightRange: 40
-  attackRange: 2
+  attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
   huevo: 0

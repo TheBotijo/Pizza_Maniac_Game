@@ -56,7 +56,6 @@ public class Enemy1 : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         }
-        
         if (playerInSightRange && !playerInAttackRange && !huevo)
         {
             ChasePlayer();
