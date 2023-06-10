@@ -61,11 +61,24 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (finished == false)
+        {
             timer += Time.deltaTime;
+            FormatTimer();
+        }
 
         TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
         TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
         TextoRounds.SetText("Round: " + pizzas.rounds + " / 4");
+    }
+    void FormatTimer()
+    {
+        int hours = (int)(timer / 3600) % 24;
+        int minutes = (int)(timer / 60) % 60;
+        int seconds = (int)(timer % 60);
+
+        if (hours > 0) { timerText.text += hours + "h"; }
+        if (minutes > 0) { timerText.text += minutes + "min"; }
+        if (seconds > 0) { timerText.text += seconds + "s"; }
     }
 
     private void Back()

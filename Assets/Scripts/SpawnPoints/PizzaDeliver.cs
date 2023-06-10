@@ -49,6 +49,7 @@ public class PizzaDeliver : MonoBehaviour
         timerr = uiManager.timer;
         totalPizzas = 0;
     }
+
     void FormatTimer()
     {
         int hours = (int)(timerr / 3600) % 24;
