@@ -8,6 +8,9 @@ public class Settings : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
+    public static float music { get; private set; }
+    public static float sfx { get; private set; }
+
     public TMPro.TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
@@ -40,6 +43,19 @@ public class Settings : MonoBehaviour
         Debug.Log(volume);
         audioMixer.SetFloat("volume",volume);
     }
+
+    public void OnMusicSliderValueChange(float value)
+    { 
+        music = value;
+        audioMixer.SetFloat("music", value);
+    }
+    
+    public void OnSoundEffectsSliderValueChange(float value)
+    {
+        sfx = value;
+        audioMixer.SetFloat("sfx", value);
+    }
+    
 
     public void SetQuality (int qualityIndex)
     {
