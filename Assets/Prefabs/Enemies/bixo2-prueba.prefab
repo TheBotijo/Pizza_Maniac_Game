@@ -4932,6 +4932,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48dad9b91948cf144a632057f0268f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  speed: 0
+  damage: 10
+  Health: 14
+  timeBetweenAttacks: 0
+  cos: {fileID: 5074671066302454161}
+  ColliderMano: {fileID: 7231903013768234210}
+  drop: {fileID: 0}
+  damag: {fileID: 3254506347142345380}
+  death: {fileID: 6914423202762457410}
+  punch: {fileID: 1373971209938625171}
+  sightRange: 40
+  attackRange: 2
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  huevo: 0
+  bajas: 0
 --- !u!114 &7002165135653305139
 MonoBehaviour:
   m_ObjectHideFlags: 0

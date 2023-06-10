@@ -6995,6 +6995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   references: {fileID: 0}
   cameraRot: {fileID: 5198061447059882021}
+  flatVel: {x: 0, y: 0, z: 0}
   animator: {fileID: 4963618290881646481}
   cheese: 0
   guindilla: 0
@@ -11862,6 +11863,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4758903547023341934}
     m_Modifications:
+    - target: {fileID: 6773931304641951886, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.004255857
+      objectReference: {fileID: 0}
+    - target: {fileID: 6773931304641951886, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.03793075
+      objectReference: {fileID: 0}
     - target: {fileID: 8161885480311192540, guid: a1c3d66108130614190bf578486afaf7, type: 3}
       propertyPath: m_Name
       value: bixo2-colo-RIGr

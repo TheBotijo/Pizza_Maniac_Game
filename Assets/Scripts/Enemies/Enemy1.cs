@@ -136,7 +136,6 @@ public class Enemy1 : MonoBehaviour
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            
         }
     }
 
