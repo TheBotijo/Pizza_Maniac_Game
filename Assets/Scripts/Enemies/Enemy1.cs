@@ -111,9 +111,9 @@ public class Enemy1 : MonoBehaviour
             drops.DropSystem(pose);
             //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
-            //GetComponent<DropBag>().InstantiateDrop(transform.position);            
-            Destroy(gameObject);
+            //GetComponent<DropBag>().InstantiateDrop(transform.position); 
             takeDamage.Bajas();
+            Destroy(gameObject);
         }
     }
     void ColorBack()

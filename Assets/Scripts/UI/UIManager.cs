@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     [Header("POSTGAME INFO")]
     [SerializeField] public TextMeshProUGUI textoBajas;
-    [SerializeField] public TextMeshProUGUI textoTiempo;
+    [SerializeField] public TextMeshProUGUI textoTiempo, textoEntregas;
     private GameObject cineCamObj;
     private Animator vallas;
     private Camera cineCam;
@@ -62,6 +62,7 @@ public class UIManager : MonoBehaviour
     {
         if (finished == false)
             timer += Time.deltaTime;
+
         TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
         TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
         TextoRounds.SetText("Round: " + pizzas.rounds + " / 4");
