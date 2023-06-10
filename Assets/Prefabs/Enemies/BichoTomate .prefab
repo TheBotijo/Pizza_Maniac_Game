@@ -4498,7 +4498,7 @@ GameObject:
   - component: {fileID: 8111069535359865314}
   - component: {fileID: 3885638755046762724}
   - component: {fileID: 5099529826262434918}
-  - component: {fileID: 1630902475640660369}
+  - component: {fileID: 5867424283834649558}
   - component: {fileID: 5489194439629256277}
   m_Layer: 0
   m_Name: 'BichoTomate '
@@ -4584,7 +4584,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.03, z: 1}
   m_Center: {x: 0, y: 2.1, z: 0}
---- !u!114 &1630902475640660369
+--- !u!114 &5867424283834649558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4593,11 +4593,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 8924901257037892443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48dad9b91948cf144a632057f0268f3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 844cc1c8f5909b34b99cb9c4bba5ba4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  animator2: {fileID: 0}
+  speed: 4
+  damage: 10
+  Health: 14
+  timeBetweenAttacks: 5
+  cos: {fileID: 5544937758224197910}
+  drop: {fileID: 0}
+  damag: {fileID: 3098518108171118197}
+  death: {fileID: 7467852735405815622}
+  punch: {fileID: 6950801960267768802}
+  sightRange: 50
+  attackRange: 8
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  huevo: 0
+  bajas: 0
 --- !u!114 &5489194439629256277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4809,6 +4830,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7984947087268953216}
     m_Modifications:
+    - target: {fileID: 1295436758420778458, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533839954422683739, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4307509931094253812, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4868,6 +4897,10 @@ PrefabInstance:
     - target: {fileID: 6210842225067578782, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
       propertyPath: m_Name
       value: DropletRojo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822612757757878885, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}

@@ -45,7 +45,9 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private Transform debugTransform;
     private PlayerInputMap _playerInput;
-    private Enemy1 enemyDamage;
+    public AIEnemy1 enemyDamage1;
+    public AIEnemy2 enemyDamage2;
+    public AIEnemy3 enemyDamage3;
     public int bajass;
 
     [Header("Sounds")]
@@ -228,9 +230,24 @@ public class Shooting : MonoBehaviour
         {
             if (rayHit.transform.CompareTag("Enemy"))
             {
+                Debug.Log(rayHit.collider.name);
+                if (rayHit.collider.name == "BichoQueso(Clone)")
+                {
+                    enemyDamage1 = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
+                    enemyDamage1.TakeDamage();
+                } 
+                else if (rayHit.collider.name == "BichoSeta")
+                {
+                    enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
+                    enemyDamage2.TakeDamage();
+                }
+                else if (rayHit.collider.name == "BichoTomate")
+                {
+                    enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
+                    enemyDamage3.TakeDamage();
+                }
                 // Destroy(rayHit.transform.gameObject);
-                enemyDamage = rayHit.transform.gameObject.GetComponent<Enemy1>();
-                enemyDamage.TakeDamage();
+                
             }    
 
             // Debug.Log(rayHit.transform.tag);
@@ -251,7 +268,9 @@ public class Shooting : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy1>().TakeDamage();
+            Debug.Log(other.name);
+            other.GetComponent<AIEnemy1>().TakeDamage();
+            other.GetComponent<AIEnemy2>().TakeDamage();
             //Debug.Log("DAÑANDO A enemigo con rodillo");
         }
 
