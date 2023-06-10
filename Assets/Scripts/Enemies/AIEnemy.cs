@@ -78,9 +78,10 @@ public class AIEnemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0, player.position.z), speed * Time.deltaTime);
         rb.MovePosition(pos);
         transform.LookAt(pos);
+        animator.SetBool("moving", true);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5495,7 +5495,7 @@ MonoBehaviour:
   - {fileID: 4758903547232308333}
   - {fileID: 4758903546110434989}
   - {fileID: 4758903547097702745}
-  enemy1: {fileID: 8161885480311192540, guid: a1c3d66108130614190bf578486afaf7, type: 3}
+  enemy1: {fileID: 7680099870936175445}
   enemy2: {fileID: 0}
   enemyMax1: 10
   enemyCount1: 0
@@ -11581,6 +11581,11 @@ PrefabInstance:
 --- !u!4 &7052323143945079279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8795256522934165862, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
+  m_PrefabInstance: {fileID: 2004635911382460553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7680099870936175445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8161885480311192540, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
   m_PrefabInstance: {fileID: 2004635911382460553}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4961078820255654905
