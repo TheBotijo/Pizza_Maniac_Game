@@ -12,6 +12,8 @@ public class Queso : MonoBehaviour
     int damage = 2;
     [SerializeField]
     float VelocityFactor = 10;
+    [SerializeField] 
+    private ParticleSystem pisarQueso;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            pisarQueso.Play();
             References(other);
             cheese.Play();
             other.GetComponent<Health_Damage>().LoseHealth(damage);
@@ -32,6 +35,12 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player") && !velocity.guindilla)
         {
+            //if (velocity.flatVel.magnitude >= 0)
+            //{
+            //    pisarQueso.Play();
+            //}
+            //else pisarQueso.Stop();
+
             References(other);
             other.GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("velocidad lenta");
@@ -43,6 +52,7 @@ public class Queso : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            pisarQueso.Stop();
             References(other);
             cheese.Pause();
             //Debug.Log("velocidad normal");
