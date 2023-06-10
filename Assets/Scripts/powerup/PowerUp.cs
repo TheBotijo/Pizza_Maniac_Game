@@ -22,6 +22,9 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private float time_huevo = 8f;
     [SerializeField] private float time_municion = 1f;
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem guindillafart;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -50,13 +53,15 @@ public class PowerUp : MonoBehaviour
     
     IEnumerator Guindilla()
     {
+        guindillafart.Play();
         guindillaSound.Play();
         guindilla.SetTrigger("Touch");         
         velocityScr.guindilla = true;        
         referencess.moveSpeedr *= 1.5f;
         yield return new WaitForSeconds(time_guindilla);        
         velocityScr.guindilla = false;
-        Invoke(nameof(Destroy), 1);        
+        Invoke(nameof(Destroy), 1);
+        guindillafart.Stop();
     }
     IEnumerator Huevo()
     {
