@@ -20,9 +20,9 @@ public class GameReferences : MonoBehaviour
     public Image deliverImage;
     public Image pizzaImage;
 
-    [Header("UIs")]
-    public GameObject winUI;
-    public GameObject loseUI;
+    //[Header("UIs")]
+    //public GameObject winUI;
+    //public GameObject loseUI;
 
     [Header("WEAPONS")]
     public GameObject rodillo;
@@ -30,5 +30,8 @@ public class GameReferences : MonoBehaviour
     public GameObject Ak47;
     public LayerMask whatIsShootable;
     public GameObject bulletHoleGraphicr;
+
+    [Header("CINEMATIC CAM")]
+    public GameObject cineCam;
 
 }

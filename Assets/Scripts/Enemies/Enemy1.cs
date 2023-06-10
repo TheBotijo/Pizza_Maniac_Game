@@ -35,6 +35,7 @@ public class Enemy1 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
+    public int bajas;
 
     private void Awake()
     {
@@ -110,7 +111,8 @@ public class Enemy1 : MonoBehaviour
             drops.DropSystem(pose);
             //Instantiate(Resources.Load("guindilla"), gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
             death.Play();
-            //GetComponent<DropBag>().InstantiateDrop(transform.position);            
+            //GetComponent<DropBag>().InstantiateDrop(transform.position); 
+            takeDamage.Bajas();
             Destroy(gameObject);
         }
     }

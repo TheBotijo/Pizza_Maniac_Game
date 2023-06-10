@@ -46,6 +46,7 @@ public class Shooting : MonoBehaviour
     private Transform debugTransform;
     private PlayerInputMap _playerInput;
     private Enemy1 enemyDamage;
+    public int bajass;
 
     [Header("Sounds")]
     public AudioSource melee;
@@ -69,11 +70,17 @@ public class Shooting : MonoBehaviour
         whatIsEnemy = referencess.whatIsShootable;
         fpsCam = referencess.mainCam.GetComponent<Camera>();
         bulletHoleGraphic = referencess.bulletHoleGraphicr;
+        
 
         fieldOfView = Camera.main.fieldOfView;
         maxfield = fpsCam.fieldOfView / 2;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
+    }
+    public void Bajas()
+    {
+        bajass++;
+        Debug.Log("Bajas = " + bajass);
     }
 
     private void Awake()
@@ -83,6 +90,7 @@ public class Shooting : MonoBehaviour
     }
     private void Update()
     {
+        
         MyInput();
         ChangeGun();
         LookAtShoot();
