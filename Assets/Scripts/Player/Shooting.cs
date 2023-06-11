@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
     private GameObject rodill;
     private GameObject pistola;
     private GameObject Ak;
-    [HideInInspector] public bool rodillo =true;
+    [HideInInspector] public bool rodillo = true;
     [HideInInspector] public bool pistol;
     [HideInInspector] public bool ak;
 
@@ -247,12 +247,7 @@ public class Shooting : MonoBehaviour
                     enemyDamage3.TakeDamage();
                 }
                 // Destroy(rayHit.transform.gameObject);
-                
             }    
-
-            // Debug.Log(rayHit.transform.tag);
-            // Debug.Log(rayHit.collider.name);
-                                     
         }        
         // Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
@@ -268,12 +263,28 @@ public class Shooting : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log(other.name);
-            other.GetComponent<AIEnemy1>().TakeDamage();
-            other.GetComponent<AIEnemy2>().TakeDamage();
-            //Debug.Log("DAÑANDO A enemigo con rodillo");
-        }
+            if (rayHit.transform.CompareTag("Enemy"))
+            {
+                Debug.Log(other.gameObject.name);
+                if (other.gameObject.name == "BichoQueso(Clone)")
+                {
+                    enemyDamage1 = other.GetComponent<AIEnemy1>();
+                    enemyDamage1.TakeDamage();
+                }
+                else if (other.gameObject.name == "BichoSeta(Clone)")
+                {
+                    enemyDamage2 = other.GetComponent<AIEnemy2>();
+                    enemyDamage2.TakeDamage();
+                }
+                else if (other.gameObject.name == "BichoTomate(Clone)")
+                {
+                    enemyDamage3 = other.GetComponent<AIEnemy3>();
+                    enemyDamage3.TakeDamage();
+                }
+                // Destroy(rayHit.transform.gameObject);
 
+            }
+        }
     }
     private void ResetShot()
     {
