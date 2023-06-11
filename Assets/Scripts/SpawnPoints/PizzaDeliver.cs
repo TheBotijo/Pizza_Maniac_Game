@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PizzaDeliver : MonoBehaviour
 {
+
     [SerializeField] private GameReferences referencess;
     [HideInInspector] public int currentPizzas = 0;
     [HideInInspector] public int totalPizzas;
@@ -16,7 +17,9 @@ public class PizzaDeliver : MonoBehaviour
     private Health_Damage healthScr;
     private UIManager uiManager;
     private GameObject deliverHere;
-    public Enemy1 enemy1;
+    public AIEnemy1 enemy1;
+    public AIEnemy2 enemy2;
+    public AIEnemy3 enemy3;
     public int rounds = 0, totalDelivers;
     public AudioSource deliver;
     [Header("UIs")]
@@ -27,8 +30,12 @@ public class PizzaDeliver : MonoBehaviour
     [HideInInspector] public bool Finish; 
     private TextMeshProUGUI textoBajass, textoTiempos, textoEntregass;
     private float timerr;
+    private float timeReduce;
     private TextMeshProUGUI timerTextr;
     public PlayerInputMap playerInput;
+
+    [Header("Particles")]
+    public ParticleSystem Spawn;
     //public TextMeshPro repartirText;
 
     private void Start()
@@ -41,6 +48,9 @@ public class PizzaDeliver : MonoBehaviour
         spawnPoint = referencess.SpawnSystem.GetComponent<SpawnPoints>();
         spawnEnemy = referencess.GetComponent<EnemySpawn>();
         uiManager = referencess.GetComponent<UIManager>();
+        enemy1 = spawnEnemy.enemy1.GetComponent<AIEnemy1>();
+        enemy2 = spawnEnemy.enemy2.GetComponent<AIEnemy2>();
+        enemy3 = spawnEnemy.enemy3.GetComponent<AIEnemy3>();
         finalUI = uiManager.FinalUI;
         winUI = uiManager.Win;
         loseUI = uiManager.Loose;
@@ -50,30 +60,13 @@ public class PizzaDeliver : MonoBehaviour
         timerTextr = uiManager.timerText;
         timerr = uiManager.timer;
         totalPizzas = 0;
-
+        timeReduce = spawnEnemy.timeReduceMax;
+        Spawn = gameObject.GetComponentInChildren<ParticleSystem>();
+        Spawn.Play();
         playerInput = new PlayerInputMap();
         playerInput.Juego.Enable();
     }
-    //private void Update()
-    //{
-    //    if (playerInput.Juego.Jump.WasPressedThisFrame())
-    //    {
-    //        FormatTimer();
-    //        Finish = true;
-    //        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
-    //        textoTiempos.SetText("Tiempo: " + timerTextr.text);
-    //        textoEntregass.SetText("Entregas: " + totalDelivers);
-    //        Debug.Log(deadEnemy.bajass);
-    //        Debug.Log(timerTextr.text);
-    //        Debug.Log(totalDelivers);
-    //        healthScr.invencible = true;
-    //        finalUI.SetActive(true);
-    //        winUI.SetActive(true);
-    //        Cursor.lockState = CursorLockMode.None;
-    //        Cursor.visible = true;
-    //        win.Play();
-    //    }
-    //}
+
     void FormatTimer()
     {
         int hours = (int)(timerr / 3600) % 24;
@@ -101,7 +94,9 @@ public class PizzaDeliver : MonoBehaviour
                 {
                     Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
                     Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
                     Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
                     Debug.Log("Vida enemigo: " + enemy1.Health);
                     totalPizzas = 5;
@@ -133,15 +128,21 @@ public class PizzaDeliver : MonoBehaviour
                     }
                     currentPizzas = 0;
 
-                    enemy1.Health += 7.5f;
-                    spawnEnemy.timeBetweenSpawns -= 1.5f;
-                    spawnEnemy.timeReduceMax -=1.5f;
+                    enemy1.Health += 7f;
+                    enemy2.Health += 5f;
+                    enemy3.Health += 6f;
+                    spawnEnemy.timeBetweenSpawns1 -= spawnEnemy.timeReduceMax;
+                    spawnEnemy.timeBetweenSpawns2 -= spawnEnemy.timeReduceMax;
+                    spawnEnemy.timeBetweenSpawns3 -= spawnEnemy.timeReduceMax;
+                    spawnEnemy.timeReduceMax -=  timeReduce;
                     spawnEnemy.enemyMax1 += 5;
                     spawnEnemy.timeReduce -= 0.05f;
                     spawnEnemy.enemyCount1 = 0;
                     Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
                     Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
+                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
                     Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1); 
                     Debug.Log("Vida enemigo: " + enemy1.Health);
                 }

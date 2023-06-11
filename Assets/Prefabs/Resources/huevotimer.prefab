@@ -358,9 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdd071f2d6b26e44bea36c4a2489ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {fileID: 0}
-  stop: {fileID: 0}
-  munition: {fileID: 0}
+  enemies: {fileID: 0}
   guindillaSound: {fileID: 0}
   huevoSound: {fileID: 561275066863024592}
   guindilla: {fileID: 0}
@@ -369,6 +367,7 @@ MonoBehaviour:
   time_guindilla: 8
   time_huevo: 8
   time_municion: 3
+  guindillafart: {fileID: 0}
 --- !u!82 &561275066863024592
 AudioSource:
   m_ObjectHideFlags: 0
@@ -380,7 +379,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 095a92b1623c6f14881e267ea1ce1d0e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
