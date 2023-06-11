@@ -76,12 +76,13 @@ public class Drops : MonoBehaviour
                 Reshuffle();
 
                 whichdrop = Random.Range(0, 99);
-
+                Debug.Log(whichdrop);
+                Debug.Log(dropxcent);
                 if (xDrops[whichdrop] == 0) Instantiate(Resources.Load("guindilla"), pos2, Quaternion.identity);
                 else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2, Quaternion.identity);
                 else if (xDrops[whichdrop] == 2) Instantiate(Resources.Load("pizzacor"), pos2, Quaternion.identity);
                 else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2, Quaternion.identity);
-                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("levadura"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 4) Instantiate(Resources.Load("levadura"), pos2, Quaternion.identity);
             }
             else
             {

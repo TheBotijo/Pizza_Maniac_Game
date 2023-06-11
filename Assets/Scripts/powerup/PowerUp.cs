@@ -79,7 +79,7 @@ public class PowerUp : MonoBehaviour
         guindillaSound.Play();
         guindilla.SetTrigger("Touch");
         velocityScr.guindilla = true;
-        referencess.moveSpeedr *= 2f;
+        velocityScr.guindSpeed = 3;
         yield return new WaitForSeconds(time_guindilla);
         velocityScr.guindilla = false;
         Invoke(nameof(Destroy), 1);
@@ -87,8 +87,7 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Huevo()
     {
-        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();
-        
+        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();        
         huevoSound.Play();
         huevo.SetTrigger("Touch");
         stop.isKinematic = true;

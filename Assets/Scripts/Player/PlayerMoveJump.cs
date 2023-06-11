@@ -28,6 +28,7 @@ public class PlayerMoveJump : MonoBehaviour
     Vector3 moveDirection;
     public Vector3 flatVel;
     public int xSpeed;
+    public int guindSpeed;
 
     //Animations
     public Animator animator;
@@ -151,7 +152,7 @@ public class PlayerMoveJump : MonoBehaviour
     {
         if (guindilla == true)
         {
-            xSpeed= 2;
+            xSpeed= guindSpeed;
             Debug.LogWarning("GuindillaSpeeed");
             //StartCoroutine(Resetx());
         }
