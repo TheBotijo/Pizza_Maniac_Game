@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora;
-    [SerializeField] private int DropsTotalNum;
+    [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora, Xlevadura;
+    private int DropsTotalNum = 5;
     int whichdrop;
     int dropxcent;
     public int[] xCents;
@@ -13,8 +13,8 @@ public class Drops : MonoBehaviour
 
     public void DropSystem(Vector3 pos)
     {
-        Vector3 pos2 = pos;
-        int total = XcentCora + XcentMuni + XcentGuind + XcentHuevo;
+        Vector3 pos2 = new Vector3(pos.x, 1f, pos.z);
+        int total = XcentCora + XcentMuni + XcentGuind + XcentHuevo + Xlevadura;
 
         if (total != 100)
         {
@@ -31,11 +31,14 @@ public class Drops : MonoBehaviour
             {
                 int i, a, x=0;
 
+                // Creem una estructura per omplir una array amb numeros del 0 al total de drops implementats al joc
+                // Utilitzem if / else if per anar completant cada cicle de drop i assignar així la quantitat de percentatge
+                // de drop assignat, sempre i quan entre tots els valors siguin iguals a 100
                 for (i = 0; i < DropsTotalNum - 1; i++)
                 {
                     if (i == 0)
                     {
-                        for (a = 0; a < XcentGuind; a++)
+                        for (a = 0; a < XcentGuind; a++) // Del primer la guindilla
                         {
                             xDrops[a] = i;
                         }
@@ -64,15 +67,25 @@ public class Drops : MonoBehaviour
                             xDrops[x] = i;
                         }
                     }
+                    else if (i == 4)
+                    {
+                        for (a = 0; a < Xlevadura; a++)
+                        {
+                            x = XcentGuind - 1 + XcentMuni + XcentCora + XcentHuevo + a;
+                            xDrops[x] = i;
+                        }
+                    }
                 }
                 Reshuffle();
 
                 whichdrop = Random.Range(0, 99);
-
-                if (xDrops[whichdrop] == 0) Instantiate(Resources.Load("guindilla"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
-                else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
-                else if (xDrops[whichdrop] == 2) Debug.Log("DROP CORAZON");
-                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
+                Debug.Log(whichdrop);
+                Debug.Log(dropxcent);
+                if (xDrops[whichdrop] == 0) Instantiate(Resources.Load("guindilla"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 2) Instantiate(Resources.Load("pizzacor"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 4) Instantiate(Resources.Load("levadura"), pos2, Quaternion.identity);
             }
             else
             {
