@@ -60,7 +60,6 @@ public class AIEnemy3 : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange && !huevo)
         {
             ChasePlayer();
-
         }
         else if (playerInAttackRange && !alreadyAttacked && !huevo)
         {

@@ -53,6 +53,12 @@ public class Health_Damage : MonoBehaviour
         }
     }
 
+    public void HealthHeart()
+    {
+        health += 20;
+        healthBar.ChangeActualHealth(health);
+    }
+
     IEnumerator Invulnerability()
     {
         invencible = true;
