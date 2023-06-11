@@ -93,10 +93,20 @@ public class CameraController : MonoBehaviour
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * 15f);
         else
         {
-            Vector3 WorldAimTarget = shootScript.rayHit.point;
-            WorldAimTarget.y = transform.position.y;
-            Vector3 AimDirection = (WorldAimTarget - transform.position).normalized;
-            playerObj.forward = Vector3.Lerp(playerObj.forward, AimDirection, Time.deltaTime * 15f);
+			//if (shootScript.rodillo == true)
+			//{
+   //             Vector3 WorldAimTarget = player.forward;
+   //             WorldAimTarget.y = transform.position.y;
+   //             Vector3 AimDirection = (WorldAimTarget - transform.position).normalized;
+   //             playerObj.forward = Vector3.Lerp(playerObj.forward, AimDirection, Time.deltaTime * 15f);
+   //         }
+			if (shootScript.rodillo == false)
+			{
+                Vector3 WorldAimTarget = shootScript.rayHit.point;
+                WorldAimTarget.y = transform.position.y;
+                Vector3 AimDirection = (WorldAimTarget - transform.position).normalized;
+                playerObj.forward = Vector3.Lerp(playerObj.forward, AimDirection, Time.deltaTime * 15f);
+            }
         }
     }
 
