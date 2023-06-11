@@ -42,7 +42,7 @@ public class AIEnemy2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        drops = GetComponent<Drops>();
+        drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
         original = cos.GetComponent<Renderer>().material.color;
         animator2 = GetComponent<Animator>();

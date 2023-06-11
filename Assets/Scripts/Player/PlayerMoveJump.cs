@@ -152,7 +152,8 @@ public class PlayerMoveJump : MonoBehaviour
         if (guindilla == true)
         {
             x= 2;
-            StartCoroutine(Resetx());
+            Debug.LogWarning("GuindillaSpeeed");
+            //StartCoroutine(Resetx());
         }
         else x = 1;
 
@@ -171,11 +172,11 @@ public class PlayerMoveJump : MonoBehaviour
     {
         timeguind = time;
     }
-    IEnumerator Resetx()
-    {
-        yield return new WaitForSeconds(timeguind);
-        guindilla = false; 
-    }
+    //IEnumerator Resetx()
+    //{
+    //    yield return new WaitForSeconds(timeguind);
+    //    guindilla = false; 
+    //}
 
     private void Jump()
     {

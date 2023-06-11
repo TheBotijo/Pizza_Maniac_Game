@@ -113,17 +113,17 @@ public class Shooting : MonoBehaviour
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
-        if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize && !reloading) Reload();
+        ///if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0 && rodillo==false){
+        if (readyToShoot && shooting  && bulletsLeft > 0 && rodillo==false){
             bulletsShot = bulletsPerTap;
             shot = true;
             Shoot();
             Invoke(nameof(Stop), 1);
         }
 
-        else if (readyToShoot && shooting && !reloading && rodillo == true) 
+        else if (readyToShoot && shooting  && rodillo == true) 
         {
             shot = true;
             Shoot();         

@@ -4499,7 +4499,6 @@ GameObject:
   - component: {fileID: 3885638755046762724}
   - component: {fileID: 5099529826262434918}
   - component: {fileID: 5867424283834649558}
-  - component: {fileID: 5489194439629256277}
   m_Layer: 8
   m_Name: BichoTomate
   m_TagString: Enemy
@@ -4532,6 +4531,7 @@ Transform:
   - {fileID: 2672258667712151896}
   - {fileID: 7984947087268953216}
   - {fileID: 1182963140485256324}
+  - {fileID: 7184127495299698477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 23.388, z: 0}
@@ -4619,26 +4619,6 @@ MonoBehaviour:
   playerInAttackRange: 0
   huevo: 0
   bajas: 0
---- !u!114 &5489194439629256277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8924901257037892443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4802dffae34c0394d86e48312040ed8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProbabilidadDrop: 95
-  XcentGuind: 85
-  XcentHuevo: 5
-  XcentMuni: 5
-  XcentCora: 5
-  DropsTotalNum: 4
-  xCents: 
-  xDrops: 
 --- !u!1 &9170874018434531124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,4 +4900,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4307509931094253812, guid: c9ce0a537f2560f42a1024211fe33f46, type: 3}
   m_PrefabInstance: {fileID: 1450544871196621479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8811195376170799600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8111069535359865313}
+    m_Modifications:
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 71.49941
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3461732
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 156.41951
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885426863866910225, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+      propertyPath: m_Name
+      value: Drops
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+--- !u!4 &7184127495299698477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1870263120288358109, guid: 2812b6d4e2759e146b736aadba9521dd, type: 3}
+  m_PrefabInstance: {fileID: 8811195376170799600}
   m_PrefabAsset: {fileID: 0}
