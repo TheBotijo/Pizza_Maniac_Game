@@ -20275,9 +20275,11 @@ GameObject:
   - component: {fileID: 5740260097244717515}
   - component: {fileID: 8648700947638382190}
   - component: {fileID: 6909274965976095396}
+  - component: {fileID: 3201223671161232161}
+  - component: {fileID: 6591415058150290539}
   m_Layer: 7
   m_Name: rodillo
-  m_TagString: Player
+  m_TagString: Rodillo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20347,6 +20349,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3201223671161232161
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963618291679411057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.000022508588
+  m_Height: 0.000038157883
+  m_Direction: 0
+  m_Center: {x: 0.00000888268, y: -3.3260017e-10, z: -3.2213224e-10}
+--- !u!114 &6591415058150290539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963618291679411057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8e7ace2d086cd41a6ac11ba29a3411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5053209832228930597
 GameObject:
   m_ObjectHideFlags: 0
@@ -21394,6 +21422,7 @@ MonoBehaviour:
   magazineSize: 20
   damage: 10
   bulletsPerTap: 1
+  timeBetweenShooting: 0
   shot: 0
   readyToShoot: 0
   rodillo: 1
