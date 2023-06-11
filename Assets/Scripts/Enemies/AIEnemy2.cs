@@ -36,6 +36,8 @@ public class AIEnemy2 : MonoBehaviour
     public AudioSource punch;
 
     //States
+    [SerializeField]
+    private ParticleSystem DeathPt;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
@@ -124,12 +126,14 @@ public class AIEnemy2 : MonoBehaviour
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
+        DeathPt.Play();
         if (Health <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
             takeDamage.Bajas();
+            
             Destroy(gameObject);
         }
     }
