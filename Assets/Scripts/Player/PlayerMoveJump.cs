@@ -27,6 +27,8 @@ public class PlayerMoveJump : MonoBehaviour
 
     Vector3 moveDirection;
     public Vector3 flatVel;
+    public int xSpeed;
+    public int guindSpeed;
 
     //Animations
     public Animator animator;
@@ -148,19 +150,18 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void SpeedControl()
     {
-        int x = 1;
         if (guindilla == true)
         {
-            x= 2;
+            xSpeed= guindSpeed;
             Debug.LogWarning("GuindillaSpeeed");
             //StartCoroutine(Resetx());
         }
-        else x = 1;
+        else xSpeed = 1;
 
         flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
         //Debug.Log(flatVel.magnitude);
         // limitar la velocitat si aquesta es mes gran del que volem aconseguir
-        if (flatVel.magnitude > moveSpeed * x)
+        if (flatVel.magnitude > moveSpeed * xSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             //tornem a aplicar aquesta nova velocitat al player
