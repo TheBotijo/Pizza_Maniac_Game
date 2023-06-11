@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
     {
         click.Play();
         int num = 1;
-        camScript.cameraSwitch(num);
+        //camScript.cameraSwitch(num);
         pauseMenuUI.SetActive(false);
         UIGeneral.SetActive(true);
         Time.timeScale = 1f;
@@ -64,7 +64,7 @@ public class PauseMenu : MonoBehaviour
     {
         click.Play();
         int num = 0;
-        camScript.cameraSwitch(num);
+        //camScript.cameraSwitch(num);
         pauseMenuUI.SetActive(true);
         UIGeneral.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
