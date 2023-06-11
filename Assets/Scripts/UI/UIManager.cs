@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
-        TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
-        TextoRounds.SetText("Round: " + pizzas.rounds + " / 4");
+        TextoAmmo.SetText(balas.bulletsLeft + " / " + balas.magazineSize);
+        TextoPizzas.SetText("ENTREGAS " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
+        TextoRounds.SetText("RONDA " + pizzas.rounds + " / 4");
 
       
     }
