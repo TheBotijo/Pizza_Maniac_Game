@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drops : MonoBehaviour
 {
     [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora, Xlevadura;
-    [SerializeField] private int DropsTotalNum;
+    private int DropsTotalNum = 5;
     int whichdrop;
     int dropxcent;
     public int[] xCents;
@@ -31,6 +31,7 @@ public class Drops : MonoBehaviour
             {
                 int i, a, x=0;
 
+                // Creem una estructura per omplir una array amb numeros del 0 al total de 
                 for (i = 0; i < DropsTotalNum - 1; i++)
                 {
                     if (i == 0)
