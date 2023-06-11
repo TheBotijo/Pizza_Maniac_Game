@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PizzaDeliver : MonoBehaviour
 {
+
     [SerializeField] private GameReferences referencess;
     [HideInInspector] public int currentPizzas = 0;
     [HideInInspector] public int totalPizzas;
@@ -32,6 +33,9 @@ public class PizzaDeliver : MonoBehaviour
     private float timeReduce;
     private TextMeshProUGUI timerTextr;
     public PlayerInputMap playerInput;
+
+    [Header("Particles")]
+    public ParticleSystem Spawn;
     //public TextMeshPro repartirText;
 
     private void Start()
@@ -57,7 +61,8 @@ public class PizzaDeliver : MonoBehaviour
         timerr = uiManager.timer;
         totalPizzas = 0;
         timeReduce = spawnEnemy.timeReduceMax;
-
+        Spawn = gameObject.GetComponentInChildren<ParticleSystem>();
+        Spawn.Play();
         playerInput = new PlayerInputMap();
         playerInput.Juego.Enable();
     }
