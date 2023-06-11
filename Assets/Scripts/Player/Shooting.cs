@@ -10,16 +10,17 @@ public class Shooting : MonoBehaviour
     private GameReferences referencess;
 
     [Header("Gun Stats")]
-    [HideInInspector] public float  reloadTime;
+    [HideInInspector] public float reloadTime;
     [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
     private bool allowButtonHold;
     [SerializeField] private int bulletsPerTap;
-    private float timeBetweenShooting, range = 1000f, timeBetweenShots;
+    public float timeBetweenShooting;
+    private float range, timeBetweenShots;
     //private float spread;
 
     [Header("Bools")]
     [HideInInspector] public bool shot, readyToShoot;
-    bool shooting,  reloading;
+    bool shooting, reloading;
 
     [Header("Weapons")]
     private GameObject rodill;
@@ -72,7 +73,7 @@ public class Shooting : MonoBehaviour
         whatIsEnemy = referencess.whatIsShootable;
         fpsCam = referencess.mainCam.GetComponent<Camera>();
         bulletHoleGraphic = referencess.bulletHoleGraphicr;
-        
+
 
         fieldOfView = Camera.main.fieldOfView;
         maxfield = fpsCam.fieldOfView / 2;
@@ -92,7 +93,6 @@ public class Shooting : MonoBehaviour
     }
     private void Update()
     {
-        
         MyInput();
         ChangeGun();
         LookAtShoot();
@@ -113,20 +113,21 @@ public class Shooting : MonoBehaviour
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
-        //if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
+        // if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
 
         //Shoot
-        if (readyToShoot && shooting  && bulletsLeft > 0 && rodillo==false){
+        if (readyToShoot && shooting && bulletsLeft > 0 && rodillo == false)
+        {
             bulletsShot = bulletsPerTap;
             shot = true;
             Shoot();
             Invoke(nameof(Stop), 1);
         }
 
-        else if (readyToShoot && shooting  && rodillo == true) 
+        else if (readyToShoot && shooting && rodillo == true)
         {
             shot = true;
-            Shoot();         
+            Shoot();
             Invoke(nameof(Stop), 1.5f);
         }
 
@@ -134,6 +135,7 @@ public class Shooting : MonoBehaviour
         {
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, maxfield, 10f * Time.deltaTime);
             aiming = true;
+
         }
         else
         {
@@ -145,22 +147,22 @@ public class Shooting : MonoBehaviour
     {
         shot = false;
     }
-    private void ChangeGun() 
+    private void ChangeGun()
     {
         if (_playerInput.Juego.ChangeGun.WasPressedThisFrame())
-        {            
-            if (rodillo == true)
+        {
+            if (rodillo == true) // Quan apretes la Q i el rodillo està activat, s'activen les stats de la següent arma
             {
+                referencess.crosshair.SetActive(true);
                 rodill.gameObject.SetActive(false);
                 pistola.gameObject.SetActive(true);
-                referencess.crosshair.SetActive(true);
                 pistol = true;
                 rodillo = false;
                 damage = 7;
-                timeBetweenShooting = 1f;
+                timeBetweenShooting = 0.5f;
                 //spread = 0f;
                 range = 300f;
-                reloadTime = 2f;
+                //reloadTime = 2f;
                 timeBetweenShots = 1f;
             }
             else if (pistol == true)
@@ -171,13 +173,13 @@ public class Shooting : MonoBehaviour
                 ak = true;
                 allowButtonHold = true;
                 damage = 3;
-                timeBetweenShooting = 0.5f;
+                timeBetweenShooting = 1f;
                 //spread = 0f;
                 range = 600f;
-                reloadTime = 4f;
+                //reloadTime = 4f;
                 timeBetweenShots = 2f;
             }
-            else if (ak == true) 
+            else if (ak == true)
             {
                 referencess.crosshair.SetActive(false);
                 Ak.gameObject.SetActive(false);
@@ -188,22 +190,22 @@ public class Shooting : MonoBehaviour
                 damage = 5;
                 timeBetweenShooting = 2f;
                 //spread = 0f;
-                range = 0.1f;
-                reloadTime = 0.5f;
+                range = 0f;
+                //reloadTime = 0f;
                 timeBetweenShots = 0.5f;
             }
         }
     }
-    
     private void Shoot()
     {   //Animations
         if (rodillo == true)
         {
             melee.Play();
-            player.GetComponent<BoxCollider>().enabled = true;
             animator.SetTrigger("melee");
+            Invoke(nameof(meleee), 0.5f);
+            Invoke(nameof(ResetShot), 1f);
         }
-        else  if (pistol == true)
+        else if (pistol == true)
         {
             akshoot.Play();
             bulletsLeft--;
@@ -215,7 +217,7 @@ public class Shooting : MonoBehaviour
             bulletsLeft--;
             animator.SetTrigger("Ak");
         }
-        
+
         readyToShoot = false;
 
         // Spread
@@ -235,7 +237,7 @@ public class Shooting : MonoBehaviour
                 {
                     enemyDamage1 = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
                     enemyDamage1.TakeDamage();
-                } 
+                }
                 else if (rayHit.collider.name == "BichoSeta(Clone)")
                 {
                     enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
@@ -248,56 +250,39 @@ public class Shooting : MonoBehaviour
                 }
                 // Destroy(rayHit.transform.gameObject);
             }
+            // Debug.Log(rayHit.transform.tag);
+            // Debug.Log(rayHit.collider.name);
         }
         // Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
-        
+
         Invoke(nameof(ResetShot), timeBetweenShooting);
 
         // if(bulletsShot > 0 && bulletsLeft > 0)
         //    Invoke("Shoot", timeBetweenShots);
     }
-    //RodilloDamage
-    private void OnTriggerEnter(Collider other)
+
+    void meleee()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            if (other.transform.CompareTag("Enemy"))
-            {
-                Debug.Log(other.gameObject.name);
-                if (other.gameObject.name == "BichoQueso(Clone)")
-                {
-                    enemyDamage1 = other.GetComponent<AIEnemy1>();
-                    enemyDamage1.TakeDamage();
-                }
-                else if (other.gameObject.name == "BichoSeta(Clone)")
-                {
-                    enemyDamage2 = other.GetComponent<AIEnemy2>();
-                    enemyDamage2.TakeDamage();
-                }
-                else if (other.gameObject.name == "BichoTomate(Clone)")
-                {
-                    enemyDamage3 = other.GetComponent<AIEnemy3>();
-                    enemyDamage3.TakeDamage();
-                }
-                // Destroy(rayHit.transform.gameObject);
-            }
-        }
+        player.GetComponentInChildren<CapsuleCollider>().enabled = true;
     }
-    private void ResetShot()
+   
+    public void ResetShot()
     {
         readyToShoot = true;
-        player.GetComponent<BoxCollider>().enabled = false;
+
+        if (rodillo == true)
+            player.GetComponentInChildren<CapsuleCollider>().enabled = false;
     }
-    private void Reload()
-    {
-        reloading = true;
-        Invoke(nameof(ReloadFinished), reloadTime);
-    }
-    private void ReloadFinished()
-    {
-        bulletsLeft = magazineSize;
-        reloading = false;
-    }
+    //private void Reload()
+    //{
+    //    reloading = true;
+    //    Invoke(nameof(ReloadFinished), reloadTime);
+    //}
+    //private void ReloadFinished()
+    //{
+    //    bulletsLeft = magazineSize;
+    //    reloading = false;
+    //}
 }
