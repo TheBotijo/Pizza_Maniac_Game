@@ -141,7 +141,13 @@ public class PowerUp : MonoBehaviour
     IEnumerator Leva()
     { 
         corazon.SetTrigger("Touch");
+        velocityScr.GetComponent<Transform>().localScale *= 3;
+        velocityScr.playerHeight *= 3;
+        velocityScr.xSpeed *= 3;
         yield return new WaitForSeconds(time_leva);
+        velocityScr.GetComponent<Transform>().localScale /= 3;
+        velocityScr.playerHeight /= 3;
+        velocityScr.xSpeed /= 3;
         Invoke(nameof(Destroy), 1);
     }
     void Destroy()
