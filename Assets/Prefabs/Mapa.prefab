@@ -2683,7 +2683,7 @@ GameObject:
   - component: {fileID: 1180339111984667871}
   m_Layer: 6
   m_Name: BocaIncendios
-  m_TagString: Untagged
+  m_TagString: BocaIncendio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12037,6 +12037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bocaIncendios (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
+      propertyPath: m_TagString
+      value: BocaIncendio
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
 --- !u!4 &1248020142804580050 stripped
@@ -15221,6 +15225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bocaIncendios (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
+      propertyPath: m_TagString
+      value: BocaIncendio
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
 --- !u!4 &1248020144094475399 stripped
@@ -15865,6 +15873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bocaIncendios
       objectReference: {fileID: 0}
+    - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
+      propertyPath: m_TagString
+      value: BocaIncendio
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
 --- !u!4 &1248020143742013947 stripped
@@ -16050,6 +16062,10 @@ PrefabInstance:
     - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
       propertyPath: m_Name
       value: bocaIncendios (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
+      propertyPath: m_TagString
+      value: BocaIncendio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
@@ -16430,6 +16446,10 @@ PrefabInstance:
     - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
       propertyPath: m_Name
       value: bocaIncendios
+      objectReference: {fileID: 0}
+    - target: {fileID: 755306431679888542, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
+      propertyPath: m_TagString
+      value: BocaIncendio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e397eb7d4ae34d8ef5751036f8fcd, type: 3}
