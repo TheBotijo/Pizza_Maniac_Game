@@ -22,7 +22,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.028
+    value: 0.105
   fastMode:
     overrideState: 0
     value: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -78,20 +78,20 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 0
-    value: 35
+    overrideState: 1
+    value: 16
   tint:
-    overrideState: 0
-    value: 61
+    overrideState: 1
+    value: 20
   colorFilter:
     overrideState: 0
-    value: {r: 0.9811321, g: 0.5322179, b: 0.8872407, a: 1}
+    value: {r: 0.039546248, g: 0.039546248, b: 0.039546248, a: 1}
   hueShift:
     overrideState: 0
     value: 101
   saturation:
-    overrideState: 0
-    value: -0
+    overrideState: 1
+    value: 14
   brightness:
     overrideState: 0
     value: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   contrast:
-    overrideState: 0
-    value: 14
+    overrideState: 1
+    value: 8
   mixerRedOutRedIn:
     overrideState: 0
     value: 76
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: PostProcessing Profile
+  m_Name: Mapa3
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 1036937413217138171}
@@ -1437,24 +1437,24 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3.29
+    value: 3.08
   threshold:
     overrideState: 1
-    value: 1.61
+    value: 0.33
   softKnee:
     overrideState: 1
-    value: 0.673
+    value: 0
   clamp:
     overrideState: 0
     value: 65470.51
   diffusion:
     overrideState: 1
-    value: 4.85
+    value: 3.95
   anamorphicRatio:
     overrideState: 0
     value: 0.17
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
     overrideState: 0
@@ -1515,7 +1515,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.078
+    value: 0.072
   size:
     overrideState: 0
     value: 1
@@ -1549,7 +1549,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.373
+    value: 0.386
   smoothness:
     overrideState: 0
     value: 0.2
@@ -1621,7 +1621,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 2.17
+    value: 2.26
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}

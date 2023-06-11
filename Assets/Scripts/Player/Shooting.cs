@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour
     [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
     private bool allowButtonHold;
     [SerializeField] private int bulletsPerTap;
-    private float timeBetweenShooting, range, timeBetweenShots;
+    private float timeBetweenShooting, range = 1000f, timeBetweenShots;
     //private float spread;
 
     [Header("Bools")]
@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
     private GameObject rodill;
     private GameObject pistola;
     private GameObject Ak;
-    [HideInInspector] public bool rodillo =true;
+    [HideInInspector] public bool rodillo = true;
     [HideInInspector] public bool pistol;
     [HideInInspector] public bool ak;
 
@@ -113,7 +113,7 @@ public class Shooting : MonoBehaviour
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
-        ///if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
+        //if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
 
         //Shoot
         if (readyToShoot && shooting  && bulletsLeft > 0 && rodillo==false){
@@ -134,7 +134,6 @@ public class Shooting : MonoBehaviour
         {
             fpsCam.fieldOfView = Mathf.Lerp(fpsCam.fieldOfView, maxfield, 10f * Time.deltaTime);
             aiming = true;
-
         }
         else
         {
@@ -154,6 +153,7 @@ public class Shooting : MonoBehaviour
             {
                 rodill.gameObject.SetActive(false);
                 pistola.gameObject.SetActive(true);
+                referencess.crosshair.SetActive(true);
                 pistol = true;
                 rodillo = false;
                 damage = 7;
@@ -179,6 +179,7 @@ public class Shooting : MonoBehaviour
             }
             else if (ak == true) 
             {
+                referencess.crosshair.SetActive(false);
                 Ak.gameObject.SetActive(false);
                 rodill.gameObject.SetActive(true);
                 rodillo = true;
@@ -187,7 +188,7 @@ public class Shooting : MonoBehaviour
                 damage = 5;
                 timeBetweenShooting = 2f;
                 //spread = 0f;
-                range = 0f;
+                range = 0.1f;
                 reloadTime = 0.5f;
                 timeBetweenShots = 0.5f;
             }
@@ -215,7 +216,6 @@ public class Shooting : MonoBehaviour
             animator.SetTrigger("Ak");
         }
         
-
         readyToShoot = false;
 
         // Spread
@@ -247,13 +247,8 @@ public class Shooting : MonoBehaviour
                     enemyDamage3.TakeDamage();
                 }
                 // Destroy(rayHit.transform.gameObject);
-                
-            }    
-
-            // Debug.Log(rayHit.transform.tag);
-            // Debug.Log(rayHit.collider.name);
-                                     
-        }        
+            }
+        }
         // Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
@@ -268,12 +263,27 @@ public class Shooting : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log(other.name);
-            other.GetComponent<AIEnemy1>().TakeDamage();
-            other.GetComponent<AIEnemy2>().TakeDamage();
-            //Debug.Log("DAÑANDO A enemigo con rodillo");
+            if (other.transform.CompareTag("Enemy"))
+            {
+                Debug.Log(other.gameObject.name);
+                if (other.gameObject.name == "BichoQueso(Clone)")
+                {
+                    enemyDamage1 = other.GetComponent<AIEnemy1>();
+                    enemyDamage1.TakeDamage();
+                }
+                else if (other.gameObject.name == "BichoSeta(Clone)")
+                {
+                    enemyDamage2 = other.GetComponent<AIEnemy2>();
+                    enemyDamage2.TakeDamage();
+                }
+                else if (other.gameObject.name == "BichoTomate(Clone)")
+                {
+                    enemyDamage3 = other.GetComponent<AIEnemy3>();
+                    enemyDamage3.TakeDamage();
+                }
+                // Destroy(rayHit.transform.gameObject);
+            }
         }
-
     }
     private void ResetShot()
     {
