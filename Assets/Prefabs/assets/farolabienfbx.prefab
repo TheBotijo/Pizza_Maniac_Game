@@ -307,7 +307,7 @@ GameObject:
   m_TagString: Farola
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8143475952476811182
 Transform:
@@ -412,9 +412,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8143475952476811182}
     m_Modifications:
+    - target: {fileID: 1567864176224345298, guid: 4e9343decb1961a408ae588dad273d8c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5565993802875964352, guid: 4e9343decb1961a408ae588dad273d8c, type: 3}
       propertyPath: m_Name
       value: ChispasGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565993802875964352, guid: 4e9343decb1961a408ae588dad273d8c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600193753497855920, guid: 4e9343decb1961a408ae588dad273d8c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8245115549672924272, guid: 4e9343decb1961a408ae588dad273d8c, type: 3}
       propertyPath: m_RootOrder
