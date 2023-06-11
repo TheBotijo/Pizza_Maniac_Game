@@ -23,8 +23,10 @@ public class AIEnemy3 : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
-    public GameObject cos;
+    public Transform cos3;
     public GameObject drop;
+    List<MeshRenderer> renderers = new List<MeshRenderer>();
+    List<Color> colors = new List<Color>();
 
     //Sounds
     public AudioSource damag;
@@ -44,7 +46,7 @@ public class AIEnemy3 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
-        original = cos.GetComponent<Renderer>().material.color;
+        original = cos3.GetComponentInChildren<Renderer>().material.color;
         animator3 = GetComponent<Animator>();
     }
 
@@ -93,7 +95,24 @@ public class AIEnemy3 : MonoBehaviour
     {
         //Debug.Log("DañoEnemigo");
         animator3.SetTrigger("tookDamage");
-        cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        //cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        Health -= takeDamage.damage;
+        damag.Play();
+        foreach (Transform child in cos3)
+        {
+            Color b = child.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+            colors.Add(b);
+        }
+
+        foreach (Transform child in cos3)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = new Color(255, 0, 0);
+            }
+        }
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
@@ -108,7 +127,17 @@ public class AIEnemy3 : MonoBehaviour
     }
     void ColorBack()
     {
-        cos.GetComponent<Renderer>().material.color = original;
+        int i = 0;
+        foreach (Transform child in cos3)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = colors[i];
+                i++;
+            }
+        }
     }
     private void AttackPlayer()
     {
