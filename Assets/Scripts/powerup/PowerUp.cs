@@ -8,8 +8,8 @@ public class PowerUp : MonoBehaviour
     private GameReferences referencess;
     private PlayerMoveJump velocityScr;
     private Shooting munitionScr;
-    public GameObject[] enemies;
-    public Rigidbody[] stop;
+    public GameObject enemies;
+    private Rigidbody stop;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource guindillaSound;
@@ -68,25 +68,38 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Huevo()
     {
-        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponentsInChildren<Rigidbody>();
+        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();
+        
         huevoSound.Play();
         huevo.SetTrigger("Touch");
+        stop.isKinematic = true;
+        Debug.Log("CONGELASSION2");
+        stop.constraints = RigidbodyConstraints.FreezePosition;
 
         Debug.Log("CONGELASSION");
-        foreach (Rigidbody _stop in stop)
-        {
-            _stop.isKinematic = true;
-            Debug.Log("CONGELASSION2");
-            _stop.constraints = RigidbodyConstraints.FreezePosition;
-        }
+
+        //foreach (GameObject _stop in enemies)
+        //{
+        //    Rigidbody rb;
+        //    rb = _stop.GetComponent<Rigidbody>();
+        //    rb.isKinematic = true;
+        //    Debug.Log("CONGELASSION2");
+        //    rb.constraints = RigidbodyConstraints.FreezePosition;
+        //}
         
         yield return new WaitForSeconds(time_huevo);
 
-        foreach (Rigidbody _stop in stop)
-        {
-            _stop.isKinematic = false;
-            _stop.constraints = RigidbodyConstraints.None;
-        }
+        stop.isKinematic = false;
+        Debug.Log("CONGELASSION3");
+        stop.constraints = RigidbodyConstraints.None;
+        //foreach (GameObject _stop in enemies)
+        //{
+        //    Rigidbody rb;
+        //    rb = _stop.GetComponent<Rigidbody>();
+        //    rb.isKinematic = true;
+        //    Debug.Log("CONGELASSION2");
+        //    rb.constraints = RigidbodyConstraints.FreezePosition;
+        //}
         Invoke(nameof(Destroy), 1);
 
     }
