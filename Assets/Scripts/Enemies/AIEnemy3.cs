@@ -21,6 +21,10 @@ public class AIEnemy3 : MonoBehaviour
     Color original;
 
     //Attacking
+    [SerializeField] 
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private Transform[] projectileSpawnPoint;
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
     public Transform cos3;
@@ -142,6 +146,8 @@ public class AIEnemy3 : MonoBehaviour
     private void AttackPlayer()
     {
         animator3.SetTrigger("attacking");
+        Invoke(nameof(Throw), 1.5f);        
+            
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
@@ -152,5 +158,12 @@ public class AIEnemy3 : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    private void Throw()
+    {
+        foreach (Transform SpawnPoints in projectileSpawnPoint)
+        {
+            Instantiate(projectilePrefab, SpawnPoints.position, transform.rotation);
+        }
     }
 }
