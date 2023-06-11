@@ -14469,6 +14469,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1180339112739685940}
     m_Modifications:
+    - target: {fileID: 2372876039345045350, guid: e7f6fb81b278be546a348465687b7faa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e97ae540022d7fb4b813bc2efe19fcbf, type: 2}
     - target: {fileID: 4636992066360396106, guid: e7f6fb81b278be546a348465687b7faa, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -14517,6 +14521,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: floristeria
       objectReference: {fileID: 0}
+    - target: {fileID: 5969039545533097476, guid: e7f6fb81b278be546a348465687b7faa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e97ae540022d7fb4b813bc2efe19fcbf, type: 2}
+    - target: {fileID: 6315221070457026793, guid: e7f6fb81b278be546a348465687b7faa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e97ae540022d7fb4b813bc2efe19fcbf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7f6fb81b278be546a348465687b7faa, type: 3}
 --- !u!4 &8704244362856605150 stripped
