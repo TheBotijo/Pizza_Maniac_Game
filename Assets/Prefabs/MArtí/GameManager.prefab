@@ -17239,7 +17239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4758903545385900408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19896,6 +19896,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   bulletHoleGraphicr: {fileID: 2157474055028221824, guid: 2053d8b042096fa46b8716b8180bd45b, type: 3}
+  crosshair: {fileID: 4758903545385900409}
   cineCam: {fileID: 5635233395463350198}
 --- !u!1 &4758903547201300279
 GameObject:
