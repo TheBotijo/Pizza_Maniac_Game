@@ -31,14 +31,12 @@ public class Drops : MonoBehaviour
             {
                 int i, a, x=0;
 
-                // Creem una estructura per omplir una array amb numeros del 0 al total de drops implementats al joc
-                // Utilitzem if / else if per anar completant cada cicle de drop i assignar així la quantitat de percentatge
-                // de drop assignat, sempre i quan entre tots els valors siguin iguals a 100
+                // Creem una estructura per omplir una array amb numeros del 0 al total de 
                 for (i = 0; i < DropsTotalNum - 1; i++)
                 {
                     if (i == 0)
                     {
-                        for (a = 0; a < XcentGuind; a++) // Del primer la guindilla
+                        for (a = 0; a < XcentGuind; a++)
                         {
                             xDrops[a] = i;
                         }
