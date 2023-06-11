@@ -8,6 +8,7 @@ public class PowerUp : MonoBehaviour
     private GameReferences referencess;
     private PlayerMoveJump velocityScr;
     private Shooting munitionScr;
+    private Health_Damage health;
     public GameObject enemies;
     private Rigidbody stop;
 
@@ -16,13 +17,14 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private AudioSource huevoSound;
 
     [Header("Animations")]
-    [SerializeField] private Animator guindilla;
-    [SerializeField] private Animator huevo, municion;
+    private Animator guindilla;
+    private Animator huevo, municion, corazon;
 
     [Header("Timings")]
     [SerializeField] private float time_guindilla = 8f;
     [SerializeField] private float time_huevo = 8f;
     [SerializeField] private float time_municion = 1f;
+    [SerializeField] private float time_cora = 1f;
 
     [Header("Particles")]
     public ParticleSystem guindillafart;
@@ -32,24 +34,34 @@ public class PowerUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             velocityScr = other.GetComponent<PlayerMoveJump>();
-            referencess = other.GetComponent<PlayerMoveJump>().references;
+            referencess = other.GetComponentInParent<GameReferences>();
+            health = other.GetComponent<Health_Damage>();
             munitionScr = other.GetComponent<Shooting>();
             guindillafart = other.GetComponentInChildren<ParticleSystem>();
 
             if (gameObject.CompareTag("guindilla"))
             {
+                guindilla = gameObject.GetComponent<Animator>();
                 Debug.Log("guindilla");
                 StartCoroutine(Guindilla());
             }
             if (gameObject.CompareTag("huevo"))
             {
+                huevo = gameObject.GetComponent<Animator>();
                 Debug.Log("huevo");
                 StartCoroutine(Huevo());
             }
             if (gameObject.CompareTag("municion"))
             {
+                municion = gameObject.GetComponent<Animator>();
                 Debug.Log("municion");
                 StartCoroutine(Municion());
+            }
+            if (gameObject.CompareTag("PizzaCora"))
+            {
+                corazon = gameObject.GetComponent<Animator>();
+                Debug.Log("pizzacor");
+                StartCoroutine(Cora());
             }
         }
     }
@@ -110,7 +122,14 @@ public class PowerUp : MonoBehaviour
         munitionScr.bulletsLeft = munitionScr.magazineSize;
         yield return new WaitForSeconds(time_municion);
         Invoke(nameof(Destroy), 1);
-
+    }
+    IEnumerator Cora()
+    {
+        //guindillaSound.Play();
+        corazon.SetTrigger("Touch");
+        health.HealthHeart();
+        yield return new WaitForSeconds(time_cora);
+        Invoke(nameof(Destroy), 1);
     }
     void Destroy()
     {
