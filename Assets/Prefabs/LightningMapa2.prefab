@@ -262,7 +262,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: b7223275ecbb49e418af00d5599dc9c6, type: 2}
+  sharedProfile: {fileID: 11400000, guid: a1a7770b3d5df8848ad961f4b6e905e7, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
