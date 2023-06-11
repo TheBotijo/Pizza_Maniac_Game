@@ -23,9 +23,11 @@ public class AIEnemy1 : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
-    public GameObject cos;
+    public Transform cos1;
     public GameObject ColliderMano;
     public GameObject drop;
+    List<MeshRenderer> renderers = new List<MeshRenderer>();
+    List<Color> colors = new List<Color>();
 
     //Sounds
     public AudioSource damag;
@@ -33,6 +35,8 @@ public class AIEnemy1 : MonoBehaviour
     public AudioSource punch;
 
     //States
+    [SerializeField]
+    private ParticleSystem DeathPt;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
@@ -45,7 +49,7 @@ public class AIEnemy1 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
-        original = cos.GetComponent<Renderer>().material.color;
+        original = cos1.GetComponentInChildren<Renderer>().material.color;
         animator = GetComponent<Animator>();
     }
 
@@ -85,39 +89,57 @@ public class AIEnemy1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            punch.Play();
+            //punch.Play();
             player.GetComponent<Health_Damage>().LoseHealth(damage);
             //Debug.Log("DAÑANDO A PLAYER");
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
-    //    }
-    //}
-
     public void TakeDamage()
     {
         Debug.Log("DañoEnemigo");
         animator.SetTrigger("tookDamage");
-        cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        foreach (Transform child in cos1)
+        {
+            Color c = child.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+            colors.Add(c);
+        }
+
+        foreach (Transform child in cos1)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = new Color(255, 0, 0);
+            }
+        }
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
+        DeathPt.Play();
         if (Health <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
-            takeDamage.Bajas();
+            takeDamage.Bajas();            
             Destroy(gameObject);
         }
     }
     void ColorBack()
     {
-        cos.GetComponent<Renderer>().material.color = original;
+        int i= 0;
+        foreach (Transform child in cos1)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                
+                renderer.material.color = colors[i];
+                i++;
+            }
+        }
     }
     private void AttackPlayer()
     {

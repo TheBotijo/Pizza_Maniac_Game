@@ -11,7 +11,7 @@ public class Queso : MonoBehaviour
     [SerializeField]
     int damage = 2;
     [SerializeField]
-    float VelocityFactor = 10;
+    int VelocityFactor = 10;
     [SerializeField] 
     private ParticleSystem pisarQueso;
 
@@ -43,7 +43,7 @@ public class Queso : MonoBehaviour
 
             References(other);
             other.GetComponent<Health_Damage>().LoseHealth(damage);
-            //Debug.Log("velocidad lenta");
+            Debug.Log("velocidad lenta");
             referencess.moveSpeedr /= VelocityFactor;
             velocity.cheese = true;
         }

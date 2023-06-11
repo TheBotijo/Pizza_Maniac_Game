@@ -21,10 +21,14 @@ public class AIEnemy2 : MonoBehaviour
     Color original;
 
     //Attacking
+    [SerializeField]
+    private ParticleSystem Pinchos;
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
-    public GameObject cos;
+    public Transform cos;
     public GameObject drop;
+    List<MeshRenderer> renderers = new List<MeshRenderer>();
+    List<Color> colors = new List<Color>();
 
     //Sounds
     public AudioSource damag;
@@ -44,7 +48,7 @@ public class AIEnemy2 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
-        original = cos.GetComponent<Renderer>().material.color;
+        original = cos.GetComponentInChildren<Renderer>().material.color;
         animator2 = GetComponent<Animator>();
     }
 
@@ -101,7 +105,22 @@ public class AIEnemy2 : MonoBehaviour
     {
         //Debug.Log("DañoEnemigo");
         animator2.SetTrigger("tookDamage");
-        cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        //cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        foreach (Transform child in cos)
+        {
+            Color a = child.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+            colors.Add(a);
+        }
+
+        foreach (Transform child in cos)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = new Color(255, 0, 0);
+            }
+        }
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
@@ -116,20 +135,40 @@ public class AIEnemy2 : MonoBehaviour
     }
     void ColorBack()
     {
-        cos.GetComponent<Renderer>().material.color = original;
+        int i = 0;
+        //cos.GetComponent<Renderer>().material.color = original;
+        foreach (Transform child in cos)
+        {
+            SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = colors[i];
+                i++;
+            }
+        }
     }
     private void AttackPlayer()
     {
         animator2.SetTrigger("attacking");
+        Pinchos.Play();
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
         }
     }
-
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Health_Damage>().LoseHealth(10);
+            Debug.Log("Esporas");
+        }
     }
 }
