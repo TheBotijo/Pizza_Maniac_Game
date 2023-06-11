@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Tomato : MonoBehaviour
 {
-    
-    
-    public AudioSource tomato;
+    private const float _force = 5f;
+
+    [SerializeField] private AudioSource tomato;
 
     [SerializeField]
     int damage = 5;
@@ -15,22 +15,28 @@ public class Tomato : MonoBehaviour
 
     private void Start()
     {
-        tomato = GetComponent<AudioSource>();
+        PushForward();
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             tomato.Play();
-            other.GetComponent<Health_Damage>().LoseHealth(damage);
+            collision.gameObject.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("tomato");
-            Invoke(nameof(destroy), 0.5f);
-            
+            Invoke("destroyTomato", 0.5f);
         }
-
     }
-    private void destroy()
+
+    private void destroyTomato()
     {
         Destroy(gameObject);
+    }
+
+    private void PushForward()
+    {
+        float force = Random.Range(_force - 1f, _force + 1f);
+        GetComponent<Rigidbody>().AddForce(new Vector3(0f, 1f, 1f) * force, ForceMode.VelocityChange);
     }
 }

@@ -10,7 +10,7 @@ public class PowerUp : MonoBehaviour
     private Shooting munitionScr;
     private Health_Damage health;
     public GameObject enemies;
-    private Rigidbody stop;
+    private Rigidbody[] stop;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource guindillaSound;
@@ -24,8 +24,8 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private float time_guindilla = 8f;
     [SerializeField] private float time_huevo = 8f;
     [SerializeField] private float time_municion = 1f;
-    [SerializeField] private float time_cora = 1f; 
-        [SerializeField] private float time_leva = 10f;
+    [SerializeField] private float time_cora = 1f;
+    [SerializeField] private float time_leva = 10f;
 
     [Header("Particles")]
     public ParticleSystem guindillafart;
@@ -72,7 +72,7 @@ public class PowerUp : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator Guindilla()
     {
         guindillafart.Play();
@@ -87,13 +87,23 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Huevo()
     {
-        stop = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();        
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Rigidbody[] enemiesRigidbody = new Rigidbody[enemies.Length];
+
+        for (int i = 0; i < enemiesRigidbody.Length; i++)
+        {
+            enemiesRigidbody[i] = enemies[i].GetComponent<Rigidbody>();
+
+            if (enemiesRigidbody[i] != null)
+            {
+                enemiesRigidbody[i].isKinematic = true;
+                enemiesRigidbody[i].constraints = RigidbodyConstraints.FreezePosition;
+            }
+        }
+
         huevoSound.Play();
         huevo.SetTrigger("Touch");
-        stop.isKinematic = true;
         Debug.Log("CONGELASSION2");
-        stop.constraints = RigidbodyConstraints.FreezePosition;
-
         Debug.Log("CONGELASSION");
 
         //foreach (GameObject _stop in enemies)
@@ -104,12 +114,21 @@ public class PowerUp : MonoBehaviour
         //    Debug.Log("CONGELASSION2");
         //    rb.constraints = RigidbodyConstraints.FreezePosition;
         //}
-        
+
         yield return new WaitForSeconds(time_huevo);
 
-        stop.isKinematic = false;
+        for (int i = 0; i < enemiesRigidbody.Length; i++)
+        {
+            if (enemiesRigidbody[i] != null)
+            {
+                enemiesRigidbody[i].isKinematic = false;
+                enemiesRigidbody[i].constraints = RigidbodyConstraints.None;
+            }
+        }
+
+
         Debug.Log("CONGELASSION3");
-        stop.constraints = RigidbodyConstraints.None;
+
         //foreach (GameObject _stop in enemies)
         //{
         //    Rigidbody rb;
@@ -123,22 +142,22 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Municion()
     {
-         
-        municion.SetTrigger("Touch");        
+
+        municion.SetTrigger("Touch");
         munitionScr.bulletsLeft = munitionScr.magazineSize;
         yield return new WaitForSeconds(time_municion);
         Invoke(nameof(Destroy), 1);
     }
     IEnumerator Cora()
     {
-         
+
         corazon.SetTrigger("Touch");
         health.HealthHeart();
         yield return new WaitForSeconds(time_cora);
         Invoke(nameof(Destroy), 1);
     }
     IEnumerator Leva()
-    { 
+    {
         corazon.SetTrigger("Touch");
         velocityScr.GetComponent<Transform>().localScale *= 3;
         velocityScr.playerHeight *= 3;
@@ -154,3 +173,4 @@ public class PowerUp : MonoBehaviour
         Destroy(gameObject);
     }
 }
+

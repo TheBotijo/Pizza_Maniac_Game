@@ -21,7 +21,7 @@ public class AIEnemy3 : MonoBehaviour
     Color original;
 
     //Attacking
-    [SerializeField] 
+    [SerializeField]
     private GameObject projectilePrefab;
     [SerializeField]
     private Transform[] projectileSpawnPoint;
@@ -38,8 +38,6 @@ public class AIEnemy3 : MonoBehaviour
     public AudioSource punch;
 
     //States
-    [SerializeField]
-    private ParticleSystem DeathPt;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
@@ -122,14 +120,12 @@ public class AIEnemy3 : MonoBehaviour
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
-        DeathPt.Play();
         if (Health <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
             takeDamage.Bajas();
-            
             Destroy(gameObject);
         }
     }
@@ -150,8 +146,8 @@ public class AIEnemy3 : MonoBehaviour
     private void AttackPlayer()
     {
         animator3.SetTrigger("attacking");
-        Invoke(nameof(Throw), 1.5f);        
-            
+        Invoke(nameof(Throw), 1.5f);
+
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
@@ -171,3 +167,4 @@ public class AIEnemy3 : MonoBehaviour
         }
     }
 }
+

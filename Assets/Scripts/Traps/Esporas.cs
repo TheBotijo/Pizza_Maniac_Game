@@ -6,7 +6,7 @@ public class Esporas : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             other.GetComponent<Health_Damage>().LoseHealth(10);
             Debug.Log("Esporas");
