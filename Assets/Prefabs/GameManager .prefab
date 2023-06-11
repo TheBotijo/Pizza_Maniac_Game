@@ -16745,6 +16745,37 @@ Transform:
   m_Father: {fileID: 8558177787167644284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3949333075059953690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 2873923239200569787, guid: c284be4b0efc78d4f8e97f30fcc60566, type: 3}
+  m_PrefabInstance: {fileID: 3934552998339747520}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6049140847190362292}
+  m_Layer: 0
+  m_Name: 'BulletHole (Missing Prefab with guid: c284be4b0efc78d4f8e97f30fcc60566)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6049140847190362292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 7307242772642879092, guid: c284be4b0efc78d4f8e97f30fcc60566, type: 3}
+  m_PrefabInstance: {fileID: 3934552998339747520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949333075059953690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9011245819859723935}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3954572820870988949
 GameObject:
   m_ObjectHideFlags: 0
@@ -25763,7 +25794,7 @@ MonoBehaviour:
   whatIsShootable:
     serializedVersion: 2
     m_Bits: 2147483647
-  bulletHoleGraphicr: {fileID: 2157474055028221824, guid: 2053d8b042096fa46b8716b8180bd45b, type: 3}
+  bulletHoleGraphicr: {fileID: 3572070573286141346, guid: f09a36657bbed84468e0f3fbc9da1bfe, type: 3}
   crosshair: {fileID: 8119117110773623502}
   cineCam: {fileID: 8976728058856018945}
 --- !u!1 &8119117110432519296
@@ -27914,6 +27945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8e7ace2d086cd41a6ac11ba29a3411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aguaScr: {fileID: 0}
 --- !u!1 &8540085263512762640
 GameObject:
   m_ObjectHideFlags: 0
@@ -28229,6 +28261,8 @@ MonoBehaviour:
   references: {fileID: 0}
   cameraRot: {fileID: 8828419940656591762}
   flatVel: {x: 0, y: 0, z: 0}
+  xSpeed: 0
+  guindSpeed: 0
   animator: {fileID: 8522412452401789990}
   cheese: 0
   guindilla: 0
@@ -30840,11 +30874,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c284be4b0efc78d4f8e97f30fcc60566, type: 3}
---- !u!4 &6049140847190362292 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7307242772642879092, guid: c284be4b0efc78d4f8e97f30fcc60566, type: 3}
-  m_PrefabInstance: {fileID: 3934552998339747520}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4949197895928056922
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,6 +21,8 @@ public class AIEnemy2 : MonoBehaviour
     Color original;
 
     //Attacking
+    [SerializeField]
+    private ParticleSystem Pinchos;
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
     public Transform cos;
@@ -149,14 +151,24 @@ public class AIEnemy2 : MonoBehaviour
     private void AttackPlayer()
     {
         animator2.SetTrigger("attacking");
+        Pinchos.Play();
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Health_Damage>().LoseHealth(10);
+            Debug.Log("Esporas");
+        }
     }
 }
