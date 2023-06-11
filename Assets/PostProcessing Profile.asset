@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -78,20 +78,20 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 0
-    value: 35
+    overrideState: 1
+    value: 16
   tint:
-    overrideState: 0
-    value: 61
+    overrideState: 1
+    value: 20
   colorFilter:
     overrideState: 0
-    value: {r: 0.9811321, g: 0.5322179, b: 0.8872407, a: 1}
+    value: {r: 0.039546248, g: 0.039546248, b: 0.039546248, a: 1}
   hueShift:
     overrideState: 0
     value: 101
   saturation:
-    overrideState: 0
-    value: -0
+    overrideState: 1
+    value: 14
   brightness:
     overrideState: 0
     value: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   contrast:
-    overrideState: 0
-    value: 14
+    overrideState: 1
+    value: 9
   mixerRedOutRedIn:
     overrideState: 0
     value: 76
@@ -1437,13 +1437,13 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3.29
+    value: 1.43
   threshold:
     overrideState: 1
-    value: 1.61
+    value: 1.54
   softKnee:
     overrideState: 1
-    value: 0.673
+    value: 0
   clamp:
     overrideState: 0
     value: 65470.51
