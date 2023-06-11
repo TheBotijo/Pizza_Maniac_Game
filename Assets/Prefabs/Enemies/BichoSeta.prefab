@@ -270,6 +270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5337160263812275500}
   - {fileID: 8864774187535302040}
   - {fileID: 8297660354369123150}
   - {fileID: 424921349774933556}
@@ -518,8 +519,8 @@ Transform:
   - {fileID: 2472447212281095248}
   - {fileID: 8112380570673080851}
   - {fileID: 5654725821023530687}
-  m_Father: {fileID: 8864774187535302040}
-  m_RootOrder: 31
+  m_Father: {fileID: 450698849515879864}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127557643671925542
 GameObject:
@@ -1440,7 +1441,7 @@ Transform:
   - {fileID: 5952402422235919129}
   - {fileID: 3893961251900973131}
   m_Father: {fileID: 450698849515879864}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2194168741463605710
 GameObject:
@@ -2437,7 +2438,7 @@ Transform:
   - {fileID: 8184479685236410744}
   - {fileID: 7731739038070424576}
   m_Father: {fileID: 450698849515879864}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3903767495906651947
 GameObject:
@@ -2596,7 +2597,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8864774187535302040}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6118854835907974468
 SkinnedMeshRenderer:
@@ -3506,11 +3507,10 @@ Transform:
   - {fileID: 3612852803269550744}
   - {fileID: 1401640335871847382}
   - {fileID: 8577502370620346966}
-  - {fileID: 5337160263812275500}
   - {fileID: 6036160412418649345}
   - {fileID: 5325829217854799894}
   m_Father: {fileID: 450698849515879864}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5635969515139318723
 GameObject:
@@ -5125,7 +5125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8864774187535302040}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6150847795900035112
 SkinnedMeshRenderer:
