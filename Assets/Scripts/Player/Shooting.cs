@@ -93,7 +93,6 @@ public class Shooting : MonoBehaviour
     }
     private void Update()
     {
-
         MyInput();
         ChangeGun();
         LookAtShoot();
@@ -114,7 +113,7 @@ public class Shooting : MonoBehaviour
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
-        ///if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
+        // if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
 
         //Shoot
         if (readyToShoot && shooting && bulletsLeft > 0 && rodillo == false)
@@ -154,6 +153,7 @@ public class Shooting : MonoBehaviour
         {
             if (rodillo == true) // Quan apretes la Q i el rodillo està activat, s'activen les stats de la següent arma
             {
+                referencess.crosshair.SetActive(true);
                 rodill.gameObject.SetActive(false);
                 pistola.gameObject.SetActive(true);
                 pistol = true;
@@ -181,6 +181,7 @@ public class Shooting : MonoBehaviour
             }
             else if (ak == true)
             {
+                referencess.crosshair.SetActive(false);
                 Ak.gameObject.SetActive(false);
                 rodill.gameObject.SetActive(true);
                 rodillo = true;
@@ -270,7 +271,9 @@ public class Shooting : MonoBehaviour
     public void ResetShot()
     {
         readyToShoot = true;
-        player.GetComponentInChildren<CapsuleCollider>().enabled = false;
+
+        if (rodillo == true)
+            player.GetComponentInChildren<CapsuleCollider>().enabled = false;
     }
     //private void Reload()
     //{
