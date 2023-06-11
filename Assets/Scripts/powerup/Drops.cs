@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora;
+    [SerializeField] [Range(0,100)] private int ProbabilidadDrop, XcentGuind, XcentHuevo, XcentMuni, XcentCora, Xlevadura;
     [SerializeField] private int DropsTotalNum;
     int whichdrop;
     int dropxcent;
@@ -13,8 +13,8 @@ public class Drops : MonoBehaviour
 
     public void DropSystem(Vector3 pos)
     {
-        Vector3 pos2 = pos;
-        int total = XcentCora + XcentMuni + XcentGuind + XcentHuevo;
+        Vector3 pos2 = new Vector3(pos.x, 1f, pos.z);
+        int total = XcentCora + XcentMuni + XcentGuind + XcentHuevo + Xlevadura;
 
         if (total != 100)
         {
@@ -64,15 +64,24 @@ public class Drops : MonoBehaviour
                             xDrops[x] = i;
                         }
                     }
+                    else if (i == 4)
+                    {
+                        for (a = 0; a < Xlevadura; a++)
+                        {
+                            x = XcentGuind - 1 + XcentMuni + XcentCora + XcentHuevo + a;
+                            xDrops[x] = i;
+                        }
+                    }
                 }
                 Reshuffle();
 
                 whichdrop = Random.Range(0, 99);
 
-                if (xDrops[whichdrop] == 0) Instantiate(Resources.Load("guindilla"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
-                else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
-                else if (xDrops[whichdrop] == 2) Debug.Log("DROP CORAZON");
-                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2 + new Vector3(0, 2, 0), Quaternion.identity);
+                if (xDrops[whichdrop] == 0) Instantiate(Resources.Load("guindilla"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 1) Instantiate(Resources.Load("Municion"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 2) Instantiate(Resources.Load("pizzacor"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("huevotimer"), pos2, Quaternion.identity);
+                else if (xDrops[whichdrop] == 3) Instantiate(Resources.Load("levadura"), pos2, Quaternion.identity);
             }
             else
             {
