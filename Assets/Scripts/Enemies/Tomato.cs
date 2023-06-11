@@ -13,9 +13,10 @@ public class Tomato : MonoBehaviour
     int damage = 5;
 
 
-    private void Start()
+    private void Awake()
     {
         PushForward();
+        Invoke("destroyTomato", 10f);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -43,31 +43,31 @@ public class PowerUp : MonoBehaviour
             if (gameObject.CompareTag("guindilla"))
             {
                 guindilla = gameObject.GetComponent<Animator>();
-                Debug.Log("guindilla");
+                //Debug.Log("guindilla");
                 StartCoroutine(Guindilla());
             }
             if (gameObject.CompareTag("huevo"))
             {
                 huevo = gameObject.GetComponent<Animator>();
-                Debug.Log("huevo");
+                //Debug.Log("huevo");
                 StartCoroutine(Huevo());
             }
             if (gameObject.CompareTag("municion"))
             {
                 municion = gameObject.GetComponent<Animator>();
-                Debug.Log("municion");
+                //Debug.Log("municion");
                 StartCoroutine(Municion());
             }
             if (gameObject.CompareTag("PizzaCora"))
             {
                 corazon = gameObject.GetComponent<Animator>();
-                Debug.Log("pizzacor");
+                //Debug.Log("pizzacor");
                 StartCoroutine(Cora());
             }
             if (gameObject.CompareTag("levadura"))
             {
                 corazon = gameObject.GetComponent<Animator>();
-                Debug.Log("levadura");
+                //Debug.Log("levadura");
                 StartCoroutine(Leva());
             }
         }
@@ -103,17 +103,6 @@ public class PowerUp : MonoBehaviour
 
         huevoSound.Play();
         huevo.SetTrigger("Touch");
-        Debug.Log("CONGELASSION2");
-        Debug.Log("CONGELASSION");
-
-        //foreach (GameObject _stop in enemies)
-        //{
-        //    Rigidbody rb;
-        //    rb = _stop.GetComponent<Rigidbody>();
-        //    rb.isKinematic = true;
-        //    Debug.Log("CONGELASSION2");
-        //    rb.constraints = RigidbodyConstraints.FreezePosition;
-        //}
 
         yield return new WaitForSeconds(time_huevo);
 
@@ -126,23 +115,11 @@ public class PowerUp : MonoBehaviour
             }
         }
 
-
-        Debug.Log("CONGELASSION3");
-
-        //foreach (GameObject _stop in enemies)
-        //{
-        //    Rigidbody rb;
-        //    rb = _stop.GetComponent<Rigidbody>();
-        //    rb.isKinematic = true;
-        //    Debug.Log("CONGELASSION2");
-        //    rb.constraints = RigidbodyConstraints.FreezePosition;
-        //}
         Invoke(nameof(Destroy), 1);
 
     }
     IEnumerator Municion()
     {
-
         municion.SetTrigger("Touch");
         munitionScr.bulletsLeft = munitionScr.magazineSize;
         yield return new WaitForSeconds(time_municion);
@@ -150,7 +127,6 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Cora()
     {
-
         corazon.SetTrigger("Touch");
         health.HealthHeart();
         yield return new WaitForSeconds(time_cora);
