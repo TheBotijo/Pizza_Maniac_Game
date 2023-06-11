@@ -30,6 +30,7 @@ public class GameReferences : MonoBehaviour
     public GameObject Ak47;
     public LayerMask whatIsShootable;
     public GameObject bulletHoleGraphicr;
+    public GameObject crosshair;
 
     [Header("CINEMATIC CAM")]
     public GameObject cineCam;

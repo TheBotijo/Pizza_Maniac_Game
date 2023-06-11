@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4659383405389253068}
-  m_Mesh: {fileID: 7070092830076324073, guid: 7d97523d4d949c748ac1ccbfd3655cc8, type: 3}
+  m_Mesh: {fileID: 7070092830076324073, guid: 36e22898e82868e45bedf784ecdfaff7, type: 3}
 --- !u!23 &7852571852527987468
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d649a9673ec4ac458368d7d41ba70a9, type: 2}
+  - {fileID: 2100000, guid: 33bcd7659de9d2742b46b0e688af5c37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   cheese: {fileID: 7933773710920347725}
   damage: 2
   VelocityFactor: 10
+  pisarQueso: {fileID: 0}
 --- !u!82 &7933773710920347725
 AudioSource:
   m_ObjectHideFlags: 0
