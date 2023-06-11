@@ -440,6 +440,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightningMapa2
       objectReference: {fileID: 0}
+    - target: {fileID: 9015310922344416022, guid: 5d75b25c240ce614ca772b9d3a46a394, type: 3}
+      propertyPath: m_Intensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015310922344416022, guid: 5d75b25c240ce614ca772b9d3a46a394, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d75b25c240ce614ca772b9d3a46a394, type: 3}
 --- !u!4 &1849216882 stripped

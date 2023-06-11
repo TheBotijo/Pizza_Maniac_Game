@@ -79,10 +79,10 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 3
+    value: 34
   tint:
     overrideState: 1
-    value: 12
+    value: 56
   colorFilter:
     overrideState: 0
     value: {r: 0.039546248, g: 0.039546248, b: 0.039546248, a: 1}
@@ -91,7 +91,7 @@ MonoBehaviour:
     value: 101
   saturation:
     overrideState: 1
-    value: 27
+    value: 9
   brightness:
     overrideState: 0
     value: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 1
-    value: 21
+    value: -1
   mixerRedOutRedIn:
     overrideState: 0
     value: 76
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Mapa2
+  m_Name: Mapamenu
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 1036937413217138171}
@@ -1437,10 +1437,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.07
+    value: 0.1
   threshold:
     overrideState: 1
-    value: 1.61
+    value: 0
   softKnee:
     overrideState: 1
     value: 0.819
@@ -1549,7 +1549,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.353
+    value: 0.162
   smoothness:
     overrideState: 0
     value: 0.2
@@ -1621,7 +1621,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 1.99
+    value: 0.85
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
