@@ -18215,7 +18215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758903546128938733}
   m_LocalRotation: {x: -0, y: -0.70799804, z: -0, w: 0.70621437}
-  m_LocalPosition: {x: 45.1, y: 0, z: 0.39999962}
+  m_LocalPosition: {x: 54.8, y: 0, z: 1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18321,7 +18321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758903546170203901}
   m_LocalRotation: {x: -0, y: 0.7691702, z: -0, w: 0.6390439}
-  m_LocalPosition: {x: 0.5, y: 0, z: 10.4}
+  m_LocalPosition: {x: 11.2, y: 0, z: -39.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18414,7 +18414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758903546238312650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -32.6}
+  m_LocalPosition: {x: -42.6, y: 0, z: -4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20375,6 +20375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8e7ace2d086cd41a6ac11ba29a3411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aguaScr: {fileID: 0}
 --- !u!1 &5053209832228930597
 GameObject:
   m_ObjectHideFlags: 0
@@ -21391,6 +21392,8 @@ MonoBehaviour:
   references: {fileID: 0}
   cameraRot: {fileID: 5198061447059882021}
   flatVel: {x: 0, y: 0, z: 0}
+  xSpeed: 0
+  guindSpeed: 0
   animator: {fileID: 4963618290881646481}
   cheese: 0
   guindilla: 0
