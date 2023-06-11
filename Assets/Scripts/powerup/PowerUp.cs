@@ -24,7 +24,8 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private float time_guindilla = 8f;
     [SerializeField] private float time_huevo = 8f;
     [SerializeField] private float time_municion = 1f;
-    [SerializeField] private float time_cora = 1f;
+    [SerializeField] private float time_cora = 1f; 
+        [SerializeField] private float time_leva = 10f;
 
     [Header("Particles")]
     public ParticleSystem guindillafart;
@@ -62,6 +63,12 @@ public class PowerUp : MonoBehaviour
                 corazon = gameObject.GetComponent<Animator>();
                 Debug.Log("pizzacor");
                 StartCoroutine(Cora());
+            }
+            if (gameObject.CompareTag("levadura"))
+            {
+                corazon = gameObject.GetComponent<Animator>();
+                Debug.Log("levadura");
+                StartCoroutine(Leva());
             }
         }
     }
@@ -117,7 +124,7 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Municion()
     {
-        //guindillaSound.Play();
+         
         municion.SetTrigger("Touch");        
         munitionScr.bulletsLeft = munitionScr.magazineSize;
         yield return new WaitForSeconds(time_municion);
@@ -125,10 +132,16 @@ public class PowerUp : MonoBehaviour
     }
     IEnumerator Cora()
     {
-        //guindillaSound.Play();
+         
         corazon.SetTrigger("Touch");
         health.HealthHeart();
         yield return new WaitForSeconds(time_cora);
+        Invoke(nameof(Destroy), 1);
+    }
+    IEnumerator Leva()
+    { 
+        corazon.SetTrigger("Touch");
+        yield return new WaitForSeconds(time_leva);
         Invoke(nameof(Destroy), 1);
     }
     void Destroy()
