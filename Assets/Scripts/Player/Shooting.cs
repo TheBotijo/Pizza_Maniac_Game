@@ -280,7 +280,7 @@ public class Shooting : MonoBehaviour
                     counter++;
                     if (counter > 15)
                     {
-
+                        deliverHere.SetActive(true);
                     }
                 }
                 

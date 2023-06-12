@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PizzaDeliver : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PizzaDeliver : MonoBehaviour
     public GameObject finalUI;
     public GameObject winUI;
     public GameObject loseUI;
+    public GameObject Other;
+    public GameObject Fini;
     public AudioSource win;
     [HideInInspector] public bool Finish; 
     private TextMeshProUGUI textoBajass, textoTiempos, textoEntregass;
@@ -36,9 +39,11 @@ public class PizzaDeliver : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem Spawn;
     //public TextMeshPro repartirText;
+    Scene currentScene;
 
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
         //Assignamos las referencias
         referencess = GetComponentInParent<GameReferences>();
         deliverHere = referencess.deliverHere;
@@ -79,86 +84,98 @@ public class PizzaDeliver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        string sceneName = currentScene.name;
+
         if (other.CompareTag("Player"))
         {
-            if (currentPizzas == totalPizzas - 1) //Perque reapareixi el punt al camió
+            if (sceneName == "ZonaFinal")
             {
-                spawnPoint.entregadas = true;
-                currentPizzas++;
+                Other.SetActive(false);
+                Fini.SetActive(true);
             }
-            else if (currentPizzas == totalPizzas) //Per recollir les pizzes del camió i tornar a repartir
+            else
             {
-                spawnPoint.entregadas = false;
-                if (rounds == 0)
+                if (currentPizzas == totalPizzas - 1) //Perque reapareixi el punt al camió
                 {
-                    Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
-                    Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
-                    Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
-                    Debug.Log("Vida enemigo: " + enemy1.Health);
-                    totalPizzas = 5;
+                    spawnPoint.entregadas = true;
+                    currentPizzas++;
                 }
-                else
+                else if (currentPizzas == totalPizzas) //Per recollir les pizzes del camió i tornar a repartir
                 {
-                    if (rounds == 1)
-                        totalPizzas = 3;
-                    if (rounds == 2)
-                        totalPizzas = 2;
-                    if (rounds == 3)
-                        totalPizzas = 1;
-                    if (rounds == 4)
+                    spawnPoint.entregadas = false;
+                    if (rounds == 0)
                     {
-                        FormatTimer();
-                        Finish = true;
-                        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
-                        textoTiempos.SetText("Tiempo: " + timerTextr.text);
-                        textoEntregass.SetText("Entrtegas: " + totalDelivers);
+                        Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
+                        Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
+                        Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
+                        Debug.Log("Vida enemigo: " + enemy1.Health);
+                        totalPizzas = 5;
+                    }
+                    else
+                    {
+                        if (rounds == 1)
+                            totalPizzas = 3;
+                        if (rounds == 2)
+                            totalPizzas = 2;
+                        if (rounds == 3)
+                            totalPizzas = 1;
+                        if (rounds == 4)
+                        {
+                            FormatTimer();
+                            Finish = true;
+                            textoBajass.SetText("Bajas: " + deadEnemy.bajass);
+                            textoTiempos.SetText("Tiempo: " + timerTextr.text);
+                            textoEntregass.SetText("Entrtegas: " + totalDelivers);
                             Debug.Log(deadEnemy.bajass);
                             Debug.Log(timerTextr.text);
                             Debug.Log(totalDelivers);
-                        healthScr.invencible = true;
-                        finalUI.SetActive(true);
-                        winUI.SetActive(true);
-                        Cursor.lockState = CursorLockMode.None;
-                        Cursor.visible = true;
-                        win.Play();
+                            healthScr.invencible = true;
+                            finalUI.SetActive(true);
+                            winUI.SetActive(true);
+                            Cursor.lockState = CursorLockMode.None;
+                            Cursor.visible = true;
+                            win.Play();
+                        }
+                        currentPizzas = 0;
+
+                        enemy1.Health += 7f;
+                        enemy2.Health += 5f;
+                        enemy3.Health += 6f;
+                        spawnEnemy.timeBetweenSpawns1 -= spawnEnemy.timeReduceMax;
+                        spawnEnemy.timeBetweenSpawns2 -= spawnEnemy.timeReduceMax;
+                        spawnEnemy.timeBetweenSpawns3 -= spawnEnemy.timeReduceMax;
+                        spawnEnemy.timeReduceMax -= timeReduce;
+                        spawnEnemy.enemyMax1 += 5;
+                        spawnEnemy.timeReduce -= 0.05f;
+                        spawnEnemy.enemyCount1 = 0;
+                        Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
+                        Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
+                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
+                        Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
+                        Debug.Log("Vida enemigo: " + enemy1.Health);
                     }
+                    rounds++;
+
+                    //Debug.Log("Enemy max: " + spawnEnemy.enemyMax1);
+
                     currentPizzas = 0;
-
-                    enemy1.Health += 7f;
-                    enemy2.Health += 5f;
-                    enemy3.Health += 6f;
-                    spawnEnemy.timeBetweenSpawns1 -= spawnEnemy.timeReduceMax;
-                    spawnEnemy.timeBetweenSpawns2 -= spawnEnemy.timeReduceMax;
-                    spawnEnemy.timeBetweenSpawns3 -= spawnEnemy.timeReduceMax;
-                    spawnEnemy.timeReduceMax -=  timeReduce;
-                    spawnEnemy.enemyMax1 += 5;
-                    spawnEnemy.timeReduce -= 0.05f;
-                    spawnEnemy.enemyCount1 = 0;
-                    Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
-                    Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
-                    Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
-                    Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1); 
-                    Debug.Log("Vida enemigo: " + enemy1.Health);
                 }
-                rounds++;
-                
-                //Debug.Log("Enemy max: " + spawnEnemy.enemyMax1);
+                else  //Repartint pizzes normals
+                {
+                    deliver.Play();
+                    currentPizzas++;
+                    totalDelivers++;
+                }
 
-                currentPizzas = 0;
+                spawnPoint.Respawn(deliverHere);
             }
-            else  //Repartint pizzes normals
-            { 
-                deliver.Play(); 
-                currentPizzas++;
-                totalDelivers++;
-            }
-                
-            spawnPoint.Respawn(deliverHere);
+            
         }
     }
 }
