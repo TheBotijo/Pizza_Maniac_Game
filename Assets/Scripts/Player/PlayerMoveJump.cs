@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMoveJump : MonoBehaviour
 {
@@ -140,7 +141,7 @@ public class PlayerMoveJump : MonoBehaviour
 
         else if (!grounded && flatVel.magnitude > (moveSpeed)) //a l'aire
         {
-            rb.AddForce(moveDirection.normalized * 10 * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * 5 * airMultiplier, ForceMode.Force);
         }
         else //a l'aire
         {
