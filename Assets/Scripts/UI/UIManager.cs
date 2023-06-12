@@ -68,8 +68,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInput.Juego.Jump.WasPressedThisFrame())
-            Continue();
+        //if (_playerInput.Juego.Jump.WasPressedThisFrame())
+        //    Continue();
 
         if (finished == false)
         {

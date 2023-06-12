@@ -278,7 +278,7 @@ public class Shooting : MonoBehaviour
                     enemyRb.isKinematic = true;
                     enemyRb.constraints = RigidbodyConstraints.FreezePosition;
                     counter++;
-                    if (counter > 15)
+                    if (counter == 9)
                     {
                         deliverHere.SetActive(true);
                     }
