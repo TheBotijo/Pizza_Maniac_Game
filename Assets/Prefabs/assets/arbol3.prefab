@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6891516222377583925}
   - component: {fileID: 1494163104341909275}
   - component: {fileID: 936788038624509594}
-  - component: {fileID: 501545746}
+  - component: {fileID: 6106319522221436037}
   m_Layer: 0
   m_Name: arbol3
   m_TagString: Untagged
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &501545746
-MeshCollider:
+--- !u!136 &6106319522221436037
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,7 +95,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2724076692255430280, guid: 0e911771a61177640ab122b990b238ed, type: 3}
+  m_Radius: 0.0038960383
+  m_Height: 0.027560282
+  m_Direction: 2
+  m_Center: {x: 0.007212667, y: -0.0006572981, z: 0.013631288}

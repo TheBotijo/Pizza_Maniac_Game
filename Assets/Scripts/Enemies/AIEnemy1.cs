@@ -75,6 +75,7 @@ public class AIEnemy1 : MonoBehaviour
         {
             animator.SetBool("moving", false);
         }
+        transform.LookAt(player.position);
     }
 
     private void ChasePlayer()
