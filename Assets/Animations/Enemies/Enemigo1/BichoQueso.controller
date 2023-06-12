@@ -11,10 +11,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8916344144784469293}
-    m_Position: {x: 350, y: 120, z: 0}
+    m_Position: {x: 350, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7686773996714401808}
-    m_Position: {x: 630, y: 0, z: 0}
+    m_Position: {x: 710, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4987134421920263921}
     m_Position: {x: 350, y: 320, z: 0}
@@ -23,10 +23,10 @@ AnimatorStateMachine:
     m_Position: {x: 610, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3739467350170179271}
-    m_Position: {x: 950, y: -130, z: 0}
+    m_Position: {x: 1020, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9223297262741960063}
-    m_Position: {x: 910, y: 0, z: 0}
+    m_Position: {x: 780, y: -260, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5412079513446114277}
@@ -36,7 +36,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 660, y: -90, z: 0}
   m_EntryPosition: {x: 110, y: 120, z: 0}
-  m_ExitPosition: {x: 650, y: 120, z: 0}
+  m_ExitPosition: {x: 990, y: 180, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 8916344144784469293}
 --- !u!1102 &-7605016639928180475
@@ -307,25 +307,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tookDamage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attacking
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: macarena
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

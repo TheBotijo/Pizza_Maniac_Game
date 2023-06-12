@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using static UnityEditor.PlayerSettings;
 
 public class Shooting : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class Shooting : MonoBehaviour
 
     [Header("Sounds")]
     public AudioSource melee;
-    public AudioSource pistolshoot, akshoot;
+    public AudioSource pistolshoot, akshoot, macarena;
 
     [Header("Graphics")]
     private GameObject bulletHoleGraphic;
@@ -282,14 +283,32 @@ public class Shooting : MonoBehaviour
                 }
                 else
                 {
+                    int r, g, b;
                     Macaanimator = gameRay.GetComponent<Animator>();
+                    gameRay.transform.localScale = new Vector3(1,1,1);
                     enemyRb = gameRay.GetComponent<Rigidbody>();
-                    Macaanimator.SetBool("macarena", true);
+                    Macaanimator.SetTrigger("macarena");
+                    if (counter == 1)
+                    {
+                        macarena.Play();
+                    }
                     enemyRb.isKinematic = true;
                     enemyRb.constraints = RigidbodyConstraints.FreezePosition;
+
+                    foreach (Transform child in rayHit.collider.gameObject.transform)
+                    {
+                        SkinnedMeshRenderer renderer = child.GetComponentInChildren<SkinnedMeshRenderer>();
+                        r = Random.Range(20, 200);
+                        g = Random.Range(20, 200);
+                        b = Random.Range(20, 200);
+                        if (renderer != null)
+                        {
+                            renderer.material.color = new Color(r, g, b);
+                        }
+                    }
                     counter++;
                     Debug.Log(counter);
-                    if (counter == 9)
+                    if (counter == 5)
                     {
                         deliverHere.SetActive(true);
                     }

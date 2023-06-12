@@ -96,19 +96,12 @@ public class AIEnemy2 : MonoBehaviour
             //Debug.Log("DAÑANDO A PLAYER");
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        GameObject.Find("Player").GetComponent<Health_Damage>().LoseHealth(damage);
-    //    }
-    //}
 
     public void TakeDamage()
     {
         //Debug.Log("DañoEnemigo");
         animator2.SetTrigger("tookDamage");
-        //cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+
         foreach (Transform child in cos)
         {
             Color a = child.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
