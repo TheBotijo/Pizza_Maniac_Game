@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     //Scripts
     private PizzaDeliver pizzas;
     private Shooting balas;
-    private Enemy1 enemy1; 
+    //private Enemy1 enemy1; 
     Scene currentScene;
     string sceneName;
     private PlayerInputMap _playerInput;
@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
         winUIr = pizzas.winUI;
         //winUIr.SetActive(true);
         balas = referencess.playerr.GetComponent<Shooting>();
-        enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy1>();
+        //enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy1>();
         cineCamObj = referencess.cineCam;
         cineCam = cineCamObj.GetComponent<Camera>();
         finished = referencess.deliverHere.GetComponent<PizzaDeliver>().Finish;
