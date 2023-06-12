@@ -9,23 +9,11 @@ public class Drops : MonoBehaviour
     int DropsTotalNum = 5;
     int whichdrop;
     int dropxcent;
-    public int[] xCents;
-    public int[] xDrops;
-    Scene currentScene;
+    private int[] xCents;
+    private int[] xDrops;
+    
 
-    private void Start()
-    {
-        currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
-        if (sceneName != "Mapa1")
-        {
-            DropsTotalNum = 5;
-        }
-        else
-        {
-            DropsTotalNum = 4;
-        }
-    }
+    
     public void DropSystem(Vector3 pos)
     {
         Vector3 pos2 = new Vector3(pos.x, 1f, pos.z);

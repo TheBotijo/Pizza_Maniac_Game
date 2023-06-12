@@ -123,7 +123,8 @@ public class PowerUp : MonoBehaviour
     IEnumerator Municion()
     {
         municion.SetTrigger("Touch");
-        munitionScr.bulletsLeft = munitionScr.magazineSize;
+        munitionScr.pistolBulletsLeft = munitionScr.pistolMagazineSize;
+        munitionScr.pistolBulletsLeft = munitionScr.akMagazineSize;
         yield return new WaitForSeconds(time_municion);
         Invoke(nameof(Destroy), 1);
     }

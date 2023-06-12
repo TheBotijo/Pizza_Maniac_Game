@@ -10,7 +10,7 @@ public class Health_Damage : MonoBehaviour
     [Range(0,100)]public float health;
     //private float maxHealth = 100;
     public bool invencible = false, moving = true;
-    private float time_invencible = 3f, time_Stop = 1f, time_death = 3f;
+    private float time_invencible = 1.5f, time_Stop = 1f, time_death = 3f;
 
     [Header("Scripts")]
     private HealthBar healthBar;

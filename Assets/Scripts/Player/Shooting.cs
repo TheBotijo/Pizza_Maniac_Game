@@ -13,7 +13,7 @@ public class Shooting : MonoBehaviour
 
     [Header("Gun Stats")]
     [HideInInspector] public float reloadTime;
-    [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
+    [HideInInspector] public int pistolBulletsLeft, akBulletsLeft, pistolBulletsLeft2, akBulletsLeft2, bulletsShot, pistolMagazineSize = 20, akMagazineSize = 40, damage;
     private bool allowButtonHold;
     [SerializeField] private int bulletsPerTap;
     public float timeBetweenShooting, timeBetweenShots;
@@ -43,7 +43,6 @@ public class Shooting : MonoBehaviour
     [Header("References")]
     private GameObject player;
     public GameObject deliverHere;
-    // public Transform attackPoint;
     public RaycastHit rayHit;
     private LayerMask whatIsEnemy;
     [SerializeField]
@@ -73,7 +72,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
-        
+
         referencess = GetComponentInParent<GameReferences>();
         player = referencess.playerrObj;
         rodill = referencess.rodillo;
@@ -97,7 +96,10 @@ public class Shooting : MonoBehaviour
 
     private void Awake()
     {
-        bulletsLeft = magazineSize;
+        pistolMagazineSize = 20;
+        akMagazineSize = 40;
+        pistolBulletsLeft2 = pistolMagazineSize;
+        akBulletsLeft2 = akMagazineSize;
         readyToShoot = true;
     }
     private void Update()
@@ -109,6 +111,7 @@ public class Shooting : MonoBehaviour
 
     private void LookAtShoot()
     {
+        //Zona de debug per comprovar on estem apuntant
         centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
         ray = Camera.main.ScreenPointToRay(centerScreen);
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
@@ -128,8 +131,16 @@ public class Shooting : MonoBehaviour
 
         // if (_playerInput.Juego.Reload.WasPressedThisFrame() && bulletsLeft < magazineSize) Reload();
 
-        //Shoot
-        if (readyToShoot && shooting && bulletsLeft > 0 && rodillo == false)
+        //Comprovem si el player pot atacar, depenent de les seves 
+        if (readyToShoot && shooting && pistolBulletsLeft > 0 && pistol == true)
+        {
+            bulletsShot = bulletsPerTap;
+            shot = true;
+            Shoot();
+            Invoke(nameof(Stop), 1);
+        }
+
+        else if (readyToShoot && shooting && akBulletsLeft > 0 && ak == true)
         {
             bulletsShot = bulletsPerTap;
             shot = true;
@@ -166,34 +177,40 @@ public class Shooting : MonoBehaviour
         {
             if (rodillo == true) // Quan apretes la Q i el rodillo està activat, s'activen les stats de la següent arma
             {
+                Debug.Log(pistolMagazineSize);
+                pistolBulletsLeft = pistolBulletsLeft2;
                 referencess.crosshair.SetActive(true);
                 rodill.SetActive(false);
                 pistola.SetActive(true);
                 pistol = true;
                 rodillo = false;
-                damage = 5;
-                timeBetweenShooting = 0.5f;
+                damage = 7;
+                timeBetweenShooting = 1f;
                 //spread = 0f;
                 range = 300f;
                 //reloadTime = 2f;
                 timeBetweenShots = 1f;
             }
-            else if (pistol == true)
+            else if (pistol == true) // si la pistola esta activa, s'activa la AK
             {
+                Debug.Log(akMagazineSize);
+                pistolBulletsLeft2 = pistolBulletsLeft;
+                akBulletsLeft = akBulletsLeft2;
                 pistola.SetActive(false);
                 Ak.SetActive(true);
                 pistol = false;
                 ak = true;
                 allowButtonHold = true;
                 damage = 3;
-                timeBetweenShooting = 1f;
+                timeBetweenShooting = 0.3f;
                 //spread = 0f;
                 range = 600f;
                 //reloadTime = 4f;
                 timeBetweenShots = 2f;
             }
-            else if (ak == true)
+            else if (ak == true) //Si esta la AK activa, s'activa el Rodillo
             {
+                akBulletsLeft2 = akBulletsLeft;
                 referencess.crosshair.SetActive(false);
                 Ak.SetActive(false);
                 rodill.SetActive(true);
@@ -205,7 +222,7 @@ public class Shooting : MonoBehaviour
                 //spread = 0f;
                 range = 0f;
                 //reloadTime = 0f;
-                timeBetweenShots = 2f;
+                timeBetweenShots = 0.5f;
             }
         }
     }
@@ -221,28 +238,21 @@ public class Shooting : MonoBehaviour
         else if (pistol == true)
         {
             akshoot.Play();
-            bulletsLeft--;
+            pistolBulletsLeft--;
             animator.SetTrigger("Pistol");
         }
         else if (ak == true)
         {
             pistolshoot.Play();
-            bulletsLeft--;
+            akBulletsLeft--;
             animator.SetTrigger("Ak");
         }
 
         readyToShoot = false;
 
-        // Spread
-        //float x = Random.Range(-spread, spread);
-        //float y = Random.Range(-spread, spread);
-
-        // Retrieve the name of this scene.
+        // Pillem el nom de l'escena actual
         string sceneName = currentScene.name;
 
-        // Calculate Direction with Spread
-        // Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
-        
         // RayCast
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
@@ -251,7 +261,7 @@ public class Shooting : MonoBehaviour
             {
                 gameRay = rayHit.transform.gameObject;
 
-                if (sceneName != "ZonaFinal")
+                if (sceneName != "ZonaFinal") //si estem a la ronda final, el shot afecta diferent
                 {
                     Debug.Log(rayHit.collider.name);
                     if (rayHit.collider.name == "BichoQueso(Clone)")
@@ -269,7 +279,7 @@ public class Shooting : MonoBehaviour
                         enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
                         enemyDamage3.TakeDamage();
                     }
-                } 
+                }
                 else
                 {
                     Macaanimator = gameRay.GetComponent<Animator>();
@@ -284,11 +294,7 @@ public class Shooting : MonoBehaviour
                         deliverHere.SetActive(true);
                     }
                 }
-                
-                // Destroy(rayHit.transform.gameObject);
             }
-            // Debug.Log(rayHit.transform.tag);
-            // Debug.Log(rayHit.collider.name);
         }
         // Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
@@ -296,8 +302,6 @@ public class Shooting : MonoBehaviour
 
         Invoke(nameof(ResetShot), timeBetweenShooting);
 
-        // if(bulletsShot > 0 && bulletsLeft > 0)
-        //    Invoke("Shoot", timeBetweenShots);
     }
 
     void Meleee()
@@ -308,7 +312,7 @@ public class Shooting : MonoBehaviour
             player.GetComponentInChildren<CapsuleCollider>().enabled = true;
         }
     }
-   
+
     public void ResetShot()
     {
         readyToShoot = true;
@@ -316,14 +320,4 @@ public class Shooting : MonoBehaviour
         if (rodillo == true)
             player.GetComponentInChildren<CapsuleCollider>().enabled = false;
     }
-    //private void Reload()
-    //{
-    //    reloading = true;
-    //    Invoke(nameof(ReloadFinished), reloadTime);
-    //}
-    //private void ReloadFinished()
-    //{
-    //    bulletsLeft = magazineSize;
-    //    reloading = false;
-    //}
 }

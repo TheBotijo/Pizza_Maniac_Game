@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
         _playerInput.Juego.Enable();
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -75,7 +75,13 @@ public class UIManager : MonoBehaviour
             FormatTimer();
         }
 
-        TextoAmmo.SetText("Balas " + balas.bulletsLeft + " / " + balas.magazineSize);
+        if (balas.ak == true)
+            TextoAmmo.SetText("Balas " + balas.akBulletsLeft + " / " + balas.akMagazineSize);
+        else if (balas.pistol == true)
+            TextoAmmo.SetText("Balas " + balas.pistolBulletsLeft + " / " + balas.pistolMagazineSize);
+        else if (balas.rodillo == true)
+            TextoAmmo.SetText("Balas ");
+
         TextoPizzas.SetText("Pizzas Entregadas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
         TextoRounds.SetText("Ronda " + pizzas.rounds + " / 4");
     }

@@ -25597,6 +25597,22 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8932769076756260610, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
+      propertyPath: m_Size.x
+      value: 16.291939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932769076756260610, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
+      propertyPath: m_Size.z
+      value: 11.698806
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932769076756260610, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
+      propertyPath: m_Center.x
+      value: -3.9221563
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932769076756260610, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
+      propertyPath: m_Center.z
+      value: -10.32328
+      objectReference: {fileID: 0}
     - target: {fileID: 8932769076756260620, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
       propertyPath: m_Name
       value: cine
@@ -25712,6 +25728,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8932769076756260621, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
   m_PrefabInstance: {fileID: 7752658750171324251}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1180339111583529047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8932769076756260620, guid: 59ff126b73c248e4ebeebe7b835f34ab, type: 3}
+  m_PrefabInstance: {fileID: 7752658750171324251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3815075939680377510
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180339111583529047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7673552, y: 6.013125, z: 0.87863123}
+  m_Center: {x: 0.69718105, y: 3.4587367, z: -1.5602418}
+--- !u!65 &3213548940592243237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180339111583529047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71144384, y: 6.013125, z: 0.87863123}
+  m_Center: {x: -8.342518, y: 3.4587495, z: -1.560265}
 --- !u!1001 &8136691433209009607
 PrefabInstance:
   m_ObjectHideFlags: 0
