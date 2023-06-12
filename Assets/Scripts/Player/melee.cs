@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-public class Melee : MonoBehaviour
+public class melee : MonoBehaviour
 {
     private Shooting shootScr;
     [SerializeField]
@@ -30,7 +30,7 @@ public class Melee : MonoBehaviour
                 shootScr.enemyDamage3.TakeDamage();
             }
 
-            Invoke(nameof(ReseteShot), shootScr.timeBetweenShooting);
+            Invoke(nameof(ReseteShot), shootScr.timeBetweenShots);
         }
         else if (other.CompareTag("Farola"))
         {

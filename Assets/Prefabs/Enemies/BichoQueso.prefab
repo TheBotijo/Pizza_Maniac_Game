@@ -4573,7 +4573,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 247
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -6228,7 +6228,7 @@ MonoBehaviour:
     m_Bits: 128
   speed: 3
   damage: 10
-  Health: 5
+  Health: 15
   timeBetweenAttacks: 0
   cos1: {fileID: 4736209453760637123}
   ColliderMano: {fileID: 8604720052709314641}

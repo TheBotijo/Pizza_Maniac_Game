@@ -16,8 +16,8 @@ public class AIEnemy2 : MonoBehaviour
     Rigidbody rb;
     public Animator animator2;
     public float speed;
-    public float damage = 10;
-    public float Health = 14;
+    public float damage;
+    public float Health;
     Color original;
 
     //Attacking
@@ -36,6 +36,8 @@ public class AIEnemy2 : MonoBehaviour
     public AudioSource punch;
 
     //States
+    [SerializeField]
+    private ParticleSystem DeathPt;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool huevo = false;
@@ -125,6 +127,7 @@ public class AIEnemy2 : MonoBehaviour
         Invoke(nameof(ColorBack), 0.2f);
         Health -= takeDamage.damage;
         damag.Play();
+        DeathPt.Play();
         if (Health <= 0)
         {
             Vector3 pose = gameObject.transform.position;

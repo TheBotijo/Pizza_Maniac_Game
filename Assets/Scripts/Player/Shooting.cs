@@ -16,8 +16,8 @@ public class Shooting : MonoBehaviour
     [HideInInspector] public int bulletsLeft, bulletsShot, magazineSize, damage;
     private bool allowButtonHold;
     [SerializeField] private int bulletsPerTap;
-    public float timeBetweenShooting;
-    private float range, timeBetweenShots;
+    public float timeBetweenShooting, timeBetweenShots;
+    private float range;
     //private float spread;
 
     [Header("Bools")]
@@ -171,7 +171,7 @@ public class Shooting : MonoBehaviour
                 pistola.SetActive(true);
                 pistol = true;
                 rodillo = false;
-                damage = 7;
+                damage = 5;
                 timeBetweenShooting = 0.5f;
                 //spread = 0f;
                 range = 300f;
@@ -205,7 +205,7 @@ public class Shooting : MonoBehaviour
                 //spread = 0f;
                 range = 0f;
                 //reloadTime = 0f;
-                timeBetweenShots = 0.5f;
+                timeBetweenShots = 2f;
             }
         }
     }

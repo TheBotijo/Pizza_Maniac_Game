@@ -370,8 +370,8 @@ MonoBehaviour:
     m_Bits: 128
   animator2: {fileID: 939814829326231358}
   speed: 3
-  damage: 10
-  Health: 12
+  damage: 8
+  Health: 10
   Pinchos: {fileID: 3893961251900973129}
   timeBetweenAttacks: 4
   cos: {fileID: 8864774187535302040}
@@ -2387,7 +2387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3883044113164506363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5079999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2424,7 +2424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3893961251900973130}
   m_LocalRotation: {x: 0.1327995, y: -0.6597073, z: -0.72103035, w: -0.16512394}
-  m_LocalPosition: {x: -0.00999999, y: 0.26000023, z: -0.09000015}
+  m_LocalPosition: {x: -0.00999999, y: 1.7680001, z: -0.09000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13528,7 +13528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6639721329327333716}
   m_LocalRotation: {x: -0.7070334, y: -0, z: -0, w: 0.7071802}
-  m_LocalPosition: {x: 0.00999999, y: 0.3000002, z: 0}
+  m_LocalPosition: {x: 0.00999999, y: 1.808, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17347,7 +17347,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 247
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

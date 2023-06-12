@@ -16,8 +16,8 @@ public class AIEnemy1 : MonoBehaviour
     Rigidbody rb;
     private Animator animator;
     public float speed;
-    public float damage = 10;
-    public float Health = 14;
+    public float damage;
+    public float Health;
     Color original;
 
     //Attacking
