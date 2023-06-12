@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class PizzaDeliver : MonoBehaviour
 {
@@ -91,6 +92,7 @@ public class PizzaDeliver : MonoBehaviour
         {
             if (sceneName == "ZonaFinal")
             {
+                Debug.Log("C'rest fini");
                 Other.SetActive(false);
                 Fini.SetActive(true);
             }

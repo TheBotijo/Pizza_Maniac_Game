@@ -278,6 +278,7 @@ public class Shooting : MonoBehaviour
                     enemyRb.isKinematic = true;
                     enemyRb.constraints = RigidbodyConstraints.FreezePosition;
                     counter++;
+                    Debug.Log(counter);
                     if (counter == 9)
                     {
                         deliverHere.SetActive(true);
@@ -301,7 +302,11 @@ public class Shooting : MonoBehaviour
 
     void meleee()
     {
-        player.GetComponentInChildren<CapsuleCollider>().enabled = true;
+        string sceneName = currentScene.name;
+        if (sceneName != "ZonaFinal")
+        {
+            player.GetComponentInChildren<CapsuleCollider>().enabled = true;
+        }
     }
    
     public void ResetShot()

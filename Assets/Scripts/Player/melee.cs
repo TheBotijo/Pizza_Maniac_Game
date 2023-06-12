@@ -31,7 +31,9 @@ public class Melee : MonoBehaviour
             }
 
             Invoke(nameof(ReseteShot), shootScr.timeBetweenShooting);
-        }else if (other.CompareTag("Farola")){
+        }
+        else if (other.CompareTag("Farola"))
+        {
             other.GetComponent<ParticlesMetal>().metal.Play();
             other.GetComponent<ParticlesMetal>().chispaSound.Play();
             other.GetComponent<ParticlesMetal>().Chispas.Play();
