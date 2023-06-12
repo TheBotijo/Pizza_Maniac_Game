@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PizzaDeliver : MonoBehaviour
 {
-
     [SerializeField] private GameReferences referencess;
     [HideInInspector] public int currentPizzas = 0;
     [HideInInspector] public int totalPizzas;

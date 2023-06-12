@@ -153,7 +153,6 @@ public class PlayerMoveJump : MonoBehaviour
         if (guindilla == true)
         {
             xSpeed= guindSpeed;
-            Debug.LogWarning("GuindillaSpeeed");
             //StartCoroutine(Resetx());
         }
         else xSpeed = 1;

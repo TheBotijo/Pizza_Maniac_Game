@@ -30,6 +30,10 @@ public class PowerUp : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem guindillafart;
 
+    void Awake()
+    {
+        Invoke("destroyPowerup", 15f);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -114,9 +118,7 @@ public class PowerUp : MonoBehaviour
                 enemiesRigidbody[i].constraints = RigidbodyConstraints.None;
             }
         }
-
         Invoke(nameof(Destroy), 1);
-
     }
     IEnumerator Municion()
     {
@@ -144,7 +146,7 @@ public class PowerUp : MonoBehaviour
         velocityScr.xSpeed /= 3;
         Invoke(nameof(Destroy), 1);
     }
-    void Destroy()
+    void destroyPowerup()
     {
         Destroy(gameObject);
     }

@@ -92,7 +92,7 @@ public class AIEnemy1 : MonoBehaviour
         {
             //punch.Play();
             player.GetComponent<Health_Damage>().LoseHealth(damage);
-            //Debug.Log("DAÑANDO A PLAYER");
+            Debug.Log("DAÑANDO A PLAYER");
         }
     }
     public void TakeDamage()

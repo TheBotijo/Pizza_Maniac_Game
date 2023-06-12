@@ -32154,6 +32154,18 @@ PrefabInstance:
       propertyPath: guindillaSound
       value: 
       objectReference: {fileID: 1587026869}
+    - target: {fileID: 537393413987225647, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
+      propertyPath: m_Radius
+      value: 0.6548022
+      objectReference: {fileID: 0}
+    - target: {fileID: 537393413987225647, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 537393413987225647, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06435788
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
 --- !u!199 &2123534408563200580
@@ -32501,7 +32513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2316671011080910304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57159,7 +57171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5621668264404912211
 GameObject:
   m_ObjectHideFlags: 0
