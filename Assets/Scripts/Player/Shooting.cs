@@ -337,7 +337,10 @@ public class Shooting : MonoBehaviour
         string sceneName = currentScene.name;
         if (sceneName != "ZonaFinal")
         {
-            player.GetComponentInChildren<CapsuleCollider>().enabled = true;
+            if (rodillo == true)
+            {
+                player.GetComponentInChildren<CapsuleCollider>().enabled = true;
+            }
         }
     }
 
