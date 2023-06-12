@@ -93,6 +93,9 @@ public class PizzaDeliver : MonoBehaviour
             if (sceneName == "ZonaFinal")
             {
                 Debug.Log("C'rest fini");
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Other.SetActive(false);
                 Fini.SetActive(true);
             }

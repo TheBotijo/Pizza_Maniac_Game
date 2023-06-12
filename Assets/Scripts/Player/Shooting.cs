@@ -42,7 +42,7 @@ public class Shooting : MonoBehaviour
 
     [Header("References")]
     private GameObject player;
-    private GameObject deliverHere;
+    public GameObject deliverHere;
     // public Transform attackPoint;
     public RaycastHit rayHit;
     private LayerMask whatIsEnemy;
@@ -67,7 +67,8 @@ public class Shooting : MonoBehaviour
     [Header("Animations")]
     public Animator animator;
     private Animator Macaanimator;
-    private Rigidbody enemyRb; 
+    private Rigidbody enemyRb;
+    int counter = 0;
 
     private void Start()
     {
@@ -238,7 +239,6 @@ public class Shooting : MonoBehaviour
 
         // Retrieve the name of this scene.
         string sceneName = currentScene.name;
-        int counter = 0;
 
         // Calculate Direction with Spread
         // Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);

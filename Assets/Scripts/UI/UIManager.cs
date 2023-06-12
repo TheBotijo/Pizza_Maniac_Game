@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     [Header("BOTONES UIs")]
     [SerializeField] private Button BackMenuBtn;
-    [SerializeField] private Button ContinueBtn, RetryBtn;
+    [SerializeField] private Button ContinueBtn, RetryBtn,BackBtn2;
     [SerializeField] public GameObject FinalUI, Win, Loose;
 
     [Header("POSTGAME INFO")]
@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
         cineCam = cineCamObj.GetComponent<Camera>();
         finished = referencess.deliverHere.GetComponent<PizzaDeliver>().Finish;
         BackMenuBtn.onClick.AddListener(Back);
+        BackBtn2.onClick.AddListener(Back);
         RetryBtn.onClick.AddListener(Retry);
         ContinueBtn.onClick.AddListener(Continue);
 
