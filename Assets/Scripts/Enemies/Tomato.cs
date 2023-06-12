@@ -9,14 +9,15 @@ public class Tomato : MonoBehaviour
 
     [SerializeField] private AudioSource tomato;
 
-    [SerializeField]
-    int damage = 5;
+    [SerializeField] private ParticleSystem DeathPt;
+
+    [SerializeField] int damage = 5;
 
 
     private void Awake()
     {
         PushForward();
-        Invoke("destroyTomato", 10f);
+        Invoke("destroyTomatoo", 10f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,10 +27,16 @@ public class Tomato : MonoBehaviour
             tomato.Play();
             collision.gameObject.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("tomato");
+            DeathPt.Play();
             Invoke("destroyTomato", 0.5f);
         }
     }
 
+    private void destroyTomatoo()
+    {
+        DeathPt.Play();
+        Invoke("destroyTomato", 0.5f);
+    }
     private void destroyTomato()
     {
         Destroy(gameObject);
