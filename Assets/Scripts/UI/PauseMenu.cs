@@ -15,22 +15,22 @@ public class PauseMenu : MonoBehaviour
     public Button ResumeBtn;
     public Button OptionsBtn;
     public Button MenuBtn;
-    public Button CrossBtn;
+    //public Button CrossBtn;
     //new input system
     public PlayerInputMap _playerInput;
-    public CameraController camScript;
+    //public CameraController camScript;
     public AudioSource click;
 
     private void Start()
     {
-        camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        //camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
 
         ResumeBtn.onClick.AddListener(Resume);
         OptionsBtn.onClick.AddListener(Opciones);
         MenuBtn.onClick.AddListener(BackToMenu);
-        CrossBtn.onClick.AddListener(Cross);
+        //CrossBtn.onClick.AddListener(Cross);
     }
 
     void Update()
@@ -97,6 +97,18 @@ public class PauseMenu : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Time.timeScale = 1f;
+    }
+
+    public void BackToMenu2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        Time.timeScale = 1f;
+    }
+
+    public void BackToMenu3()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
         Time.timeScale = 1f;
     }
 }
