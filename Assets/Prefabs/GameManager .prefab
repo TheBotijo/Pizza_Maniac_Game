@@ -28249,6 +28249,7 @@ MonoBehaviour:
   BackMenuBtn: {fileID: 5454198965815100789}
   ContinueBtn: {fileID: 1847389668481498212}
   RetryBtn: {fileID: 864661788005610336}
+  BackBtn2: {fileID: 207348913343736408}
   FinalUI: {fileID: 7449968169453256026}
   Win: {fileID: 29297506669410849}
   Loose: {fileID: 4766331650844633872}
@@ -29749,6 +29750,7 @@ MonoBehaviour:
   pistol: 0
   ak: 0
   aiming: 0
+  deliverHere: {fileID: 0}
   debugTransform: {fileID: 8021596858280803084}
   enemyDamage1: {fileID: 7590982340545053526}
   enemyDamage2: {fileID: 589049452898615016}
