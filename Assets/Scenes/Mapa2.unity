@@ -57371,7 +57371,7 @@ MonoBehaviour:
   playerrOrient: {fileID: 3393295658057246265}
   playerrObj: {fileID: 2582253351022056614}
   mainCam: {fileID: 3393295658959446814}
-  healthBarScr: {fileID: 0}
+  healthBarScr: {fileID: 2011769116}
   SpawnSystem: {fileID: 1208530923}
   deliverHere: {fileID: 1248072055}
   deliverImage: {fileID: 988038118}
@@ -57399,18 +57399,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalSpawnPoints: 12
   spawnPointList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 430053450}
+  - {fileID: 476744955}
+  - {fileID: 1858858372}
+  - {fileID: 1076181744}
+  - {fileID: 1914632822}
+  - {fileID: 233830297}
+  - {fileID: 1442805759}
+  - {fileID: 942753554}
+  - {fileID: 991466176}
+  - {fileID: 1008507547}
+  - {fileID: 1321499887}
+  - {fileID: 1109925977}
+  - {fileID: 249637972}
+  - {fileID: 2059476345}
+  - {fileID: 1007029447}
+  - {fileID: 1451446473}
+  - {fileID: 1413743119}
   enemy1: {fileID: 2153960592100693691, guid: b0fc51754c2b51942874c1e9b8c396ac, type: 3}
   enemy2: {fileID: 939814829326231298, guid: 12527c953f8dedd499734dd66fb5c1dd, type: 3}
   enemy3: {fileID: 8924901257037892443, guid: de76b16aa564a2946bae813bc8d79704, type: 3}
