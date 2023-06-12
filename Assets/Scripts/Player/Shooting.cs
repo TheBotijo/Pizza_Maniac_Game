@@ -100,7 +100,7 @@ public class Shooting : MonoBehaviour
     {
         string sceneName = currentScene.name;
 
-        if (sceneName != "ZonaFinal") //si estem a la ronda final, el shot afecta diferent
+        if (sceneName == "ZonaFinal") //si estem a la ronda final, el shot afecta diferent
         {
             questpointer.SetActive(false);
         }
