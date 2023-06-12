@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     private PizzaDeliver pizzas;
     private Shooting balas;
     private Enemy1 enemy1; 
+    Scene currentScene;
+    string sceneName;
 
     private void Start()
     {
@@ -53,6 +55,8 @@ public class UIManager : MonoBehaviour
         RetryBtn.onClick.AddListener(Retry);
         ContinueBtn.onClick.AddListener(Continue);
 
+        currentScene = SceneManager.GetActiveScene ();
+
     }
 
     
@@ -66,9 +70,9 @@ public class UIManager : MonoBehaviour
             FormatTimer();
         }
 
-        TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
-        TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
-        TextoRounds.SetText("Round: " + pizzas.rounds + " / 4");
+        TextoAmmo.SetText("Balas " + balas.bulletsLeft + " / " + balas.magazineSize);
+        TextoPizzas.SetText("Pizzas Entregadas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
+        TextoRounds.SetText("Ronda " + pizzas.rounds + " / 4");
     }
     void FormatTimer()
     {
@@ -83,12 +87,16 @@ public class UIManager : MonoBehaviour
 
     private void Back()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Menu");       
     }
+
+
+
     private void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     private void Continue()
     {
         cineCamObj.SetActive(true);
@@ -97,6 +105,16 @@ public class UIManager : MonoBehaviour
         Invoke(nameof(VallasOut), 1f);
         finalUIr.SetActive(false);
         winUIr.SetActive(false);
+
+        sceneName = currentScene.name;
+ 
+        if (sceneName == "Mapa1"){
+            SceneManager.LoadScene("Mapa2");
+        } else if (sceneName == "Mapa2"){
+            SceneManager.LoadScene("ZonaFinal");
+        } else if (sceneName == "ZonaFinal"){
+            SceneManager.LoadScene("Menu");  
+        }          
     }
     void VallasOut()
     {
