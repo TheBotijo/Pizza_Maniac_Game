@@ -167,8 +167,8 @@ public class Shooting : MonoBehaviour
             if (rodillo == true) // Quan apretes la Q i el rodillo està activat, s'activen les stats de la següent arma
             {
                 referencess.crosshair.SetActive(true);
-                rodill.gameObject.SetActive(false);
-                pistola.gameObject.SetActive(true);
+                rodill.SetActive(false);
+                pistola.SetActive(true);
                 pistol = true;
                 rodillo = false;
                 damage = 7;
@@ -180,8 +180,8 @@ public class Shooting : MonoBehaviour
             }
             else if (pistol == true)
             {
-                pistola.gameObject.SetActive(false);
-                Ak.gameObject.SetActive(true);
+                pistola.SetActive(false);
+                Ak.SetActive(true);
                 pistol = false;
                 ak = true;
                 allowButtonHold = true;
@@ -195,8 +195,8 @@ public class Shooting : MonoBehaviour
             else if (ak == true)
             {
                 referencess.crosshair.SetActive(false);
-                Ak.gameObject.SetActive(false);
-                rodill.gameObject.SetActive(true);
+                Ak.SetActive(false);
+                rodill.SetActive(true);
                 rodillo = true;
                 ak = false;
                 allowButtonHold = false;
@@ -215,7 +215,7 @@ public class Shooting : MonoBehaviour
         {
             melee.Play();
             animator.SetTrigger("melee");
-            Invoke(nameof(meleee), 0.5f);
+            Invoke(nameof(Meleee), 0.5f);
             Invoke(nameof(ResetShot), 1f);
         }
         else if (pistol == true)
@@ -300,7 +300,7 @@ public class Shooting : MonoBehaviour
         //    Invoke("Shoot", timeBetweenShots);
     }
 
-    void meleee()
+    void Meleee()
     {
         string sceneName = currentScene.name;
         if (sceneName != "ZonaFinal")

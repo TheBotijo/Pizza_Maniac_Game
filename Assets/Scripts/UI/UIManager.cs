@@ -17,13 +17,12 @@ public class UIManager : MonoBehaviour
     [Header("BOTONES UIs")]
     [SerializeField] private Button BackMenuBtn;
     [SerializeField] private Button ContinueBtn, RetryBtn,BackBtn2;
-    [SerializeField] public GameObject FinalUI, Win, Loose;
+    public GameObject FinalUI, Win, Loose;
 
     [Header("POSTGAME INFO")]
-    [SerializeField] public TextMeshProUGUI textoBajas;
-    [SerializeField] public TextMeshProUGUI textoTiempo, textoEntregas;
+    public TextMeshProUGUI textoBajas;
+     public TextMeshProUGUI textoTiempo, textoEntregas;
     private GameObject cineCamObj;
-    private Animator vallas;
     private Camera cineCam;
     private Animator camAnim;
     public float timer;
@@ -31,14 +30,12 @@ public class UIManager : MonoBehaviour
     private bool finished;
     private GameObject finalUIr;
     private GameObject winUIr;
-    private GameObject loseUIr;
 
     //Scripts
     private PizzaDeliver pizzas;
     private Shooting balas;
     //private Enemy1 enemy1; 
     Scene currentScene;
-    string sceneName;
     private PlayerInputMap _playerInput;
 
     private void Start()

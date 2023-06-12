@@ -32,7 +32,7 @@ public class PowerUp : MonoBehaviour
 
     void Awake()
     {
-        Invoke("destroyPowerup", 15f);
+        Invoke(nameof(DestroyPowerup), 15f);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -146,7 +146,7 @@ public class PowerUp : MonoBehaviour
         velocityScr.xSpeed /= 3;
         Invoke(nameof(Destroy), 1);
     }
-    void destroyPowerup()
+    void DestroyPowerup()
     {
         Destroy(gameObject);
     }

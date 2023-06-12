@@ -12,12 +12,6 @@ public class Drops : MonoBehaviour
     public int[] xCents;
     public int[] xDrops;
 
-    Scene currentScene;
-
-    private void Start()
-    {
-        currentScene = SceneManager.GetActiveScene();
-    }
     public void DropSystem(Vector3 pos)
     {
         Vector3 pos2 = new Vector3(pos.x, 1f, pos.z);

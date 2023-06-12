@@ -17,7 +17,7 @@ public class Tomato : MonoBehaviour
     private void Awake()
     {
         PushForward();
-        Invoke("destroyTomatoo", 10f);
+        Invoke(nameof(DestroyTomatoo), 10f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,16 +28,16 @@ public class Tomato : MonoBehaviour
             collision.gameObject.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("tomato");
             DeathPt.Play();
-            Invoke("destroyTomato", 0.5f);
+            Invoke(nameof(DestroyTomato), 0.5f);
         }
     }
 
-    private void destroyTomatoo()
+    private void DestroyTomatoo()
     {
         DeathPt.Play();
-        Invoke("destroyTomato", 0.5f);
+        Invoke(nameof(DestroyTomato), 0.5f);
     }
-    private void destroyTomato()
+    private void DestroyTomato()
     {
         Destroy(gameObject);
     }
