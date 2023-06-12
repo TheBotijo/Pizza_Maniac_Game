@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class Shooting : MonoBehaviour
 {
@@ -40,6 +42,7 @@ public class Shooting : MonoBehaviour
 
     [Header("References")]
     private GameObject player;
+    private GameObject deliverHere;
     // public Transform attackPoint;
     public RaycastHit rayHit;
     private LayerMask whatIsEnemy;
@@ -59,12 +62,17 @@ public class Shooting : MonoBehaviour
     private GameObject bulletHoleGraphic;
     //public GameObject muzzleFlash;
     public float camShakeMagnitude, camShakeDuration;
+    Scene currentScene;
 
     [Header("Animations")]
     public Animator animator;
+    private Animator Macaanimator;
+    private Rigidbody enemyRb; 
 
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
+        
         referencess = GetComponentInParent<GameReferences>();
         player = referencess.playerrObj;
         rodill = referencess.rodillo;
@@ -104,7 +112,11 @@ public class Shooting : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(centerScreen);
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
-            debugTransform.position = rayHit.point;
+            string sceneName = currentScene.name;
+            if (sceneName != "ZonaFinal")
+            {
+                //debugTransform.position = rayHit.point;
+            }
         }
     }
 
@@ -224,30 +236,54 @@ public class Shooting : MonoBehaviour
         //float x = Random.Range(-spread, spread);
         //float y = Random.Range(-spread, spread);
 
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+        int counter = 0;
+
         // Calculate Direction with Spread
         // Vector3 direction = attackPoint.transform.forward + new Vector3(x, y, 0);
-
+        
         // RayCast
         if (Physics.Raycast(ray, out rayHit, range, whatIsEnemy))
         {
+            GameObject gameRay;
             if (rayHit.transform.CompareTag("Enemy"))
             {
-                Debug.Log(rayHit.collider.name);
-                if (rayHit.collider.name == "BichoQueso(Clone)")
+                gameRay = rayHit.transform.gameObject;
+
+                if (sceneName != "ZonaFinal")
                 {
-                    enemyDamage1 = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
-                    enemyDamage1.TakeDamage();
-                }
-                else if (rayHit.collider.name == "BichoSeta(Clone)")
+                    Debug.Log(rayHit.collider.name);
+                    if (rayHit.collider.name == "BichoQueso(Clone)")
+                    {
+                        enemyDamage1 = rayHit.transform.gameObject.GetComponent<AIEnemy1>();
+                        enemyDamage1.TakeDamage();
+                    }
+                    else if (rayHit.collider.name == "BichoSeta(Clone)")
+                    {
+                        enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
+                        enemyDamage2.TakeDamage();
+                    }
+                    else if (rayHit.collider.name == "BichoTomate(Clone)")
+                    {
+                        enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
+                        enemyDamage3.TakeDamage();
+                    }
+                } 
+                else
                 {
-                    enemyDamage2 = rayHit.transform.gameObject.GetComponent<AIEnemy2>();
-                    enemyDamage2.TakeDamage();
+                    Macaanimator = gameRay.GetComponent<Animator>();
+                    enemyRb = gameRay.GetComponent<Rigidbody>();
+                    Macaanimator.SetBool("macarena", true);
+                    enemyRb.isKinematic = true;
+                    enemyRb.constraints = RigidbodyConstraints.FreezePosition;
+                    counter++;
+                    if (counter > 15)
+                    {
+
+                    }
                 }
-                else if (rayHit.collider.name == "BichoTomate(Clone)")
-                {
-                    enemyDamage3 = rayHit.transform.gameObject.GetComponent<AIEnemy3>();
-                    enemyDamage3.TakeDamage();
-                }
+                
                 // Destroy(rayHit.transform.gameObject);
             }
             // Debug.Log(rayHit.transform.tag);

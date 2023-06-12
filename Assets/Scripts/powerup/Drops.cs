@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Drops : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class Drops : MonoBehaviour
     public int[] xCents;
     public int[] xDrops;
 
+    Scene currentScene;
+
+    private void Start()
+    {
+        currentScene = SceneManager.GetActiveScene();
+    }
     public void DropSystem(Vector3 pos)
     {
         Vector3 pos2 = new Vector3(pos.x, 1f, pos.z);
@@ -27,6 +34,9 @@ public class Drops : MonoBehaviour
             Debug.LogWarning("DROP TIME");
 
             dropxcent = Random.Range(0, 100);
+
+
+
             if (dropxcent < ProbabilidadDrop)
             {
                 int i, a, x=0;

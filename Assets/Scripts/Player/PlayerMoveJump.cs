@@ -172,11 +172,6 @@ public class PlayerMoveJump : MonoBehaviour
     {
         timeguind = time;
     }
-    //IEnumerator Resetx()
-    //{
-    //    yield return new WaitForSeconds(timeguind);
-    //    guindilla = false; 
-    //}
 
     private void Jump()
     {
