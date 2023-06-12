@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
     private Enemy1 enemy1; 
     Scene currentScene;
     string sceneName;
+    private PlayerInputMap _playerInput;
 
     private void Start()
     {
@@ -57,6 +59,8 @@ public class UIManager : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene ();
 
+        _playerInput = new PlayerInputMap();
+        _playerInput.Juego.Enable();
     }
 
     
@@ -64,6 +68,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_playerInput.Juego.Jump.WasPressedThisFrame())
+            Continue();
+
         if (finished == false)
         {
             timer += Time.deltaTime;
@@ -102,11 +109,11 @@ public class UIManager : MonoBehaviour
         cineCamObj.SetActive(true);
         camAnim = cineCam.GetComponent<Animator>();
         camAnim.SetBool("vallasDisappear", true);
-        Invoke(nameof(VallasOut), 1f);
+        //Invoke(nameof(VallasOut), 1f);
         finalUIr.SetActive(false);
         winUIr.SetActive(false);
 
-        sceneName = currentScene.name;
+        string sceneName = currentScene.name;
  
         if (sceneName == "Mapa1"){
             SceneManager.LoadScene("Mapa2");
@@ -116,10 +123,10 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene("Menu");  
         }          
     }
-    void VallasOut()
-    {
-        vallas = GameObject.FindGameObjectWithTag("VallasFinal").GetComponentInChildren<Animator>();
-        vallas.SetBool("disappear", true);
-        Debug.Log("VAllas ALPHA OUT");
-    }
+    //void VallasOut()
+    //{
+    //    vallas = GameObject.FindGameObjectWithTag("VallasFinal").GetComponentInChildren<Animator>();
+    //    vallas.SetBool("disappear", true);
+    //    Debug.Log("VAllas ALPHA OUT");
+    //}
 }
