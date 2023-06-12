@@ -44,6 +44,11 @@ public class PizzaDeliver : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "ZonaFinal")
+        {
+            deliverHere.SetActive(false);
+        }
         //Assignamos las referencias
         referencess = GetComponentInParent<GameReferences>();
         deliverHere = referencess.deliverHere;
