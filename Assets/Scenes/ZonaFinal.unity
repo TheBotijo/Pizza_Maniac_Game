@@ -10706,6 +10706,7 @@ MonoBehaviour:
   macarena: {fileID: 605109309}
   camShakeMagnitude: 2
   camShakeDuration: 1
+  questpointer: {fileID: 3704815328464908018}
   animator: {fileID: 1437513404193402345}
 --- !u!114 &2247994416525846443
 MonoBehaviour:
@@ -12079,7 +12080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2999027408076352246
 GameObject:
   m_ObjectHideFlags: 0
@@ -12201,7 +12202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 390}
+  m_AnchoredPosition: {x: 0, y: 373}
   m_SizeDelta: {x: 1184.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3072352626744048032
@@ -17570,7 +17571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: -13}
   m_SizeDelta: {x: 1174, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &3424919609352469496
@@ -18482,7 +18483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -411}
+  m_AnchoredPosition: {x: 0, y: -397}
   m_SizeDelta: {x: 504.5, y: 203.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4171030965873591673
@@ -25861,7 +25862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FELICIDADEEESS!
+  m_text: ENHORABUENA maquina
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39038ddb60fc4f04d8d66e344615f9b9, type: 2}
   m_sharedMaterial: {fileID: -3415240612850273698, guid: 39038ddb60fc4f04d8d66e344615f9b9, type: 2}
@@ -25870,8 +25871,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278240767
+  m_fontColor: {r: 1, g: 0.7734208, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -26203,9 +26204,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Te has pasado el juego.\n\nSinceros \"dieses\" por parte de los creadores\n\nV\xEDctor
-    Cervilla Pintor\nFerran Folch G\xE0zquez\nMart\xED Fontanet\nMarina Ram\xEDrez\nLuis
-    Chaparro Gonz\xE1lez\n\n(ALT + F4)"
+  m_text: "Te has pasado el juego.\n\nSinceros \"dieses\" por parte de los creadores\n\nVictor
+    Cervilla \nLuis Chaparro \nFerran Folch \nMarti Fontanet\nMarina Ramirez\n\n(ALT
+    + F4)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39038ddb60fc4f04d8d66e344615f9b9, type: 2}
   m_sharedMaterial: {fileID: -3415240612850273698, guid: 39038ddb60fc4f04d8d66e344615f9b9, type: 2}

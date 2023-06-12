@@ -63,6 +63,7 @@ public class Shooting : MonoBehaviour
     //public GameObject muzzleFlash;
     public float camShakeMagnitude, camShakeDuration;
     Scene currentScene;
+    public GameObject questpointer;
 
     [Header("Animations")]
     public Animator animator;
@@ -97,6 +98,13 @@ public class Shooting : MonoBehaviour
 
     private void Awake()
     {
+        string sceneName = currentScene.name;
+
+        if (sceneName != "ZonaFinal") //si estem a la ronda final, el shot afecta diferent
+        {
+            questpointer.SetActive(false);
+        }
+
         pistolMagazineSize = 20;
         akMagazineSize = 40;
         pistolBulletsLeft2 = pistolMagazineSize;
@@ -311,6 +319,7 @@ public class Shooting : MonoBehaviour
                     if (counter == 5)
                     {
                         deliverHere.SetActive(true);
+                        questpointer.SetActive(true);
                     }
                 }
             }
