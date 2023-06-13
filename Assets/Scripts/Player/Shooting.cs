@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
-using static UnityEditor.PlayerSettings;
 
 public class Shooting : MonoBehaviour
 {
