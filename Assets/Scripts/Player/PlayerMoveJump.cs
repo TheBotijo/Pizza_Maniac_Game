@@ -71,7 +71,7 @@ public class PlayerMoveJump : MonoBehaviour
         readyToJump = true;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
