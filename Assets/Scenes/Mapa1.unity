@@ -28025,8 +28025,10 @@ MonoBehaviour:
   melee: {fileID: 5208770669247270985}
   pistolshoot: {fileID: 5208770669626984136}
   akshoot: {fileID: 5208770669774326091}
+  macarena: {fileID: 0}
   camShakeMagnitude: 2
   camShakeDuration: 1
+  questpointer: {fileID: 0}
   animator: {fileID: 4938245929606955461}
 --- !u!114 &5208770669120523143
 MonoBehaviour:
@@ -28040,7 +28042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9fe680c60012478434b0a41c61b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   invencible: 0
   moving: 1
   referencess: {fileID: 0}
@@ -33271,7 +33273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 537393413987225641, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 537393413987225646, guid: e5d5e3bc11374eb4caf3e637f9156711, type: 3}
       propertyPath: stop

@@ -71,7 +71,7 @@ public class PlayerMoveJump : MonoBehaviour
         readyToJump = true;
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(orientation.transform.position, Vector3.down, playerHeight, whatIsGround);
@@ -121,7 +121,7 @@ public class PlayerMoveJump : MonoBehaviour
             {
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
-                rb.AddForce(moveDirection.normalized * moveSpeed * 25f, ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * moveSpeed * 25f , ForceMode.Force);
             }
             else if (_playerInput.Juego.Move.IsPressed())
             {

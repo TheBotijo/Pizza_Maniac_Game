@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class Shooting : MonoBehaviour
 {
@@ -88,6 +82,14 @@ public class Shooting : MonoBehaviour
         maxfield = fpsCam.fieldOfView / 2;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
+
+        //Estadistiques inicials armes
+        pistolMagazineSize = 20;
+        akMagazineSize = 40;
+        pistolBulletsLeft2 = pistolMagazineSize;
+        akBulletsLeft2 = akMagazineSize;
+        pistolBulletsLeft = pistolMagazineSize;
+        akBulletsLeft = akMagazineSize;
     }
     public void Bajas()
     {
@@ -103,11 +105,6 @@ public class Shooting : MonoBehaviour
         {
             questpointer.SetActive(false);
         }
-
-        pistolMagazineSize = 20;
-        akMagazineSize = 40;
-        pistolBulletsLeft2 = pistolMagazineSize;
-        akBulletsLeft2 = akMagazineSize;
         readyToShoot = true;
     }
     private void Update()
@@ -185,8 +182,9 @@ public class Shooting : MonoBehaviour
         {
             if (rodillo == true) // Quan apretes la Q i el rodillo està activat, s'activen les stats de la següent arma
             {
-                Debug.Log(pistolMagazineSize);
-                pistolBulletsLeft = pistolBulletsLeft2;
+                Debug.Log(pistolBulletsLeft);
+                if (pistolBulletsLeft2 < pistolMagazineSize && pistolBulletsLeft < pistolMagazineSize)
+                    pistolBulletsLeft = pistolBulletsLeft2;
                 referencess.crosshair.SetActive(true);
                 rodill.SetActive(false);
                 pistola.SetActive(true);
@@ -201,9 +199,10 @@ public class Shooting : MonoBehaviour
             }
             else if (pistol == true) // si la pistola esta activa, s'activa la AK
             {
-                Debug.Log(akMagazineSize);
+                Debug.Log(akBulletsLeft);
                 pistolBulletsLeft2 = pistolBulletsLeft;
-                akBulletsLeft = akBulletsLeft2;
+                if (akBulletsLeft2 != akMagazineSize && akBulletsLeft < akBulletsLeft2)
+                    akBulletsLeft = akBulletsLeft2;
                 pistola.SetActive(false);
                 Ak.SetActive(true);
                 pistol = false;

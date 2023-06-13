@@ -55,7 +55,10 @@ public class Health_Damage : MonoBehaviour
 
     public void HealthHeart()
     {
-        health += 20;
+        if (health < 50)
+        {
+            health += 7;
+        }
         healthBar.ChangeActualHealth(health);
     }
 
