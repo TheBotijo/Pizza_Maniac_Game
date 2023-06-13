@@ -32,7 +32,7 @@ public class PowerUp : MonoBehaviour
 
     void Awake()
     {
-        Invoke(nameof(DestroyPowerup), 15f);
+        Invoke(nameof(DestroyPowerup), 25f);
     }
     private void OnTriggerEnter(Collider other)
     {
