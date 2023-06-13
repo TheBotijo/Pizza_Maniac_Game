@@ -87,6 +87,15 @@ public class PizzaDeliver : MonoBehaviour
         if (seconds > 0) { timerTextr.text += seconds + "s"; }
     }
 
+    public void variablesOnScreen()
+    {
+        FormatTimer();
+        Finish = true;
+        textoBajass.SetText("Bajas: " + deadEnemy.bajass);
+        textoTiempos.SetText("Tiempo: " + timerTextr.text);
+        textoEntregass.SetText("Entrtegas: " + totalDelivers);
+        healthScr.invencible = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
 
@@ -96,7 +105,6 @@ public class PizzaDeliver : MonoBehaviour
         {
             if (sceneName == "ZonaFinal")
             {
-                Debug.Log("C'rest fini");
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -115,13 +123,6 @@ public class PizzaDeliver : MonoBehaviour
                     spawnPoint.entregadas = false;
                     if (rounds == 0)
                     {
-                        Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
-                        Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
-                        Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
-                        Debug.Log("Vida enemigo: " + enemy1.Health);
                         totalPizzas = 5;
                     }
                     else
@@ -139,9 +140,6 @@ public class PizzaDeliver : MonoBehaviour
                             textoBajass.SetText("Bajas: " + deadEnemy.bajass);
                             textoTiempos.SetText("Tiempo: " + timerTextr.text);
                             textoEntregass.SetText("Entrtegas: " + totalDelivers);
-                            Debug.Log(deadEnemy.bajass);
-                            Debug.Log(timerTextr.text);
-                            Debug.Log(totalDelivers);
                             healthScr.invencible = true;
                             finalUI.SetActive(true);
                             winUI.SetActive(true);
@@ -161,13 +159,6 @@ public class PizzaDeliver : MonoBehaviour
                         spawnEnemy.enemyMax1 += 5;
                         spawnEnemy.timeReduce -= 0.05f;
                         spawnEnemy.enemyCount1 = 0;
-                        Debug.Log("Temps màxim a reduir: " + spawnEnemy.timeReduceMax);
-                        Debug.Log("Multiplicador: " + spawnEnemy.timeReduce);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns1);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns2);
-                        Debug.Log("Temps entre spawns: " + spawnEnemy.timeBetweenSpawns3);
-                        Debug.Log("Enemigos totales: " + spawnEnemy.enemyMax1);
-                        Debug.Log("Vida enemigo: " + enemy1.Health);
                     }
                     rounds++;
 

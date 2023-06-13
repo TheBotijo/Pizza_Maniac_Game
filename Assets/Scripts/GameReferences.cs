@@ -32,7 +32,7 @@ public class GameReferences : MonoBehaviour
     public GameObject bulletHoleGraphicr;
     public GameObject crosshair;
 
-    [Header("CINEMATIC CAM")]
+    [Header("CINEMATIC CAM & UI")]
     public GameObject cineCam;
 
 }

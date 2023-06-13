@@ -88,10 +88,11 @@ public class AIEnemy1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             //punch.Play();
-            player.GetComponent<Health_Damage>().LoseHealth(damage);
+            other.GetComponent<Health_Damage>().LoseHealth(damage);
             Debug.Log("DAÑANDO A PLAYER");
         }
     }
