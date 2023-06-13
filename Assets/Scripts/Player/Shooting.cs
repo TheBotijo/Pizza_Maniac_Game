@@ -7,7 +7,9 @@ public class Shooting : MonoBehaviour
 
     [Header("Gun Stats")]
     [HideInInspector] public float reloadTime;
-    [HideInInspector] public int pistolBulletsLeft, akBulletsLeft, pistolBulletsLeft2, akBulletsLeft2, bulletsShot, pistolMagazineSize = 20, akMagazineSize = 40, damage;
+    [HideInInspector] public int pistolBulletsLeft, akBulletsLeft, pistolBulletsLeft2, akBulletsLeft2, bulletsShot, pistolMagazineSize = 20, akMagazineSize = 40;
+    [HideInInspector] public float damage;
+
     private bool allowButtonHold;
     [SerializeField] private int bulletsPerTap;
     public float timeBetweenShooting, timeBetweenShots;
@@ -234,26 +236,9 @@ public class Shooting : MonoBehaviour
         }
     }
     private void Shoot()
-    {   //Animations
-        if (rodillo == true)
-        {
-            melee.Play();
-            animator.SetTrigger("melee");
-            Invoke(nameof(Meleee), 0.5f);
-            Invoke(nameof(ResetShot), 1f);
-        }
-        else if (pistol == true)
-        {
-            akshoot.Play();
-            pistolBulletsLeft--;
-            animator.SetTrigger("Pistol");
-        }
-        else if (ak == true)
-        {
-            pistolshoot.Play();
-            akBulletsLeft--;
-            animator.SetTrigger("Ak");
-        }
+    {   
+        //Animations
+        Animate();
 
         readyToShoot = false;
 
@@ -291,7 +276,7 @@ public class Shooting : MonoBehaviour
                 {
                     int r, g, b;
                     Macaanimator = gameRay.GetComponent<Animator>();
-                    gameRay.transform.localScale = new Vector3(1,1,1);
+                    gameRay.transform.localScale = new Vector3(1, 1, 1);
                     enemyRb = gameRay.GetComponent<Rigidbody>();
                     Macaanimator.SetTrigger("macarena");
                     if (counter == 1)
@@ -328,6 +313,29 @@ public class Shooting : MonoBehaviour
 
         Invoke(nameof(ResetShot), timeBetweenShooting);
 
+    }
+
+    private void Animate()
+    {
+        if (rodillo == true)
+        {
+            melee.Play();
+            animator.SetTrigger("melee");
+            Invoke(nameof(Meleee), 0.5f);
+            Invoke(nameof(ResetShot), 1f);
+        }
+        else if (pistol == true)
+        {
+            akshoot.Play();
+            pistolBulletsLeft--;
+            animator.SetTrigger("Pistol");
+        }
+        else if (ak == true)
+        {
+            pistolshoot.Play();
+            akBulletsLeft--;
+            animator.SetTrigger("Ak");
+        }
     }
 
     void Meleee()

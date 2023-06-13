@@ -149,9 +149,9 @@ public class PizzaDeliver : MonoBehaviour
                         }
                         currentPizzas = 0;
 
-                        enemy1.Health += 7f;
-                        enemy2.Health += 5f;
-                        enemy3.Health += 6f;
+                        enemy1.healthh += 7f;
+                        enemy2.healthh += 5f;
+                        enemy3.healthh += 6f;
                         spawnEnemy.timeBetweenSpawns1 -= spawnEnemy.timeReduceMax;
                         spawnEnemy.timeBetweenSpawns2 -= spawnEnemy.timeReduceMax;
                         spawnEnemy.timeBetweenSpawns3 -= spawnEnemy.timeReduceMax;

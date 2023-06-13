@@ -26,11 +26,9 @@ public class Health_Damage : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource damage;
     [SerializeField] private AudioSource lose, death;
-    int x;
 
     public void Start()
     {
-        x = 0;
         //health = maxHealth;
         //Assignamos las referencias
         referencess = GetComponentInParent<GameReferences>();

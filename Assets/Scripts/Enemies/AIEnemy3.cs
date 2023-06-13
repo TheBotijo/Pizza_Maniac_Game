@@ -5,10 +5,11 @@ using UnityEngine;
 public class AIEnemy3 : MonoBehaviour
 {
     //Scripts
-    private Shooting takeDamage;
+    public Shooting takeDamage;
     private Drops drops;
 
     //Player Follow
+    public GameObject playerObj;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -17,7 +18,7 @@ public class AIEnemy3 : MonoBehaviour
     public Animator animator3;
     public float speed;
     public float damage;
-    public float Health;
+    public float healthh;
     Color original;
 
     //Attacking
@@ -48,14 +49,14 @@ public class AIEnemy3 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerObj = GameObject.Find("Player");
+        player = playerObj.transform;
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
         original = cos3.GetComponentInChildren<Renderer>().material.color;
         animator3 = GetComponent<Animator>();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -100,10 +101,11 @@ public class AIEnemy3 : MonoBehaviour
 
     public void TakeDamage()
     {
+
         //Debug.Log("DañoEnemigo");
         animator3.SetTrigger("tookDamage");
         //cos.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-        Health -= takeDamage.damage;
+
         damag.Play();
         foreach (Transform child in cos3)
         {
@@ -121,16 +123,20 @@ public class AIEnemy3 : MonoBehaviour
             }
         }
         Invoke(nameof(ColorBack), 0.2f);
-        Health -= takeDamage.damage;
         damag.Play();
         DeathPt.Play();
-        if (Health <= 0)
+
+        if (healthh <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
             takeDamage.Bajas();
-            Destroy(gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            healthh -= takeDamage.damage;
         }
     }
     void ColorBack()

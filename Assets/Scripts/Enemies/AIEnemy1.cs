@@ -5,11 +5,12 @@ using UnityEngine;
 public class AIEnemy1 : MonoBehaviour
 {
     //Scripts
-    private Shooting takeDamage;
+    public Shooting takeDamage;
     private Drops drops;
 
     //Player Follow
-    public Transform player;
+    public Transform playerTrans;
+    public GameObject playerr;
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Enemy Stats
@@ -17,7 +18,7 @@ public class AIEnemy1 : MonoBehaviour
     private Animator animator;
     public float speed;
     public float damage;
-    public float Health;
+    public float healthh;
     Color original;
 
     //Attacking
@@ -45,10 +46,12 @@ public class AIEnemy1 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerr = GameObject.Find("Player");
+        takeDamage = playerr.GetComponent<Shooting>();
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTrans = playerr.transform;
         drops = GetComponentInChildren<Drops>();
-        takeDamage = player.GetComponent<Shooting>();
+        takeDamage = playerr.GetComponent<Shooting>();
         original = cos1.GetComponentInChildren<Renderer>().material.color;
         animator = GetComponent<Animator>();
     }
@@ -75,12 +78,12 @@ public class AIEnemy1 : MonoBehaviour
         {
             animator.SetBool("moving", false);
         }
-        transform.LookAt(player.position);
+        transform.LookAt(playerTrans.position);
     }
 
     private void ChasePlayer()
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0, player.position.z), speed * Time.deltaTime);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(playerTrans.position.x, 0, playerTrans.position.z), speed * Time.deltaTime);
         rb.MovePosition(pos);
         transform.LookAt(pos);
         animator.SetBool("moving", true);
@@ -96,10 +99,12 @@ public class AIEnemy1 : MonoBehaviour
             Debug.Log("DAÑANDO A PLAYER");
         }
     }
+
     public void TakeDamage()
     {
         Debug.Log("DañoEnemigo");
         animator.SetTrigger("tookDamage");
+
         foreach (Transform child in cos1)
         {
             Color c = child.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
@@ -115,17 +120,21 @@ public class AIEnemy1 : MonoBehaviour
                 renderer.material.color = new Color(255, 0, 0);
             }
         }
+        
         Invoke(nameof(ColorBack), 0.2f);
-        Health -= takeDamage.damage;
         damag.Play();
         DeathPt.Play();
-        if (Health <= 0)
+        if (healthh <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
-            takeDamage.Bajas();            
+            takeDamage.Bajas();     
             Destroy(gameObject);
+        }
+        else
+        {
+            healthh -= takeDamage.damage;
         }
     }
     void ColorBack()

@@ -5,10 +5,11 @@ using UnityEngine;
 public class AIEnemy2 : MonoBehaviour
 {
     //Scripts
-    private Shooting takeDamage;
+    public Shooting takeDamage;
     private Drops drops;
 
     //Player Follow
+    public GameObject playerObj;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -17,7 +18,7 @@ public class AIEnemy2 : MonoBehaviour
     public Animator animator2;
     public float speed;
     public float damage;
-    public float Health;
+    public float healthh;
     Color original;
 
     //Attacking
@@ -46,8 +47,11 @@ public class AIEnemy2 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerObj = GameObject.Find("Player");
+        player = playerObj.transform;
+
+        takeDamage = player.GetComponent<Shooting>();
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         drops = GetComponentInChildren<Drops>();
         takeDamage = player.GetComponent<Shooting>();
         original = cos.GetComponentInChildren<Renderer>().material.color;
@@ -57,6 +61,7 @@ public class AIEnemy2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (!huevo)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -118,16 +123,19 @@ public class AIEnemy2 : MonoBehaviour
             }
         }
         Invoke(nameof(ColorBack), 0.2f);
-        Health -= takeDamage.damage;
         damag.Play();
         DeathPt.Play();
-        if (Health <= 0)
+        if (healthh <= 0)
         {
             Vector3 pose = gameObject.transform.position;
             drops.DropSystem(pose);
             death.Play();
             takeDamage.Bajas();
             Destroy(gameObject);
+        }
+        else
+        {
+            healthh -= takeDamage.damage;
         }
     }
     void ColorBack()

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class melee : MonoBehaviour
 {
